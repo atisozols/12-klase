@@ -6,11 +6,15 @@
 
 **1.2. Raksturo mērķauditorijas vajadzības:** Sniedz ieskatu, kādas problēmas vai uzdevumi ir svarīgi šai auditorijai. _Piemēri: “Biroja darbiniekiem ir grūtības ar tikšanos sinhronizāciju starp nodaļām.”_
 
+---
+
 ### **2. uzdevums: Lietotāja stāstu izveide**
 
 **2.1. Apraksti lietotāja stāstus:** Izveido vienkāršus, mērķauditorijas vajadzībām pielāgotus lietotāja stāstus. _Piemērs: “Kā noliktavas pārzinis es vēlos redzēt automātiskos paziņojumus, kad noliktavā krājumu līmenis sasniedz minimālo robežu.”_
 
 **2.2. Identificē galvenās funkcijas stāstos:** No lietotāja stāstiem izcel programmatūras galvenās funkcijas.
+
+---
 
 ### **3. uzdevums: Vienkāršota prasību specifikācija**
 
@@ -19,6 +23,8 @@
 **3.2. Nefunkcionālās prasības:** Apraksti kritērijus, kas nodrošina programmatūras veiktspēju un kvalitāti. _Piemērs: Programmatūrai jāspēj apstrādāt vismaz 1000 ierakstus stundā bez veiktspējas problēmām._
 
 **3.3. Sniedz argumentāciju:** Paskaidro, kā šīs prasības atbilst mērķauditorijas vajadzībām.
+
+---
 
 ### **4. uzdevums: Programmatūras produkta un tā funkciju apraksts**
 
@@ -35,11 +41,15 @@ Programmatūras funkcijas var grafiski attēlot vairākos veidos:
 - Procesu diagrammas
 - Stāvokļu (State) diagrammas
 
+---
+
 ### **5. uzdevums: Vienkāršota projektēšana**
 
 **5.1. Lietotāja saskarnes skice:** Izveido vizuālu skici programmatūras galvenajiem ekrāniem. _Ieteikums: Skicei jābūt viegli saprotamai un jāiekļauj galvenie elementi, piemēram, pogas, lauki, tabulas._
 
 **5.2. Datu modeļa izveide:** Izveido vienkāršotu datu modeli, kas parāda, kā programmatūra pārvaldīs datus. _Piemērs: Diagramma ar tabulām “Lietotāji”, “Uzdevumi”, “Atskaites”._
+
+---
 
 ### **6. uzdevums: Izstrādes tehnoloģiju izvēle**
 
