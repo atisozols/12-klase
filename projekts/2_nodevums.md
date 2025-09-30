@@ -57,4 +57,4 @@ Programmatūras funkcijas var grafiski attēlot vairākos veidos:
 
 **6.2. Pamato izvēli:** Sniedz skaidrojumu, kāpēc izvēlētā valoda un izstrādes vide ir piemērota. _Piemērs: “Python ir piemērots, jo tam ir bibliotēkas datu analīzei, kas ir būtiska funkcija mūsu programmatūrā.”_
 
-**6.3. Izvēlies izstrādes vidi:** Apraksti vidi vai rīkus, kas tiks izmantoti (piemēram, VS Code, GitHub, JIRA).
+**6.3. Izvēlies izstrādes vidi:** Apraksti vidi vai rīkus, kas tiks izmantoti (piemēram, VS Code, GitHub, JIRA, Notion utt.).
