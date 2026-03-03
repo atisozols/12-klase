@@ -208,25 +208,6 @@ nums2 = [2,2,4]
 # Output: [2]
 ```
 
-### Risinājums
-
-```python
-def unique_intersection(nums1, nums2):
-    in_first = {}
-    result = []
-    added = {}
-
-    for num in nums1:
-        in_first[num] = True
-
-    for num in nums2:
-        if num in in_first and num not in added:
-            result.append(num)
-            added[num] = True
-
-    return result
-```
-
 ---
 
 ## 7. Divu skaitļu summa uz mērķi
@@ -247,21 +228,6 @@ target = 9
 # Output: [0,1]
 ```
 
-### Risinājums
-
-```python
-def two_sum(nums, target):
-    seen = {}
-
-    for i, num in enumerate(nums):
-        need = target - num
-        if need in seen:
-            return [seen[need], i]
-        seen[num] = i
-
-    return []
-```
-
 ---
 
 ## 8. Biežākais elements
@@ -279,23 +245,6 @@ Ja ir vairāki ar vienādu biežumu, vari atgriezt jebkuru no tiem.
 ```python
 nums = [5,1,5,2,5,2]
 # Output: 5
-```
-
-### Risinājums
-
-```python
-def most_frequent(nums):
-    counts = {}
-    best_num = None
-    best_count = 0
-
-    for num in nums:
-        counts[num] = counts.get(num, 0) + 1
-        if counts[num] > best_count:
-            best_count = counts[num]
-            best_num = num
-
-    return best_num
 ```
 
 ---
@@ -324,23 +273,6 @@ words = ["Apple", "ant", "Boat", "ball", "cat"]
 # }
 ```
 
-### Risinājums
-
-```python
-def group_by_first_letter(words):
-    groups = {}
-
-    for word in words:
-        if not word:
-            continue
-        key = word[0].lower()
-        if key not in groups:
-            groups[key] = []
-        groups[key].append(word)
-
-    return groups
-```
-
 ---
 
 ## 10. Atšķirīgo elementu skaits katrā logā
@@ -357,36 +289,6 @@ Atgriez sarakstu, kur katram logam garumā `k` ir norādīts, cik tajā ir **at�
 nums = [1,2,1,3,4,2,3]
 k = 4
 # Output: [3,4,4,3]
-```
-
-### Risinājums
-
-```python
-def distinct_in_windows(nums, k):
-    if k <= 0 or k > len(nums):
-        return []
-
-    counts = {}
-    result = []
-
-    for i in range(k):
-        counts[nums[i]] = counts.get(nums[i], 0) + 1
-    result.append(len(counts))
-
-    for right in range(k, len(nums)):
-        left = right - k
-
-        left_num = nums[left]
-        counts[left_num] -= 1
-        if counts[left_num] == 0:
-            del counts[left_num]
-
-        right_num = nums[right]
-        counts[right_num] = counts.get(right_num, 0) + 1
-
-        result.append(len(counts))
-
-    return result
 ```
 
 ---
