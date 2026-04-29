@@ -370,6 +370,7 @@ def first_bad_version(n):
 ### Uzdevums
 
 Dota `m x n` matrica `matrix`, kur:
+
 - katras rindas elementi ir sakārtoti augoši,
 - katras rindas pirmais elements ir lielāks par iepriekšējās rindas pēdējo elementu.
 
@@ -490,7 +491,7 @@ k = 2
 
 ---
 
-## 14. Mediāna divās sakārtotās masīvās
+## 14. Mediāna divos sakārtotos masīvos
 
 ### Uzdevums
 
