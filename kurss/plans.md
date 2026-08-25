@@ -20,18 +20,18 @@ darbam.
 
 | Bloks | Stundas | Noslēgums |
 | --- | --- | --- |
-| 01. Objektorientētā programmēšana un ārējās bibliotēkas | 12-001 – 12-028 | **SV1** (12-027, 12-028) |
-| 02. Datortīkls, serveris un droša datubāze | 12-029 – 12-056 | **SV2** (12-055, 12-056) |
-| 03. Datu struktūras, programmsaskarne, mašīnmācīšanās | 12-057 – 12-088 | **SV3** (12-087, 12-088) |
+| [01. Objektorientētā programmēšana un ārējās bibliotēkas](../01-oop-un-bibliotekas/) | 12-001 – 12-028 | **SV1** (12-027, 12-028) |
+| [02. Datortīkls, serveris un droša datubāze](../02-tikls-un-datubaze/) | 12-029 – 12-056 | **SV2** (12-055, 12-056) |
+| [03. Datu struktūras, programmsaskarne, mašīnmācīšanās](../03-datu-strukturas/) | 12-057 – 12-088 | **SV3** (12-087, 12-088) |
 
 ## 2. semestris
 
 | Bloks | Stundas | Noslēgums |
 | --- | --- | --- |
-| 04. Problēmas analīze, specifikācija, plānošana | 12-089 – 12-106 | **SV4** (12-106) |
-| 05. Programmatūras izstrāde | 12-107 – 12-136 | **SV5** (12-135, 12-136) |
-| 06. Produkts komandā | 12-137 – 12-166 | **SV6** (12-165, 12-166) |
-| 07. Eksāmena finišs | 12-167 – 12-186 | mēģinājuma eksāmeni |
+| [04. Problēmas analīze, specifikācija, plānošana](../04-analize-un-specifikacija/) | 12-089 – 12-106 | **SV4** (12-106) |
+| [05. Programmatūras izstrāde](../05-izstrade/) | 12-107 – 12-136 | **SV5** (12-135, 12-136) |
+| [06. Produkts komandā](../06-komandas-produkts/) | 12-137 – 12-166 | **SV6** (12-165, 12-166) |
+| [07. Eksāmena finišs](../07-eksamena-finiss/) | 12-167 – 12-186 | mēģinājuma eksāmeni |
 
 ## Summatīvie darbi
 
@@ -48,7 +48,7 @@ darbam.
 
 | Nr. | Stunda | Forma | | Nr. | Stunda | Forma |
 | --- | --- | --- | --- | --- | --- | --- |
-| FV1 | 12-010 | dators | | FV7 | 12-095 | papīrs |
+| FV1 | 12-010 | dators | | FV7 | 12-093 | papīrs |
 | FV2 | 12-021 | papīrs | | FV8 | 12-115 | dators |
 | FV3 | 12-038 | dators | | FV9 | 12-127 | dators |
 | FV4 | 12-049 | papīrs | | FV10 | 12-145 | dators |

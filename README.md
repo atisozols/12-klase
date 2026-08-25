@@ -28,13 +28,13 @@ nākamajai klātienes stundai. Tas nav mājasdarbs — tās ir mācību stundas,
 
 | Bloks | Tēma | Stundas | Īpatsvars |
 | --- | --- | --- | --- |
-| 01 | Objektorientētā programmēšana un ārējās bibliotēkas | 28 | 15 % |
-| 02 | Datortīkls, serveris un droša datubāze | 28 | 15 % |
-| 03 | Datu struktūras, programmsaskarne, mašīnmācīšanās | 32 | 15 % |
-| 04 | Problēmas analīze, specifikācija, plānošana | 18 | 10 % |
-| 05 | Programmatūras izstrāde | 32 | 20 % |
-| 06 | Produkts komandā | 28 | 25 % |
-| 07 | Eksāmena finišs | 20 | — |
+| [01](01-oop-un-bibliotekas/) | Objektorientētā programmēšana un ārējās bibliotēkas | 28 | 15 % |
+| [02](02-tikls-un-datubaze/) | Datortīkls, serveris un droša datubāze | 28 | 15 % |
+| [03](03-datu-strukturas/) | Datu struktūras, programmsaskarne, mašīnmācīšanās | 32 | 15 % |
+| [04](04-analize-un-specifikacija/) | Problēmas analīze, specifikācija, plānošana | 18 | 10 % |
+| [05](05-izstrade/) | Programmatūras izstrāde | 32 | 20 % |
+| [06](06-komandas-produkts/) | Produkts komandā | 28 | 25 % |
+| [07](07-eksamena-finiss/) | Eksāmena finišs | 20 | — |
 
 - [Kursa programma un sasniedzamie rezultāti](kurss/programma.md)
 - [Gada plāns](kurss/plans.md)
