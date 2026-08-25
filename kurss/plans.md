@@ -29,8 +29,8 @@ darbam.
 | Bloks | Stundas | Noslēgums |
 | --- | --- | --- |
 | 04. Problēmas analīze, specifikācija, plānošana | 12-089 – 12-106 | **SV4** (12-106) |
-| 05. Programmatūras izstrāde | 12-107 – 12-138 | **SV5** (12-137, 12-138) |
-| 06. Produkts komandā | 12-139 – 12-166 | **SV6** (12-165, 12-166) |
+| 05. Programmatūras izstrāde | 12-107 – 12-136 | **SV5** (12-135, 12-136) |
+| 06. Produkts komandā | 12-137 – 12-166 | **SV6** (12-165, 12-166) |
 | 07. Eksāmena finišs | 12-167 – 12-186 | mēģinājuma eksāmeni |
 
 ## Summatīvie darbi
@@ -41,7 +41,7 @@ darbam.
 | SV2 | 02 | 12-055, 12-056 | Dators + dokumentācija — tīkls, serveris, datubāze | 15 % |
 | SV3 | 03 | 12-087, 12-088 | Dators — datu struktūras, API, ML | 15 % |
 | SV4 | 04 | 12-106 | Biļetes — analīzes un specifikācijas aizstāvēšana | 10 % |
-| SV5 | 05 | 12-137, 12-138 | Dators — individuāls programmprodukts un aizstāvēšana | 20 % |
+| SV5 | 05 | 12-135, 12-136 | Dators — individuāls programmprodukts un aizstāvēšana | 20 % |
 | SV6 | 06 | 12-165, 12-166 | Komandas produkts, prezentācija un aizstāvēšana | 25 % |
 
 ## Formatīvās pārbaudes
@@ -49,19 +49,22 @@ darbam.
 | Nr. | Stunda | Forma | | Nr. | Stunda | Forma |
 | --- | --- | --- | --- | --- | --- | --- |
 | FV1 | 12-010 | dators | | FV7 | 12-095 | papīrs |
-| FV2 | 12-021 | papīrs | | FV8 | 12-117 | dators |
-| FV3 | 12-038 | dators | | FV9 | 12-129 | dators |
-| FV4 | 12-049 | papīrs | | FV10 | 12-149 | dators |
-| FV5 | 12-068 | dators | | FV11 | 12-159 | dators |
+| FV2 | 12-021 | papīrs | | FV8 | 12-115 | dators |
+| FV3 | 12-038 | dators | | FV9 | 12-127 | dators |
+| FV4 | 12-049 | papīrs | | FV10 | 12-145 | dators |
+| FV5 | 12-068 | dators | | FV11 | 12-157 | dators |
 | FV6 | 12-081 | papīrs | | FV12 | 12-163 | dators |
 
 ## Mēģinājuma eksāmeni
 
 | Nr. | Stundas | Ko pārbauda |
 | --- | --- | --- |
-| ME1 | 12-172 – 12-175 | pilns eksāmena darbs, visas četras daļas |
-| ME2 | 12-179 – 12-181 | 3. un 4. daļa (OOP, datu struktūras, programmsaskarnes) |
-| ME3 | 12-184 – 12-186 | pilns darbs eksāmena apstākļos |
+| ME1 | 12-175, 12-176 | 1. un 2. daļa (dzīvescikls, datubāzes), 70 min |
+| ME2 | 12-181 – 12-184 | 3. un 4. daļa (OOP, datu struktūras), 160 min |
+
+Pilnu 230 minūšu darbu vienā piegājienā parastā stundu sarakstā ievietot nevar. Ja skola
+organizē mēģinājuma eksāmena dienu, tā ir vieta, kur nolikt pilno darbu; šī bloka ME1 un
+ME2 kopā sedz to pašu saturu divās daļās.
 
 ## Rezerve
 
