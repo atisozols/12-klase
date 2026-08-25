@@ -1,0 +1,576 @@
+# ==========================================================
+# 01. OBJEKTORIENTĒTĀ PROGRAMMĒŠANA UN ĀRĒJĀS BIBLIOTĒKAS — DARBA FAILS
+# ==========================================================
+# Šeit raksti savus risinājumus.
+# Teorija, piemēri un atgādne: teorija.py
+# Uzdevumu numuri iet cauri visam blokam.
+# ==========================================================
+
+
+# ----------------------------------------------------------
+# 12-001 · Kursa ievads un OOP atkārtojums
+# ----------------------------------------------------------
+
+# 1. Izlasi [kurss/eksamens.md](../kurss/eksamens.md) un pieraksti, kura eksāmena daļa tev
+#    šķiet grūtākā un kāpēc.
+
+
+
+
+# 2. Uzraksti klasi Prece ar konstruktoru un divām metodēm — bez ieskatīšanās vecajā kodā.
+
+
+
+
+# 3. ★ Pieraksti, ko tu no 11. klases OOP nesaproti līdz galam. To risināsim šajā blokā.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-002 · Klase, objekts, konstruktors
+# ----------------------------------------------------------
+
+# 4. Izveido klasi Rezervacija ar konstruktoru (vards, datums, vietu_skaits) un metodi
+#    apraksts().
+
+
+
+
+# 5. Izveido trīs objektus un izvadi to aprakstus.
+
+
+
+
+# 6. Pievieno metodi mainitvietas(jaunsskaits), kas neļauj skaitu padarīt negatīvu.
+
+
+
+
+# 7. ★ Pievieno metodi, kas atgriež True, ja rezervācija ir šodienai.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-003 · Vairāki konstruktori
+# ----------------------------------------------------------
+
+# 8. Pievieno Rezervacija konstruktoram noklusējuma vērtību vietu skaitam.
+
+
+
+
+# 9. Izveido @classmethod no_rindas(rinda), kas izveido objektu no CSV rindas.
+
+
+
+
+# 10. Izveido @classmethod tuksa(), kas izveido objektu ar noklusējuma vērtībām.
+
+
+
+
+# 11. Pārbaudi visus trīs izveides veidus vienā programmā.
+
+
+
+
+# 12. ★ Pieraksti, ar ko šī pieeja atšķiras no vairākiem konstruktoriem C# valodā. _Norāde:
+#    eksāmenā var būt jautājums par konstruktoriem vispārīgi, ne tikai Python._
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-004 · Iekapsulēšana
+# ----------------------------------------------------------
+
+# 13. Pārraksti klasi Konts tā, lai atlikumu var lasīt, bet ne tieši mainīt.
+
+
+
+
+# 14. Pievieno property un setter, kas neļauj negatīvu vērtību.
+
+
+
+
+# 15. Pārbaudi, kas notiek, mēģinot piešķirt nederīgu vērtību.
+
+
+
+
+# 16. ★ Uzraksti klasi, kurā viens atribūts tiek aprēķināts no citiem un tāpēc ir tikai lasāms.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-005 · Sprints: klase ar validāciju
+# ----------------------------------------------------------
+
+# 17. Izstrādā klasi Lidojums ar atribūtiem numurs, galamerkis, vietu_skaits,
+#    rezervetas_vietas. Visai validācijai jābūt klasē: numurs nedrīkst būt tukšs, vietu
+#    skaitam jābūt pozitīvam, rezervēto vietu skaits nedrīkst pārsniegt kopējo.
+
+
+
+
+# 18. Pievieno metodes rezervet(skaits), atcelt(skaits) un brivas_vietas().
+
+
+
+
+# 19. Uzraksti vismaz sešus pārbaudes gadījumus, tostarp trīs nederīgus, un pieraksti
+#    rezultātus komentārā.
+
+
+
+
+# 20. ★ Pievieno property, kas atgriež aizpildījumu procentos.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-006 · Sprints: refleksija
+# ----------------------------------------------------------
+
+# 21. Pieraksti piezimes.md, kura validācija bija visgrūtākā un kāpēc.
+
+
+
+
+# 22. Salīdzini savu risinājumu ar klasesbiedra risinājumu repozitorijā un pieraksti vienu
+#    lietu, ko viņš izdarīja labāk.
+
+
+
+
+# 23. ★ Pārraksti vienu savas klases metodi tā, lai tā būtu īsāka vai skaidrāka.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-007 · Mantošana
+# ----------------------------------------------------------
+
+# 24. Izveido virsklasi Transportlidzeklis un apakšklases Automasina un Velosipeds.
+
+
+
+
+# 25. Katrai apakšklasei pievieno savu metodi un pārrakstītu virsklases metodi.
+
+
+
+
+# 26. Izveido objektu sarakstu ar dažādu apakšklašu objektiem un apstaigā to ar ciklu.
+
+
+
+
+# 27. ★ Izveido trīs līmeņu hierarhiju un pieraksti, kāpēc tā parasti ir slikta ideja.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-008 · Polimorfisms
+# ----------------------------------------------------------
+
+# 28. Izveido klases Kvadrats, Rinkis, Trijsturis, katrai ar metodi laukums().
+
+
+
+
+# 29. Uzraksti funkciju, kas saņem figūru sarakstu un atgriež kopējo laukumu.
+
+
+
+
+# 30. Papildini programmu ar jaunu figūru, nemainot funkciju.
+
+
+
+
+# 31. Pieraksti, kāpēc 30. uzdevumā funkcija nebija jāmaina — tā ir polimorfisma jēga.
+
+
+
+
+# 32. ★ Uzraksti funkciju, kas darbojas ar jebkuru objektu, kuram ir metode apraksts(),
+#    neatkarīgi no klases.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-009 · Abstrakcija
+# ----------------------------------------------------------
+
+# 33. Pārveido Figura par abstraktu klasi ar abstraktu metodi laukums().
+
+
+
+
+# 34. Pārbaudi, kas notiek, mēģinot izveidot abstraktās klases objektu.
+
+
+
+
+# 35. Pārbaudi, kas notiek, ja apakšklase abstrakto metodi nerealizē.
+
+
+
+
+# 36. ★ Pieraksti, ar ko abstrakcija atšķiras no iekapsulēšanas. Eksāmenā šie jēdzieni ir
+#    jāatšķir.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-010 · Praktikums: četri principi
+# ----------------------------------------------------------
+
+# 37. Izstrādā bibliotēkas sistēmas klases: abstrakta Vienums ar apakšklasēm Gramata,
+#    Zurnals, DVD. Katrai sava apraksts() un izsniegsanas_termins().
+
+
+
+
+# 38. Uzraksti funkciju, kas apstaigā vienumu sarakstu un izvada visu aprakstus.
+
+
+
+
+# 39. ★ Pievieno iekapsulētu skaitītāju, cik reižu vienums izsniegts.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-011 · Sprints: klašu hierarhija
+# ----------------------------------------------------------
+
+# 40. Dotajam aprakstam «skolas inventāra uzskaite» izprojektē klašu hierarhiju: kas ir
+#    virsklase, kas apakšklases, kas abstrakts.
+
+
+
+
+# 41. Realizē to kodā, izmantojot visus četrus OOP principus.
+
+
+
+
+# 42. Uzraksti programmu, kas demonstrē katru principu, un komentārā norādi, kur tas ir.
+
+
+
+
+# 43. ★ Uzzīmē klašu diagrammu un ieliec to repozitorijā.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-012 · Sprints: koda pārskatīšana
+# ----------------------------------------------------------
+
+# 44. Pārskati klasesbiedra 12-011 risinājumu un uzraksti trīs konkrētas piezīmes.
+
+
+
+
+# 45. Atrodi vienu vietu, kur mantošana lietota tur, kur nevajadzēja, vai otrādi.
+
+
+
+
+# 46. ★ Piedāvā konkrētu labojumu koda fragmenta veidā.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-013 · Standarta bibliotēka
+# ----------------------------------------------------------
+
+# 47. Ar collections.Counter saskaiti burtu biežumu un salīdzini ar savu ciklu.
+
+
+
+
+# 48. Ar collections.defaultdict pārraksti grupēšanas uzdevumu.
+
+
+
+
+# 49. Ar pathlib uzraksti programmu, kas uzskaita visas .py datnes katalogā.
+
+
+
+
+# 50. Atrodi dokumentācijā vienu itertools funkciju un pieraksti tās lietojuma piemēru.
+
+
+
+
+# 51. ★ Atrodi standarta bibliotēkas moduli, ko vari izmantot savā projektā, un pamato izvēli.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-014 · Ārējās bibliotēkas
+# ----------------------------------------------------------
+
+# 52. Uzstādi bibliotēku virtuālajā vidē un izveido requirements.txt.
+
+
+
+
+# 53. Izvērtē trīs bibliotēkas pēc četriem kritērijiem un aizpildi salīdzinājuma tabulu.
+
+
+
+
+# 54. Pieraksti, kādi riski rodas, pievienojot projektam svešu bibliotēku.
+
+
+
+
+# 55. ★ Noskaidro, cik atkarību ievelk viena tava izvēlētā bibliotēka.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-015 · Grafiskā saskarne: pamati
+# ----------------------------------------------------------
+
+# 56. Izveido logu ar virsrakstu, vienu ievades lauku un pogu.
+
+
+
+
+# 57. Pievieno otru lauku un sakārto elementus režģī.
+
+
+
+
+# 58. Pievieno teksta lauku rezultāta izvadīšanai.
+
+
+
+
+# 59. ★ Pievieno logam izvēlni ar diviem punktiem.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-016 · Grafiskā saskarne: notikumi
+# ----------------------------------------------------------
+
+# 60. Panāc, lai poga nolasa ievadi un izvada rezultātu logā.
+
+
+
+
+# 61. Pievieno validāciju: nederīgas ievades gadījumā parādi paziņojumu, nevis avarē.
+
+
+
+
+# 62. Savieno saskarni ar savu 12-002 klasi Rezervacija.
+
+
+
+
+# 63. ★ Pievieno pogu, kas notīra visus laukus.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-017 · Sprints: saskarne un klase kopā
+# ----------------------------------------------------------
+
+# 64. Izveido grafisku saskarni savai 12-005 klasei Lidojums: rezervēšana, atcelšana,
+#    brīvo vietu rādīšana.
+
+
+
+
+# 65. Visai validācijai jāpaliek klasē; saskarne tikai rāda rezultātu.
+
+
+
+
+# 66. ★ Pievieno sarakstu ar visiem lidojumiem un iespēju izvēlēties.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-018 · Sprints: refleksija un uzlabojumi
+# ----------------------------------------------------------
+
+# 67. Pārbaudi savu kodu: vai saskarnes failā ir aprēķini, kuriem tur nav vietas?
+
+
+
+
+# 68. Pārcel tos uz klasi un pārbaudi, ka viss joprojām strādā.
+
+
+
+
+# 69. ★ Pieraksti, kāpēc loģikas atdalīšana no saskarnes atvieglo testēšanu.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-019 · Datu glabāšana
+# ----------------------------------------------------------
+
+# 70. Pievieno savai klasei metodi uzvardnicu() un klases metodi novardnicas().
+
+
+
+
+# 71. Saglabā objektu sarakstu JSON datnē un ielasi to atpakaļ.
+
+
+
+
+# 72. Pievieno programmai automātisku saglabāšanu pēc katras izmaiņas.
+
+
+
+
+# 73. ★ Apstrādā gadījumu, kad datne ir bojāta vai tukša.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-020 · Izņēmumi
+# ----------------------------------------------------------
+
+# 74. Pievieno savai klasei izņēmumu, ko tā met nederīgas darbības gadījumā.
+
+
+
+
+# 75. Definē savu izņēmuma klasi, kas manto Exception.
+
+
+
+
+# 76. Apstrādā to programmā un parādi lietotājam saprotamu paziņojumu.
+
+
+
+
+# 77. ★ Pieraksti, kad labāk atgriezt False un kad — mest izņēmumu.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-021 · Jēdzieni un atkārtojums
+# ----------------------------------------------------------
+
+# 78. Burtnīcā: paskaidro katru no četriem principiem vienā teikumā un dod piemēru.
+
+
+
+
+# 79. Burtnīcā: dotajam koda fragmentam nosaki, kurš princips tajā izmantots.
+
+
+
+
+# 80. ★ Burtnīcā: uzraksti klases definīciju ar roku pēc dota apraksta.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-022 · SV1 uzdevuma izsniegšana
+# ----------------------------------------------------------
+
+# 81. Izlasi SV1 specifikāciju un uzraksti savu izpildes plānu.
+
+
+
+
+# 82. Pieraksti, kura prasība tev šķiet grūtākā, un kā to risināsi.
+
+
+
+
+# 83. ★ Izplāno savu klašu hierarhiju uz papīra pirms koda rakstīšanas.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-025 · Sprints: SV1 izstrāde
+# ----------------------------------------------------------
+
+# 84. Turpini izstrādi pēc sava plāna.
+
+
+
+
+# 85. Pieraksti, kur iestrēgi, lai nākamajā klātienes stundā to varētu atrisināt ātri.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-026 · Sprints: datu glabāšana un pašpārbaude
+# ----------------------------------------------------------
+
+# 86. Pievieno datu saglabāšanu un atjaunošanu.
+
+
+
+
+# 87. Aizpildi pašpārbaudes tabulu pret SV1 specifikāciju.
+
+
+
+
+# 88. ★ Notestē savu programmu ar nederīgiem datiem un pieraksti rezultātus.
