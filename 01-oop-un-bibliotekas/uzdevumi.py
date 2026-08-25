@@ -545,32 +545,82 @@
 
 
 # ----------------------------------------------------------
-# 12-025 · Sprints: SV1 izstrāde
+# 12-023 · Sprints: SV1 klašu modelis
 # ----------------------------------------------------------
 
-# 84. Turpini izstrādi pēc sava plāna.
+# 84. Realizē savu klašu hierarhiju ar konstruktoriem un validāciju.
 
 
 
 
-# 85. Pieraksti, kur iestrēgi, lai nākamajā klātienes stundā to varētu atrisināt ātri.
+# 85. Pārbaudi katru klasi atsevišķi, pirms taisi saskarni.
+
+
+
+
+# 86. ★ Pievieno vismaz vienu abstraktu metodi vai property, ja specifikācija to pieļauj.
 
 
 
 
 
 # ----------------------------------------------------------
-# 12-026 · Sprints: datu glabāšana un pašpārbaude
+# 12-024 · Sprints: datu glabāšana
 # ----------------------------------------------------------
 
-# 86. Pievieno datu saglabāšanu un atjaunošanu.
+# 87. Pievieno metodes uzvardnicu() un novardnicas().
 
 
 
 
-# 87. Aizpildi pašpārbaudes tabulu pret SV1 specifikāciju.
+# 88. Realizē saglabāšanu un ielasīšanu; pārbaudi ar restartētu programmu.
 
 
 
 
-# 88. ★ Notestē savu programmu ar nederīgiem datiem un pieraksti rezultātus.
+# 89. Pieraksti piezimes.md, kur iestrēgi, lai nākamajā klātienes stundā to atrisinātu ātri.
+
+
+
+
+# 90. ★ Apstrādā gadījumu, kad datne ir bojāta vai tukša.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-025 · SV1 izstrāde: saskarne
+# ----------------------------------------------------------
+
+# 91. Izveido saskarni ar visiem specifikācijā prasītajiem elementiem.
+
+
+
+
+# 92. Panāc, lai visa validācija paliek klasēs, ne saskarnes funkcijās.
+
+
+
+
+# 93. ★ Pievieno saskarnei ārējās bibliotēkas funkcionalitāti, ja specifikācija to prasa.
+
+
+
+
+
+# ----------------------------------------------------------
+# 12-026 · SV1 izstrāde: pabeigšana un pašpārbaude
+# ----------------------------------------------------------
+
+# 94. Aizpildi pašpārbaudes tabulu: katrai prasībai statuss un vieta kodā.
+
+
+
+
+# 95. Notestē programmu ar nederīgiem datiem un pieraksti rezultātus.
+
+
+
+
+# 96. ★ Sakārto kodu: nosaukumi, komentāri, liekā koda izmešana.

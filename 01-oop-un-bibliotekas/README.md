@@ -36,10 +36,10 @@ bibliotēkas, izstrādāt konkrētu programmatūras risinājumu ar grafisko liet
 | 12-020 | Izņēmumu apstrāde un savi izņēmumu tipi. | Apstrādā izņēmumus un definē savu izņēmuma klasi. |
 | 12-021 | OOP jēdzieni. Gatavošanās eksāmena 3. daļai. | Skaidro un atšķir četrus OOP pamatprincipus. |
 | 12-022 | Summatīvā darba specifikācija un vērtēšanas kritēriji. | Izprot darba prasības un izplāno tā izpildi. |
-| 12-023 | Summatīvā darba izstrāde: klašu modelis. | Realizē risinājuma klašu daļu atbilstoši specifikācijai. |
-| 12-024 | Summatīvā darba izstrāde: saskarne un bibliotēka. | Pievieno grafisko saskarni un ārējās bibliotēkas funkcionalitāti. |
-| 12-025 | Patstāvīgs darbs pie summatīvā darba. | Turpina izstrādi patstāvīgi. |
-| 12-026 | Datu saglabāšana un atbilstības pārbaude. | Pabeidz saglabāšanas daļu un pārbauda darbu pret specifikāciju. |
+| 12-023 | Patstāvīgs darbs: summatīvā darba klašu daļa. | Realizē risinājuma klašu daļu atbilstoši specifikācijai. |
+| 12-024 | Patstāvīgs darbs: datu saglabāšana un atjaunošana. | Pievieno risinājumam datu saglabāšanu datnē. |
+| 12-025 | Summatīvā darba izstrāde: grafiskā saskarne. | Pievieno grafisko saskarni un sasaista to ar klasēm. |
+| 12-026 | Summatīvā darba pabeigšana un atbilstības pārbaude. | Pabeidz risinājumu un pārbauda to pret specifikāciju. |
 | 12-027 | Summatīvais darbs: programmprodukta pabeigšana. | Pabeidz programmproduktu atbilstoši specifikācijai. |
 | 12-028 | Summatīvā darba demonstrācija un aizstāvēšana. | Demonstrē risinājumu, pamato izvēles un veic izmaiņu uz vietas. |
 
@@ -467,62 +467,73 @@ bibliotēkas, izstrādāt konkrētu programmatūras risinājumu ar grafisko liet
 
 **Mājasdarbs:** plāns repozitorijā
 
-## 12-023 · SV1 izstrāde
-`[K]` `prakse`
+## 12-023 · Sprints: SV1 klašu modelis
+`[A]` `prakse`
 
-**Tēma:** Summatīvā darba izstrāde: klašu modelis.
+**Tēma:** Patstāvīgs darbs: summatīvā darba klašu daļa.
 **SR:** Realizē risinājuma klašu daļu atbilstoši specifikācijai.
 **Standarts:** T.A.2.4.15.
 
-**Gaita**
-- 35' — izstrāde, individuālas konsultācijas
-- 5' — commit
+**Uzdevumi**
+84. Realizē savu klašu hierarhiju ar konstruktoriem un validāciju.
+85. Pārbaudi katru klasi atsevišķi, pirms taisi saskarni.
+86. ★ Pievieno vismaz vienu abstraktu metodi vai `property`, ja specifikācija to pieļauj.
 
-**Stundas beigās:** klases ar konstruktoriem un validāciju strādā.
+**Sprints:** klases repozitorijā ar pārbaudēm
 
-**Mājasdarbs:** commit ar paveikto
+## 12-024 · Sprints: datu glabāšana
+`[A]` `prakse`
 
-## 12-024 · SV1 izstrāde
+**Tēma:** Patstāvīgs darbs: datu saglabāšana un atjaunošana.
+**SR:** Pievieno risinājumam datu saglabāšanu datnē.
+**Standarts:** T.A.2.4.17.
+
+**Uzdevumi**
+87. Pievieno metodes `uz_vardnicu()` un `no_vardnicas()`.
+88. Realizē saglabāšanu un ielasīšanu; pārbaudi ar restartētu programmu.
+89. Pieraksti `piezimes.md`, kur iestrēgi, lai nākamajā klātienes stundā to atrisinātu ātri.
+90. ★ Apstrādā gadījumu, kad datne ir bojāta vai tukša.
+
+**Sprints:** strādājoša saglabāšana un `piezimes.md`
+
+## 12-025 · SV1 izstrāde: saskarne
 `[K]` `prakse`
 
-**Tēma:** Summatīvā darba izstrāde: saskarne un bibliotēka.
-**SR:** Pievieno grafisko saskarni un ārējās bibliotēkas funkcionalitāti.
+**Tēma:** Summatīvā darba izstrāde: grafiskā saskarne.
+**SR:** Pievieno grafisko saskarni un sasaista to ar klasēm.
 **Standarts:** T.A.2.4.15. · T.A.2.4.11.
 
 **Gaita**
-- 35' — izstrāde
+- 5' — kopīgi atrisinām sprintā pierakstītās problēmas
+- 30' — izstrāde, individuālas konsultācijas
 - 5' — commit
 
 **Stundas beigās:** saskarne atver logu un sasaucas ar klasēm.
 
+**Uzdevumi**
+91. Izveido saskarni ar visiem specifikācijā prasītajiem elementiem.
+92. Panāc, lai visa validācija paliek klasēs, ne saskarnes funkcijās.
+93. ★ Pievieno saskarnei ārējās bibliotēkas funkcionalitāti, ja specifikācija to prasa.
+
 **Mājasdarbs:** commit ar paveikto
 
-## 12-025 · Sprints: SV1 izstrāde
-`[A]` `prakse`
+## 12-026 · SV1 izstrāde: pabeigšana un pašpārbaude
+`[K]` `prakse`
 
-**Tēma:** Patstāvīgs darbs pie summatīvā darba.
-**SR:** Turpina izstrādi patstāvīgi.
+**Tēma:** Summatīvā darba pabeigšana un atbilstības pārbaude.
+**SR:** Pabeidz risinājumu un pārbauda to pret specifikāciju.
 **Standarts:** T.A.2.4.15.
 
-**Uzdevumi**
-84. Turpini izstrādi pēc sava plāna.
-85. Pieraksti, kur iestrēgi, lai nākamajā klātienes stundā to varētu atrisināt ātri.
-
-**Sprints:** commit ar paveikto un `piezimes.md`
-
-## 12-026 · Sprints: datu glabāšana un pašpārbaude
-`[A]` `prakse`
-
-**Tēma:** Datu saglabāšana un atbilstības pārbaude.
-**SR:** Pabeidz saglabāšanas daļu un pārbauda darbu pret specifikāciju.
-**Standarts:** T.A.2.4.17.
+**Gaita**
+- 30' — pabeigšana
+- 10' — pašpārbaudes tabula pret specifikāciju
 
 **Uzdevumi**
-86. Pievieno datu saglabāšanu un atjaunošanu.
-87. Aizpildi pašpārbaudes tabulu pret SV1 specifikāciju.
-88. ★ Notestē savu programmu ar nederīgiem datiem un pieraksti rezultātus.
+94. Aizpildi pašpārbaudes tabulu: katrai prasībai statuss un vieta kodā.
+95. Notestē programmu ar nederīgiem datiem un pieraksti rezultātus.
+96. ★ Sakārto kodu: nosaukumi, komentāri, liekā koda izmešana.
 
-**Sprints:** `PASPARBAUDE.md` un commit
+**Mājasdarbs:** `PASPARBAUDE.md` un commit
 
 ## 12-027 · SV1: pabeigšana
 `[K]` `pārbaudes darbs`
