@@ -14,7 +14,7 @@
 # 1. Izlasi [kurss/eksamens.md](../kurss/eksamens.md) un pieraksti, kura eksāmena daļa tev
 #    šķiet grūtākā un kāpēc.
 
-
+# 4. daļa
 
 
 # 2. Uzraksti klasi Prece ar konstruktoru un divām metodēm — bez ieskatīšanās vecajā kodā.
