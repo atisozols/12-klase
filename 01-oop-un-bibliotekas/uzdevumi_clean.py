@@ -14,27 +14,15 @@
 # 1. Izlasi [kurss/eksamens.md](../kurss/eksamens.md) un pieraksti, kura eksāmena daļa tev
 #    šķiet grūtākā un kāpēc.
 
-# 4. daļa
+
 
 # 2. Uzraksti klasi Prece ar konstruktoru un divām metodēm — bez ieskatīšanās vecajā kodā.
 
-class Prece:
-    def __init__(self, nosaukums, cena, kategorija): # init -> initialize
-        self.nosaukums = nosaukums
-        self.cena = cena
-        self.kategorija = kategorija
 
-    def info(self):
-        return f"Preces nosaukums: {self.nosaukums}, cena: {self.cena}, kategorija: {self.kategorija}"
-
-    def akcija(self, procenti):
-        return self.cena - self.cena * (procenti / 100)
-
-tomats = Prece("Tomāti", 3, "dārzeņi")
-print(tomats.info())
-print(tomats.akcija(30))
 
 # 3. ★ Pieraksti, ko tu no 11. klases OOP nesaproti līdz galam. To risināsim šajā blokā.
+
+
 
 # ----------------------------------------------------------
 # 12-002 · Klase, objekts, konstruktors
