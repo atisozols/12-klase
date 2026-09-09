@@ -373,9 +373,8 @@ for vienums in [g, m, z]:
     print(vienums.apraksts())
 
 
-# 39. ★ Pievieno iekapsulētu skaitītāju, cik reižu vienums izsniegts.
-
-
+# 39. ★ Pievieno iekapsulētu skaitītāju, cik reižu vienums izsniegts. 
+#       Izstrādāt funkcionalitāti, kas seko līdzi isniegšanai un saņemšanai.
 
 
 
