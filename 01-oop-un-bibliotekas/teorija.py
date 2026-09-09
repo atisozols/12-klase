@@ -11,7 +11,6 @@
 # Komentārs  # ?  nozīmē: vispirms uzmini, ko rinda izvadīs, tikai tad palaid.
 # ============================================================
 
-from abc import ABC, abstractmethod
 from collections import Counter, defaultdict
 from datetime import date
 
@@ -52,7 +51,6 @@ class Rezervacija:
 # print(r.mainit_vietas(0))     # ?
 # print(r.vietu_skaits)         # ?
 
-
 # ============================================================
 # 3. VAIRĀKI OBJEKTA IZVEIDES VEIDI                    [12-003]
 # ============================================================
@@ -81,9 +79,9 @@ class Lidojums:
         return cls("---", "nav noteikts")
 
 
-# a = Lidojums("BT101", "Riga", 180)
-# b = Lidojums.no_rindas("BT202,Vilnius,120")
-# c = Lidojums.tuksa()
+a = Lidojums("BT101", "Riga", 180)
+b = Lidojums.no_rindas("BT202,Vilnius,120")
+c = Lidojums.tuksa()
 # print(a.vietu_skaits, b.galamerkis, c.numurs)
 
 # cls ir tas pats, kas self, tikai attiecas uz KLASI, nevis objektu.
@@ -122,9 +120,9 @@ class Konts:
         return True
 
 
-# k = Konts("Anna", 50)
-# print(k.atlikums)         # 50   — lasa kā atribūtu, bet izsauc metodi
-# k.atlikums = 100          # iet caur setter
+k = Konts("Anna", 50)
+print(k.atlikums)         # 50   — lasa kā atribūtu, bet izsauc metodi
+k.atlikums = 100          # iet caur setter
 # print(k.atlikums)
 # k.atlikums = -5           # ?
 
@@ -195,8 +193,9 @@ def kopejais_laukums(figuras):
 # ============================================================
 # Abstrakta klase nosaka, KO apakšklasēm jāprot, bet nepasaka, KĀ.
 # No tās pašas objektu izveidot nevar.
+from abc import ABC, abstractmethod
 
-class Figura(ABC):
+class Figura(ABC): # Abstract Base Class
     def __init__(self, nosaukums):
         self.nosaukums = nosaukums
 

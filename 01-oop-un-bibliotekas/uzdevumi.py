@@ -18,6 +18,10 @@
 
 # 2. Uzraksti klasi Prece ar konstruktoru un divām metodēm — bez ieskatīšanās vecajā kodā.
 
+from sqlite3 import Date
+from traceback import StackSummary
+
+
 class Prece:
     def __init__(self, nosaukums, cena, kategorija): # init -> initialize
         self.nosaukums = nosaukums
@@ -30,9 +34,9 @@ class Prece:
     def akcija(self, procenti):
         return self.cena - self.cena * (procenti / 100)
 
-tomats = Prece("Tomāti", 3, "dārzeņi")
-print(tomats.info())
-print(tomats.akcija(30))
+# tomats = Prece("Tomāti", 3, "dārzeņi")
+# print(tomats.info())
+# print(tomats.akcija(30))
 
 # 3. ★ Pieraksti, ko tu no 11. klases OOP nesaproti līdz galam. To risināsim šajā blokā.
 
@@ -172,8 +176,30 @@ print(tomats.akcija(30))
 
 # 24. Izveido virsklasi Transportlidzeklis un apakšklases Automasina un Velosipeds.
 
+class Transportlidzeklis:
+    def __init__(self, marka, gads):
+        self.marka = marka
+        self.gads = gads
+
+    def apraksts(self):
+        return f"{self.marka} ({self.gads})"
+
+    def parvietojas(self):
+        return "parvietojas"
 
 
+class Automasina(Transportlidzeklis):
+    def __init__(self, marka, gads, degviela):
+        super().__init__(marka, gads)      # virsklases konstruktors
+        self.degviela = degviela
+
+    def parvietojas(self):                 # pārraksta virsklases metodi
+        return "brauc pa celu"
+
+
+class Velosipeds(Transportlidzeklis):
+    def parvietojas(self):
+        return "brauc ar kajam"
 
 # 25. Katrai apakšklasei pievieno savu metodi un pārrakstītu virsklases metodi.
 
@@ -182,12 +208,16 @@ print(tomats.akcija(30))
 
 # 26. Izveido objektu sarakstu ar dažādu apakšklašu objektiem un apstaigā to ar ciklu.
 
+# a = Transportlidzeklis("Bolt Skūteris", "2025")
+# b = Automasina("Porsche", "2000", "dīzelis")
+# c = Velosipeds("Cube", "2018")
 
+# saraksts = [a, b, c]
 
+# for t in saraksts:
+#     print(t.parvietojas())
 
 # 27. ★ Izveido trīs līmeņu hierarhiju un pieraksti, kāpēc tā parasti ir slikta ideja.
-
-
 
 
 
@@ -197,29 +227,53 @@ print(tomats.akcija(30))
 
 # 28. Izveido klases Kvadrats, Rinkis, Trijsturis, katrai ar metodi laukums().
 
+class Kvadrats:
+    def __init__(self, mala):
+        self.a = mala
 
+    def laukums(self):
+        return self.a ** 2
 
+class Rinkis:
+    def __init__(self, radiuss):
+        self.r = radiuss
+
+    def laukums(self):
+        return round(3.14159265 * self.r ** 2, 2)
+
+class Trijsturis:
+    def __init__(self, pamats, augstums):
+        self.a = pamats
+        self.h = augstums
+
+    def laukums(self):
+        return round((self.a * self.h) / 2, 2)
 
 # 29. Uzraksti funkciju, kas saņem figūru sarakstu un atgriež kopējo laukumu.
 
+def laukumu_summa(saraksts):
+    summa = 0
 
+    for figura in saraksts:
+        summa += figura.laukums()
 
+    return summa
+
+kv = Kvadrats(4)
+tr = Trijsturis(7, 3)
+ri = Rinkis(6)
+
+sar = [kv, tr, ri]
+print(laukumu_summa(sar))
 
 # 30. Papildini programmu ar jaunu figūru, nemainot funkciju.
-
-
 
 
 # 31. Pieraksti, kāpēc 30. uzdevumā funkcija nebija jāmaina — tā ir polimorfisma jēga.
 
 
-
-
 # 32. ★ Uzraksti funkciju, kas darbojas ar jebkuru objektu, kuram ir metode apraksts(),
 #    neatkarīgi no klases.
-
-
-
 
 
 # ----------------------------------------------------------
@@ -227,26 +281,35 @@ print(tomats.akcija(30))
 # ----------------------------------------------------------
 
 # 33. Pārveido Figura par abstraktu klasi ar abstraktu metodi laukums().
+from abc import ABC, abstractmethod
 
+class Figura(ABC): # Abstract Base Class
+    def __init__(self, nosaukums):
+        self.nosaukums = nosaukums
 
+    @abstractmethod
+    def laukums(self):
+        """Katrai figūrai savs aprēķins."""
+
+    def apraksts(self):
+        return f"{self.nosaukums}: {self.laukums():.2f}"
 
 
 # 34. Pārbaudi, kas notiek, mēģinot izveidot abstraktās klases objektu.
 
-
-
+# fig = Figura() # nestrādā
 
 # 35. Pārbaudi, kas notiek, ja apakšklase abstrakto metodi nerealizē.
 
+class Kvadrats(Figura):
+    def __init__(self, mala):
+        super().__init__("kvadrats")
+        self.mala = mala
 
-
+# k = Kvadrats(9)
 
 # 36. ★ Pieraksti, ar ko abstrakcija atšķiras no iekapsulēšanas. Eksāmenā šie jēdzieni ir
 #    jāatšķir.
-
-
-
-
 
 # ----------------------------------------------------------
 # 12-010 · Praktikums: četri principi
@@ -254,13 +317,60 @@ print(tomats.akcija(30))
 
 # 37. Izstrādā bibliotēkas sistēmas klases: abstrakta Vienums ar apakšklasēm Gramata,
 #    Zurnals, DVD. Katrai sava apraksts() un izsniegsanas_termins().
+from datetime import datetime, timedelta
 
+class Vienums(ABC):
+    def __init__(self, nosaukums):
+        self.nosaukums = nosaukums
+        self.sanemts = datetime.now()
+    
+    @abstractmethod
+    def apraksts(self):
+        """Katrai mantojošai klasei būs atšķirīgi aprakstošie dati"""
 
+    def izsniegsanas_termins(self):
+        return self.sanemts + timedelta(days=14)
+
+class Gramata(Vienums):
+    def __init__(self, nosaukums, autors, lpp):
+        super().__init__(nosaukums)
+        self.autors = autors
+        self.lpp = lpp
+
+    def apraksts(self):
+        return f"{self.nosaukums} ({self.autors}, {self.lpp} lpp.)"
+
+class DVD(Vienums):
+    def __init__(self, nosaukums, gads, rezisors):
+        super().__init__(nosaukums)
+        self.gads = gads
+        self.rezisors = rezisors
+
+    def apraksts(self):
+        return f"{self.rezisors} - {self.nosaukums} ({self.gads})"
+
+    def izsniegsanas_termins(self):
+        return self.sanemts + timedelta(days=5)
+
+class Zurnals(Vienums):
+    def __init__(self, nosaukums, periods, gads):
+        super().__init__(nosaukums)
+        self.periods = periods
+        self.gads = gads
+
+    def apraksts(self):
+        return f"{self.nosaukums} ({self.gads}. gada {self.periods})"
+
+g = Gramata("Uguns un nakts", "Rainis", 132)
+m = DVD("The Odyssey", 2026, "C. Nolan")
+z = Zurnals("Pie galda!", "jūlijs-augusts", 2026)
 
 
 # 38. Uzraksti funkciju, kas apstaigā vienumu sarakstu un izvada visu aprakstus.
 
 
+for vienums in [g, m, z]:
+    print(vienums.apraksts())
 
 
 # 39. ★ Pievieno iekapsulētu skaitītāju, cik reižu vienums izsniegts.
