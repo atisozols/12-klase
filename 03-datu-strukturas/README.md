@@ -12,40 +12,40 @@ programmsaskarnes, izstrādāt risinājumu un pamatot izvēlēto struktūru un a
 
 <!-- TABULA:SAKUMS · pēc izmaiņām: python3 bin/tabula.py 03-datu-strukturas/README.md && python3 bin/darbafails.py 03-datu-strukturas -->
 
-| Nr. | Tēma | Sasniedzamais rezultāts |
-| --- | --- | --- |
-| 12-057 | Datu struktūru veidi un to izvēle. | Nosauc galvenās datu struktūras un pamato, kura kuram uzdevumam ir piemērota. |
-| 12-058 | Saraksts. Darbību izmaksas. | Novērtē saraksta darbību izmaksas un izvēlas darbību, kas ir lētāka. |
-| 12-059 | Patstāvīgs darbs: algoritma izpildes laika mērīšana. | Izmēra algoritma izpildes laiku pie dažādiem datu apjomiem un attēlo rezultātu. |
-| 12-060 | Mērījumu rezultātu izvērtēšana. | Formulē secinājumus par algoritma uzvedību pie datu apjoma pieauguma. |
-| 12-061 | Kopa (set). Unikālas vērtības un kopu darbības. | Lieto kopu, kur svarīga unikalitāte un ātra piederības pārbaude. |
-| 12-062 | Ieraksts kā datu struktūra. Vārdnīca, `namedtuple` un `dataclass`. | Izvēlas piemērotu veidu strukturēta ieraksta glabāšanai un pamato izvēli. |
-| 12-063 | Steks (stack). Pēdējais iekšā — pirmais ārā. | Realizē steku un lieto to uzdevumam, kur svarīga apgrieztā secība. |
-| 12-064 | Rinda (queue). Pirmais iekšā — pirmais ārā. | Realizē rindu un lieto to uzdevumam, kur svarīga sākotnējā secība. |
-| 12-065 | Patstāvīgs darbs: steka un rindas pielietojums. | Izvēlas un lieto steku vai rindu reālam uzdevumam. |
-| 12-066 | Cita risinājuma pārskatīšana. | Izvērtē cita risinājumu pēc struktūras izvēles un efektivitātes. |
-| 12-067 | Saistītais saraksts. Mezgli un norādes. | Realizē saistīto sarakstu un salīdzina to ar masīvu. |
-| 12-068 | Koks. Hierarhiska struktūra. | Realizē binārā meklēšanas koka pamatdarbības. |
-| 12-069 | Koka apstaigāšana. Rekursija. | Apstaigā koku rekursīvi un skaidro apstaigāšanas secību. |
-| 12-070 | Grafs. Virsotnes un šķautnes. | Attēlo grafu programmā un apstaigā to. |
-| 12-071 | Patstāvīgs darbs: grafa algoritms reālam uzdevumam. | Modelē reālu situāciju kā grafu un atrisina uzdevumu. |
-| 12-072 | Datu struktūru izvēles dokumentēšana. | Pamato rakstiski, kāpēc katrā vietā izvēlēta konkrēta struktūra. |
-| 12-073 | Lineārā un binārā meklēšana. | Realizē abus meklēšanas algoritmus un salīdzina to efektivitāti. |
-| 12-074 | Kārtošanas algoritmi un to salīdzinājums. | Realizē vienkāršu kārtošanas algoritmu un salīdzina to ar iebūvēto. |
-| 12-075 | Algoritma sarežģītība. O apzīmējums. | Novērtē algoritma sarežģītību un pamato novērtējumu. |
-| 12-076 | Praktikums: pareizās struktūras izvēle uzdevumam. | Izvēlas un realizē uzdevumam efektīvāko datu struktūru. |
-| 12-077 | Patstāvīgs darbs: algoritmu salīdzinājums. | Salīdzina vairākus risinājumus pēc laika un atmiņas. |
-| 12-078 | Bloka pirmās daļas izvērtējums. | Nosaka, kuras datu struktūras vēl nav droši apgūtas. |
-| 12-079 | Programmsaskarnes lietošana. Atvērtā koda bibliotēku riski. | Lieto svešu API un izvērtē ārējas bibliotēkas pievienošanas riskus. |
-| 12-080 | Savas programmsaskarnes izveide. | Izveido API galapunktu, kas atbild uz pieprasījumu izvēlētā formātā. |
-| 12-081 | API atslēgas un drošība. | Skaidro API atslēgas nozīmi un glabā to droši. |
-| 12-082 | Mašīnmācīšanās pamatprincipi. Vadītā un nevadītā mācīšanās. | Skaidro mašīnmācīšanās principus un atšķir tos no algoritmiskas pieejas. |
-| 12-083 | Patstāvīgs darbs: gatava mašīnmācīšanās modeļa izmantošana. | Lieto gatavu modeli sava uzdevuma risināšanā. |
-| 12-084 | Modeļa rezultātu izvērtēšana. | Izvērtē modeļa precizitāti un tā lietojuma robežas. |
-| 12-085 | Summatīvā darba specifikācija un plānošana. | Izprot darba prasības un izplāno izpildi. |
-| 12-086 | Summatīvā darba izstrāde. | Realizē risinājumu atbilstoši specifikācijai. |
-| 12-087 | Summatīvais darbs: datu struktūras, API un mašīnmācīšanās. | Pabeidz risinājumu atbilstoši specifikācijai. |
-| 12-088 | Summatīvā darba demonstrācija un aizstāvēšana. | Pamato datu struktūru izvēli un novērtē risinājuma sarežģītību. |
+| Nr. | Tēma | Sasniedzamais rezultāts | Pārbaude |
+| --- | --- | --- | --- |
+| 12-057 | Datu struktūru veidi un to izvēle. | Nosauc galvenās datu struktūras un pamato, kura kuram uzdevumam ir piemērota. |  |
+| 12-058 | Saraksts. Darbību izmaksas. | Novērtē saraksta darbību izmaksas un izvēlas darbību, kas ir lētāka. |  |
+| 12-059 | Patstāvīgs darbs: algoritma izpildes laika mērīšana. | Izmēra algoritma izpildes laiku pie dažādiem datu apjomiem un attēlo rezultātu. |  |
+| 12-060 | Mērījumu rezultātu izvērtēšana. | Formulē secinājumus par algoritma uzvedību pie datu apjoma pieauguma. |  |
+| 12-061 | Kopa (set). Unikālas vērtības un kopu darbības. | Lieto kopu, kur svarīga unikalitāte un ātra piederības pārbaude. |  |
+| 12-062 | Ieraksts kā datu struktūra. Vārdnīca, `namedtuple` un `dataclass`. | Izvēlas piemērotu veidu strukturēta ieraksta glabāšanai un pamato izvēli. |  |
+| 12-063 | Steks (stack). Pēdējais iekšā — pirmais ārā. | Realizē steku un lieto to uzdevumam, kur svarīga apgrieztā secība. |  |
+| 12-064 | Rinda (queue). Pirmais iekšā — pirmais ārā. | Realizē rindu un lieto to uzdevumam, kur svarīga sākotnējā secība. |  |
+| 12-065 | Patstāvīgs darbs: steka un rindas pielietojums. | Izvēlas un lieto steku vai rindu reālam uzdevumam. |  |
+| 12-066 | Cita risinājuma pārskatīšana. | Izvērtē cita risinājumu pēc struktūras izvēles un efektivitātes. |  |
+| 12-067 | Saistītais saraksts. Mezgli un norādes. | Realizē saistīto sarakstu un salīdzina to ar masīvu. |  |
+| 12-068 | Koks. Hierarhiska struktūra. | Realizē binārā meklēšanas koka pamatdarbības. | **FV5** (dators) |
+| 12-069 | Koka apstaigāšana. Rekursija. | Apstaigā koku rekursīvi un skaidro apstaigāšanas secību. |  |
+| 12-070 | Grafs. Virsotnes un šķautnes. | Attēlo grafu programmā un apstaigā to. |  |
+| 12-071 | Patstāvīgs darbs: grafa algoritms reālam uzdevumam. | Modelē reālu situāciju kā grafu un atrisina uzdevumu. |  |
+| 12-072 | Datu struktūru izvēles dokumentēšana. | Pamato rakstiski, kāpēc katrā vietā izvēlēta konkrēta struktūra. |  |
+| 12-073 | Lineārā un binārā meklēšana. | Realizē abus meklēšanas algoritmus un salīdzina to efektivitāti. |  |
+| 12-074 | Kārtošanas algoritmi un to salīdzinājums. | Realizē vienkāršu kārtošanas algoritmu un salīdzina to ar iebūvēto. |  |
+| 12-075 | Algoritma sarežģītība. O apzīmējums. | Novērtē algoritma sarežģītību un pamato novērtējumu. |  |
+| 12-076 | Praktikums: pareizās struktūras izvēle uzdevumam. | Izvēlas un realizē uzdevumam efektīvāko datu struktūru. |  |
+| 12-077 | Patstāvīgs darbs: algoritmu salīdzinājums. | Salīdzina vairākus risinājumus pēc laika un atmiņas. |  |
+| 12-078 | Bloka pirmās daļas izvērtējums. | Nosaka, kuras datu struktūras vēl nav droši apgūtas. |  |
+| 12-079 | Programmsaskarnes lietošana. Atvērtā koda bibliotēku riski. | Lieto svešu API un izvērtē ārējas bibliotēkas pievienošanas riskus. |  |
+| 12-080 | Savas programmsaskarnes izveide. | Izveido API galapunktu, kas atbild uz pieprasījumu izvēlētā formātā. |  |
+| 12-081 | API atslēgas un drošība. | Skaidro API atslēgas nozīmi un glabā to droši. | **FV6** (papīrs) |
+| 12-082 | Mašīnmācīšanās pamatprincipi. Vadītā un nevadītā mācīšanās. | Skaidro mašīnmācīšanās principus un atšķir tos no algoritmiskas pieejas. |  |
+| 12-083 | Patstāvīgs darbs: gatava mašīnmācīšanās modeļa izmantošana. | Lieto gatavu modeli sava uzdevuma risināšanā. |  |
+| 12-084 | Modeļa rezultātu izvērtēšana. | Izvērtē modeļa precizitāti un tā lietojuma robežas. |  |
+| 12-085 | Summatīvā darba specifikācija un plānošana. | Izprot darba prasības un izplāno izpildi. |  |
+| 12-086 | Summatīvā darba izstrāde. | Realizē risinājumu atbilstoši specifikācijai. |  |
+| 12-087 | Summatīvais darbs: datu struktūras, API un mašīnmācīšanās. | Pabeidz risinājumu atbilstoši specifikācijai. | **SV3** |
+| 12-088 | Summatīvā darba demonstrācija un aizstāvēšana. | Pamato datu struktūru izvēli un novērtē risinājuma sarežģītību. | **SV3** |
 
 <!-- TABULA:BEIGAS -->
 

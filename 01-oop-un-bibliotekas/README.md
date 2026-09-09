@@ -12,36 +12,36 @@ bibliotēkas, izstrādāt konkrētu programmatūras risinājumu ar grafisko liet
 
 <!-- TABULA:SAKUMS · pēc izmaiņām: python3 bin/tabula.py 01-oop-un-bibliotekas/README.md && python3 bin/darbafails.py 01-oop-un-bibliotekas -->
 
-| Nr. | Tēma | Sasniedzamais rezultāts |
-| --- | --- | --- |
-| 12-001 | Kursa uzbūve un eksāmens. Objektorientētās programmēšanas atkārtojums. | Nosauc kursa prasības un eksāmena daļas; atkārto klases un objekta jēdzienus. |
-| 12-002 | Klases uzbūve. Konstruktors un objekta izveide. | Definē klasi ar konstruktoru un izveido objektus ar dažādām sākuma vērtībām. |
-| 12-003 | Vairāki objekta izveides veidi. Noklusējuma vērtības un klases metodes. | Izveido klasei vairākus objekta izveides veidus un pamato, kad kurš ir piemērots. |
-| 12-004 | Iekapsulēšana. Iekšējie atribūti un piekļuves metodes. | Skaidro iekapsulēšanu un realizē to, izmantojot iekšējos atribūtus un `property`. |
-| 12-005 | Patstāvīgs darbs: klase ar pilnu validāciju. | Patstāvīgi izstrādā klasi, kas neļauj izveidot nederīgu objektu. |
-| 12-006 | Sprinta rezultātu izvērtēšana. | Izvērtē savu risinājumu un pieraksta, kas bija grūtākais. |
-| 12-007 | Mantošana. Virsklase un apakšklase. | Veido klašu hierarhiju un lieto `super()`. |
-| 12-008 | Polimorfisms. Viena saskarne, dažādas realizācijas. | Skaidro polimorfismu un izmanto to, lai apstrādātu dažādu klašu objektus vienādi. |
-| 12-009 | Abstrakcija. Kopīgā saskarne un abstraktās metodes. | Definē abstraktu virsklasi, kas nosaka, kas apakšklasēm obligāti jārealizē. |
-| 12-010 | Praktikums: abstrakcija, iekapsulēšana, mantošana, polimorfisms. | Izmanto visus četrus OOP pamatprincipus vienā risinājumā. |
-| 12-011 | Patstāvīgs darbs: klašu hierarhijas projektēšana. | Projektē un realizē klašu hierarhiju dotam uzdevuma aprakstam. |
-| 12-012 | Cita koda pārskatīšana. | Izvērtē cita risinājumu pēc OOP principiem un sniedz konkrētu atgriezenisko saiti. |
-| 12-013 | Standarta bibliotēkas iespējas. Dokumentācijas lasīšana. | Atrod dokumentācijā vajadzīgo standarta bibliotēkas iespēju un lieto to. |
-| 12-014 | Ārējo bibliotēku meklēšana, izvērtēšana un pievienošana. | Izvēlas uzdevumam piemērotu ārējo bibliotēku un pamato izvēli. |
-| 12-015 | Grafiskā lietotāja saskarne. Logs, elementi, izkārtojums. | Izveido logu ar ievades laukiem un pogām. |
-| 12-016 | Notikumu apstrāde. Poga izsauc funkciju. | Sasaista saskarnes elementus ar programmas loģiku. |
-| 12-017 | Patstāvīgs darbs: grafiskā saskarne virs savas klases. | Savieno objektorientētu loģiku ar grafisko saskarni. |
-| 12-018 | Sava risinājuma uzlabošana. | Atrod savā risinājumā vietas, kur loģika un saskarne ir sajauktas, un atdala tās. |
-| 12-019 | Objektu saglabāšana un ielasīšana. CSV un JSON. | Saglabā objektus datnē un atjauno tos no tās. |
-| 12-020 | Izņēmumu apstrāde un savi izņēmumu tipi. | Apstrādā izņēmumus un definē savu izņēmuma klasi. |
-| 12-021 | OOP jēdzieni. Gatavošanās eksāmena 3. daļai. | Skaidro un atšķir četrus OOP pamatprincipus. |
-| 12-022 | Summatīvā darba specifikācija un vērtēšanas kritēriji. | Izprot darba prasības un izplāno tā izpildi. |
-| 12-023 | Patstāvīgs darbs: summatīvā darba klašu daļa. | Realizē risinājuma klašu daļu atbilstoši specifikācijai. |
-| 12-024 | Patstāvīgs darbs: datu saglabāšana un atjaunošana. | Pievieno risinājumam datu saglabāšanu datnē. |
-| 12-025 | Summatīvā darba izstrāde: grafiskā saskarne. | Pievieno grafisko saskarni un sasaista to ar klasēm. |
-| 12-026 | Summatīvā darba pabeigšana un atbilstības pārbaude. | Pabeidz risinājumu un pārbauda to pret specifikāciju. |
-| 12-027 | Summatīvais darbs: programmprodukta pabeigšana. | Pabeidz programmproduktu atbilstoši specifikācijai. |
-| 12-028 | Summatīvā darba demonstrācija un aizstāvēšana. | Demonstrē risinājumu, pamato izvēles un veic izmaiņu uz vietas. |
+| Nr. | Tēma | Sasniedzamais rezultāts | Pārbaude |
+| --- | --- | --- | --- |
+| 12-001 | Kursa uzbūve un eksāmens. Objektorientētās programmēšanas atkārtojums. | Nosauc kursa prasības un eksāmena daļas; atkārto klases un objekta jēdzienus. |  |
+| 12-002 | Klases uzbūve. Konstruktors un objekta izveide. | Definē klasi ar konstruktoru un izveido objektus ar dažādām sākuma vērtībām. |  |
+| 12-003 | Vairāki objekta izveides veidi. Noklusējuma vērtības un klases metodes. | Izveido klasei vairākus objekta izveides veidus un pamato, kad kurš ir piemērots. |  |
+| 12-004 | Iekapsulēšana. Iekšējie atribūti un piekļuves metodes. | Skaidro iekapsulēšanu un realizē to, izmantojot iekšējos atribūtus un `property`. |  |
+| 12-005 | Patstāvīgs darbs: klase ar pilnu validāciju. | Patstāvīgi izstrādā klasi, kas neļauj izveidot nederīgu objektu. |  |
+| 12-006 | Sprinta rezultātu izvērtēšana. | Izvērtē savu risinājumu un pieraksta, kas bija grūtākais. |  |
+| 12-007 | Mantošana. Virsklase un apakšklase. | Veido klašu hierarhiju un lieto `super()`. |  |
+| 12-008 | Polimorfisms. Viena saskarne, dažādas realizācijas. | Skaidro polimorfismu un izmanto to, lai apstrādātu dažādu klašu objektus vienādi. |  |
+| 12-009 | Abstrakcija. Kopīgā saskarne un abstraktās metodes. | Definē abstraktu virsklasi, kas nosaka, kas apakšklasēm obligāti jārealizē. |  |
+| 12-010 | Praktikums: abstrakcija, iekapsulēšana, mantošana, polimorfisms. | Izmanto visus četrus OOP pamatprincipus vienā risinājumā. | **FV1** (dators) |
+| 12-011 | Patstāvīgs darbs: klašu hierarhijas projektēšana. | Projektē un realizē klašu hierarhiju dotam uzdevuma aprakstam. |  |
+| 12-012 | Cita koda pārskatīšana. | Izvērtē cita risinājumu pēc OOP principiem un sniedz konkrētu atgriezenisko saiti. |  |
+| 12-013 | Standarta bibliotēkas iespējas. Dokumentācijas lasīšana. | Atrod dokumentācijā vajadzīgo standarta bibliotēkas iespēju un lieto to. |  |
+| 12-014 | Ārējo bibliotēku meklēšana, izvērtēšana un pievienošana. | Izvēlas uzdevumam piemērotu ārējo bibliotēku un pamato izvēli. |  |
+| 12-015 | Grafiskā lietotāja saskarne. Logs, elementi, izkārtojums. | Izveido logu ar ievades laukiem un pogām. |  |
+| 12-016 | Notikumu apstrāde. Poga izsauc funkciju. | Sasaista saskarnes elementus ar programmas loģiku. |  |
+| 12-017 | Patstāvīgs darbs: grafiskā saskarne virs savas klases. | Savieno objektorientētu loģiku ar grafisko saskarni. |  |
+| 12-018 | Sava risinājuma uzlabošana. | Atrod savā risinājumā vietas, kur loģika un saskarne ir sajauktas, un atdala tās. |  |
+| 12-019 | Objektu saglabāšana un ielasīšana. CSV un JSON. | Saglabā objektus datnē un atjauno tos no tās. |  |
+| 12-020 | Izņēmumu apstrāde un savi izņēmumu tipi. | Apstrādā izņēmumus un definē savu izņēmuma klasi. |  |
+| 12-021 | OOP jēdzieni. Gatavošanās eksāmena 3. daļai. | Skaidro un atšķir četrus OOP pamatprincipus. | **FV2** (papīrs) |
+| 12-022 | Summatīvā darba specifikācija un vērtēšanas kritēriji. | Izprot darba prasības un izplāno tā izpildi. |  |
+| 12-023 | Patstāvīgs darbs: summatīvā darba klašu daļa. | Realizē risinājuma klašu daļu atbilstoši specifikācijai. |  |
+| 12-024 | Patstāvīgs darbs: datu saglabāšana un atjaunošana. | Pievieno risinājumam datu saglabāšanu datnē. |  |
+| 12-025 | Summatīvā darba izstrāde: grafiskā saskarne. | Pievieno grafisko saskarni un sasaista to ar klasēm. |  |
+| 12-026 | Summatīvā darba pabeigšana un atbilstības pārbaude. | Pabeidz risinājumu un pārbauda to pret specifikāciju. |  |
+| 12-027 | Summatīvais darbs: programmprodukta pabeigšana. | Pabeidz programmproduktu atbilstoši specifikācijai. | **SV1** |
+| 12-028 | Summatīvā darba demonstrācija un aizstāvēšana. | Demonstrē risinājumu, pamato izvēles un veic izmaiņu uz vietas. | **SV1** |
 
 <!-- TABULA:BEIGAS -->
 

@@ -14,38 +14,38 @@ specifikācijas, izmantojot izstrādes labās prakses principus un veicot testē
 
 <!-- TABULA:SAKUMS · pēc izmaiņām: python3 bin/tabula.py 05-izstrade/README.md && python3 bin/darbafails.py 05-izstrade -->
 
-| Nr. | Tēma | Sasniedzamais rezultāts |
-| --- | --- | --- |
-| 12-107 | Izstrādes vides un repozitorija sagatavošana. | Sagatavo projekta vidi, kurā var sākt izstrādi. |
-| 12-108 | Projekta struktūras izveide. | Izveido mapju un moduļu struktūru pirms koda rakstīšanas. |
-| 12-109 | Koda sadalīšana moduļos un slāņos. | Sadala programmu slāņos tā, ka loģika nav atkarīga no saskarnes. |
-| 12-110 | Koda pieraksta un strukturēšanas labās prakses principi. | Piemēro labās prakses principus un pamato, kāpēc katrs ir vajadzīgs. |
-| 12-111 | Zari, apvienošana un konflikti. | Strādā ar zariem un atrisina apvienošanas konfliktu. |
-| 12-112 | Projekta izstrāde: datu slānis. | Realizē datu glabāšanas daļu atbilstoši specifikācijai. |
-| 12-113 | Patstāvīga izstrāde pēc plāna. | Izpilda plānotos uzdevumus un dokumentē progresu. |
-| 12-114 | Patstāvīga izstrāde: loģikas slānis. | Realizē galveno programmas loģiku. |
-| 12-115 | Vienībtesti. Automatizēta funkciju pārbaude. | Uzraksta vienībtestus savām funkcijām un palaiž tos automātiski. |
-| 12-116 | Robežgadījumi un negatīvie testi. | Nosaka funkcijas robežgadījumus un uzraksta testus tiem. |
-| 12-117 | Projekta izstrāde: saskarnes slānis. | Realizē lietotāja saskarni atbilstoši prototipam. |
-| 12-118 | Starpposma demonstrācija. | Demonstrē paveikto un koriģē plānu. |
-| 12-119 | Uzlabojumi pēc atgriezeniskās saites. | Ievieš uzlabojumus un pārbauda tos ar testiem. |
-| 12-120 | Patstāvīga izstrāde. | Realizē nākamās prasības pēc plāna. |
-| 12-121 | Sistemātiska atkļūdošana. | Atrod kļūdas cēloni sistemātiski, nevis minot. |
-| 12-122 | Refaktorēšana. Koda uzlabošana, nemainot uzvedību. | Uzlabo koda struktūru, saglabājot funkcionalitāti un pārbaudot to ar testiem. |
-| 12-123 | Projekta izstrāde. | Realizē atlikušās obligātās prasības. |
-| 12-124 | Projekta izstrāde un kļūdu labošana. | Pabeidz obligāto funkcionalitāti. |
-| 12-125 | Patstāvīga izstrāde. | Pabeidz atlikušos uzdevumus. |
-| 12-126 | Testu komplekta papildināšana. | Panāk, ka testi aptver visas galvenās funkcijas. |
-| 12-127 | Integrācijas testēšana. Vienību sadarbība. | Testē vairāku komponenšu sadarbību, ne tikai atsevišķas funkcijas. |
-| 12-128 | Otrā demonstrācija un gatavības izvērtējums. | Demonstrē gandrīz gatavu risinājumu un plāno atlikušo darbu. |
-| 12-129 | Akcepttestēšana pret specifikāciju. | Pārbauda katru specifikācijas prasību un dokumentē rezultātu. |
-| 12-130 | Akcepttestēšanā atrasto kļūdu labošana. | Novērš atrastās neatbilstības un atkārtoti pārbauda. |
-| 12-131 | Patstāvīgs darbs: projekta pabeigšana. | Pabeidz risinājumu un novērš atlikušās kļūdas. |
-| 12-132 | Projekta dokumentācija. | Uzraksta lietotāja un izstrādātāja dokumentāciju. |
-| 12-133 | Programmatūras izvēršana un uzturēšana. | Izstrādā izvēršanas un uzturēšanas plānu. |
-| 12-134 | Darba pašpārbaude pirms iesniegšanas. | Pārbauda darba atbilstību specifikācijai un vērtēšanas kritērijiem. |
-| 12-135 | Summatīvais darbs: individuāls programmprodukts. | Iesniedz pabeigtu risinājumu ar testiem un dokumentāciju. |
-| 12-136 | Summatīvā darba demonstrācija un aizstāvēšana. | Demonstrē risinājumu, pamato izvēles un veic izmaiņu uz vietas. |
+| Nr. | Tēma | Sasniedzamais rezultāts | Pārbaude |
+| --- | --- | --- | --- |
+| 12-107 | Izstrādes vides un repozitorija sagatavošana. | Sagatavo projekta vidi, kurā var sākt izstrādi. |  |
+| 12-108 | Projekta struktūras izveide. | Izveido mapju un moduļu struktūru pirms koda rakstīšanas. |  |
+| 12-109 | Koda sadalīšana moduļos un slāņos. | Sadala programmu slāņos tā, ka loģika nav atkarīga no saskarnes. |  |
+| 12-110 | Koda pieraksta un strukturēšanas labās prakses principi. | Piemēro labās prakses principus un pamato, kāpēc katrs ir vajadzīgs. |  |
+| 12-111 | Zari, apvienošana un konflikti. | Strādā ar zariem un atrisina apvienošanas konfliktu. |  |
+| 12-112 | Projekta izstrāde: datu slānis. | Realizē datu glabāšanas daļu atbilstoši specifikācijai. |  |
+| 12-113 | Patstāvīga izstrāde pēc plāna. | Izpilda plānotos uzdevumus un dokumentē progresu. |  |
+| 12-114 | Patstāvīga izstrāde: loģikas slānis. | Realizē galveno programmas loģiku. |  |
+| 12-115 | Vienībtesti. Automatizēta funkciju pārbaude. | Uzraksta vienībtestus savām funkcijām un palaiž tos automātiski. | **FV8** (dators) |
+| 12-116 | Robežgadījumi un negatīvie testi. | Nosaka funkcijas robežgadījumus un uzraksta testus tiem. |  |
+| 12-117 | Projekta izstrāde: saskarnes slānis. | Realizē lietotāja saskarni atbilstoši prototipam. |  |
+| 12-118 | Starpposma demonstrācija. | Demonstrē paveikto un koriģē plānu. |  |
+| 12-119 | Uzlabojumi pēc atgriezeniskās saites. | Ievieš uzlabojumus un pārbauda tos ar testiem. |  |
+| 12-120 | Patstāvīga izstrāde. | Realizē nākamās prasības pēc plāna. |  |
+| 12-121 | Sistemātiska atkļūdošana. | Atrod kļūdas cēloni sistemātiski, nevis minot. |  |
+| 12-122 | Refaktorēšana. Koda uzlabošana, nemainot uzvedību. | Uzlabo koda struktūru, saglabājot funkcionalitāti un pārbaudot to ar testiem. |  |
+| 12-123 | Projekta izstrāde. | Realizē atlikušās obligātās prasības. |  |
+| 12-124 | Projekta izstrāde un kļūdu labošana. | Pabeidz obligāto funkcionalitāti. |  |
+| 12-125 | Patstāvīga izstrāde. | Pabeidz atlikušos uzdevumus. |  |
+| 12-126 | Testu komplekta papildināšana. | Panāk, ka testi aptver visas galvenās funkcijas. |  |
+| 12-127 | Integrācijas testēšana. Vienību sadarbība. | Testē vairāku komponenšu sadarbību, ne tikai atsevišķas funkcijas. | **FV9** (dators) |
+| 12-128 | Otrā demonstrācija un gatavības izvērtējums. | Demonstrē gandrīz gatavu risinājumu un plāno atlikušo darbu. |  |
+| 12-129 | Akcepttestēšana pret specifikāciju. | Pārbauda katru specifikācijas prasību un dokumentē rezultātu. |  |
+| 12-130 | Akcepttestēšanā atrasto kļūdu labošana. | Novērš atrastās neatbilstības un atkārtoti pārbauda. |  |
+| 12-131 | Patstāvīgs darbs: projekta pabeigšana. | Pabeidz risinājumu un novērš atlikušās kļūdas. |  |
+| 12-132 | Projekta dokumentācija. | Uzraksta lietotāja un izstrādātāja dokumentāciju. |  |
+| 12-133 | Programmatūras izvēršana un uzturēšana. | Izstrādā izvēršanas un uzturēšanas plānu. |  |
+| 12-134 | Darba pašpārbaude pirms iesniegšanas. | Pārbauda darba atbilstību specifikācijai un vērtēšanas kritērijiem. |  |
+| 12-135 | Summatīvais darbs: individuāls programmprodukts. | Iesniedz pabeigtu risinājumu ar testiem un dokumentāciju. | **SV5** |
+| 12-136 | Summatīvā darba demonstrācija un aizstāvēšana. | Demonstrē risinājumu, pamato izvēles un veic izmaiņu uz vietas. | **SV5** |
 
 <!-- TABULA:BEIGAS -->
 

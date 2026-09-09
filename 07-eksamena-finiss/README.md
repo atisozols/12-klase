@@ -14,28 +14,28 @@ mērķtiecīgi aizpildot robus.
 
 <!-- TABULA:SAKUMS · pēc izmaiņām: python3 bin/tabula.py 07-eksamena-finiss/README.md && python3 bin/darbafails.py 07-eksamena-finiss -->
 
-| Nr. | Tēma | Sasniedzamais rezultāts |
-| --- | --- | --- |
-| 12-167 | Eksāmena programmas izpēte. | Zina eksāmena uzbūvi, daļu īpatsvarus un atļautos palīglīdzekļus. |
-| 12-168 | Iepriekšējā gada eksāmena 1. daļa. | Izpilda dzīvescikla uzdevumus un salīdzina ar kritērijiem. |
-| 12-169 | Eksāmena uzbūve. Laika plānošana un stratēģija. | Plāno eksāmena laiku un zina, ar ko sākt. |
-| 12-170 | Programmatūras dzīvescikla uzdevumi. | Atbild uz izvērsto atbilžu uzdevumiem par dzīvescikla posmiem. |
-| 12-171 | Datubāzes plānošanas uzdevumi eksāmenā. | Izveido datu modeli un tabulas pēc dota apraksta noteiktā laikā. |
-| 12-172 | SQL vaicājumu uzdevumi eksāmenā. | Raksta vaicājumus pēc dota apraksta noteiktā laikā. |
-| 12-173 | Patstāvīgs treniņš: datubāzes. | Nostiprina datubāzes uzdevumu risināšanu. |
-| 12-174 | Patstāvīgs treniņš: objektorientētā programmēšana. | Izpilda OOP uzdevumu eksāmena apjomā. |
-| 12-175 | Mēģinājuma eksāmens: 1. un 2. daļa. | Strādā eksāmena apstākļos ar laika ierobežojumu. |
-| 12-176 | Mēģinājuma eksāmena pabeigšana un iesniegšana. | Pabeidz darbu noteiktā laikā un iesniedz. |
-| 12-177 | Mēģinājuma eksāmena rezultātu analīze. | Nosaka, kur zaudēti punkti, un plāno, ko atkārtot. |
-| 12-178 | Mērķtiecīga atkārtošana pēc ME1 rezultātiem. | Atkārto tieši to, kas mēģinājuma eksāmenā izrādījās vājš. |
-| 12-179 | Patstāvīga atkārtošana pēc individuālā plāna. | Patstāvīgi aizpilda savus robus. |
-| 12-180 | Patstāvīgs treniņš: datu struktūras un programmsaskarnes. | Izpilda 4. daļas uzdevumus eksāmena apjomā. |
-| 12-181 | Mēģinājuma eksāmens: objektorientētā programmēšana. | Izstrādā programmatūru eksāmena apstākļos. |
-| 12-182 | Mēģinājuma eksāmena 3. daļas pabeigšana. | Pabeidz uzdevumu noteiktā laikā. |
-| 12-183 | Mēģinājuma eksāmens: datu struktūras un programmsaskarnes. | Risina datu struktūru uzdevumus eksāmena apstākļos. |
-| 12-184 | Mēģinājuma eksāmena pabeigšana. | Pabeidz darbu un iesniedz. |
-| 12-185 | Otrā mēģinājuma eksāmena analīze. | Salīdzina rezultātus ar ME1 un precizē pēdējo atkārtošanas plānu. |
-| 12-186 | Pēdējā patstāvīgā atkārtošana. | Nostiprina zināšanas pēc sava plāna. |
+| Nr. | Tēma | Sasniedzamais rezultāts | Pārbaude |
+| --- | --- | --- | --- |
+| 12-167 | Eksāmena programmas izpēte. | Zina eksāmena uzbūvi, daļu īpatsvarus un atļautos palīglīdzekļus. |  |
+| 12-168 | Iepriekšējā gada eksāmena 1. daļa. | Izpilda dzīvescikla uzdevumus un salīdzina ar kritērijiem. |  |
+| 12-169 | Eksāmena uzbūve. Laika plānošana un stratēģija. | Plāno eksāmena laiku un zina, ar ko sākt. |  |
+| 12-170 | Programmatūras dzīvescikla uzdevumi. | Atbild uz izvērsto atbilžu uzdevumiem par dzīvescikla posmiem. |  |
+| 12-171 | Datubāzes plānošanas uzdevumi eksāmenā. | Izveido datu modeli un tabulas pēc dota apraksta noteiktā laikā. |  |
+| 12-172 | SQL vaicājumu uzdevumi eksāmenā. | Raksta vaicājumus pēc dota apraksta noteiktā laikā. |  |
+| 12-173 | Patstāvīgs treniņš: datubāzes. | Nostiprina datubāzes uzdevumu risināšanu. |  |
+| 12-174 | Patstāvīgs treniņš: objektorientētā programmēšana. | Izpilda OOP uzdevumu eksāmena apjomā. |  |
+| 12-175 | Mēģinājuma eksāmens: 1. un 2. daļa. | Strādā eksāmena apstākļos ar laika ierobežojumu. | **ME1** |
+| 12-176 | Mēģinājuma eksāmena pabeigšana un iesniegšana. | Pabeidz darbu noteiktā laikā un iesniedz. | **ME1** |
+| 12-177 | Mēģinājuma eksāmena rezultātu analīze. | Nosaka, kur zaudēti punkti, un plāno, ko atkārtot. |  |
+| 12-178 | Mērķtiecīga atkārtošana pēc ME1 rezultātiem. | Atkārto tieši to, kas mēģinājuma eksāmenā izrādījās vājš. |  |
+| 12-179 | Patstāvīga atkārtošana pēc individuālā plāna. | Patstāvīgi aizpilda savus robus. |  |
+| 12-180 | Patstāvīgs treniņš: datu struktūras un programmsaskarnes. | Izpilda 4. daļas uzdevumus eksāmena apjomā. |  |
+| 12-181 | Mēģinājuma eksāmens: objektorientētā programmēšana. | Izstrādā programmatūru eksāmena apstākļos. | **ME2** |
+| 12-182 | Mēģinājuma eksāmena 3. daļas pabeigšana. | Pabeidz uzdevumu noteiktā laikā. | **ME2** |
+| 12-183 | Mēģinājuma eksāmens: datu struktūras un programmsaskarnes. | Risina datu struktūru uzdevumus eksāmena apstākļos. | **ME2** |
+| 12-184 | Mēģinājuma eksāmena pabeigšana. | Pabeidz darbu un iesniedz. | **ME2** |
+| 12-185 | Otrā mēģinājuma eksāmena analīze. | Salīdzina rezultātus ar ME1 un precizē pēdējo atkārtošanas plānu. |  |
+| 12-186 | Pēdējā patstāvīgā atkārtošana. | Nostiprina zināšanas pēc sava plāna. |  |
 
 <!-- TABULA:BEIGAS -->
 

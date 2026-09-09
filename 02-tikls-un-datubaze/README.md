@@ -16,36 +16,36 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 
 <!-- TABULA:SAKUMS · pēc izmaiņām: python3 bin/tabula.py 02-tikls-un-datubaze/README.md && python3 bin/darbafails.py 02-tikls-un-datubaze -->
 
-| Nr. | Tēma | Sasniedzamais rezultāts |
-| --- | --- | --- |
-| 12-029 | 11. klases datubāzes prasmju atkārtojums. | Atkārto tabulu, atslēgu un vaicājumu pamatus patstāvīgi. |
-| 12-030 | Datubāzes projektēšanas problēmas. | Atpazīst datu dublēšanos un tās sekas. |
-| 12-031 | Entītiju un saistību modelis. Datubāzes projektēšanas valoda. | Attēlo datubāzes struktūru ER modelī ar entītijām, atribūtiem un saistībām. |
-| 12-032 | Normalizācija. Datu dublēšanās novēršana. | Atpazīst dublēšanos un pārveido tabulu atbilstoši pirmajām trim normālformām. |
-| 12-033 | Datubāzes izveide pēc ER modeļa. Ierobežojumi un indeksi. | Izveido datubāzi ar vairākām tabulām, atslēgām, ierobežojumiem un indeksiem. |
-| 12-034 | Saliktie vaicājumi. Transakcijas. | Raksta saliktus vaicājumus un lieto transakciju, kur darbības jāveic kopā. |
-| 12-035 | Patstāvīgs darbs: datubāzes pabeigšana. | Pabeidz datubāzi ar pilnu ierobežojumu komplektu un testa datiem. |
-| 12-036 | Datubāzes dokumentēšana. | Dokumentē datubāzes struktūru tā, lai to saprot cits izstrādātājs. |
-| 12-037 | Jaucējfunkcijas. Paroļu glabāšana. | Skaidro jaucējfunkcijas īpašības un lieto to paroļu glabāšanai. |
-| 12-038 | Šifrēšana. Publiskā un privātā atslēga. | Atšķir jaukšanu no šifrēšanas un skaidro publiskās atslēgas principu. |
-| 12-039 | Datubāzes drošība. SQL injekcija un piekļuves tiesības. | Atpazīst SQL injekcijas risku un novērš to ar parametrizētiem vaicājumiem. |
-| 12-040 | Tīmekļa servera izveide. Servera loma izstrādē. | Izveido tīmekļa serveri, kas apkalpo datubāzi, un pārbauda tā darbību. |
-| 12-041 | Patstāvīgs darbs: droša servera daļa. | Papildina serveri ar validāciju, kļūdu apstrādi un drošības pasākumiem. |
-| 12-042 | Servera dokumentēšana. | Dokumentē servera maršrutus tā, lai citi tos var lietot. |
-| 12-043 | Lokālais tīkls. Maršrutētājs, komutators, IP adresācija. | Apraksta lokālā tīkla uzbūvi un ierīču lomas. |
-| 12-044 | Maršrutētāja konfigurēšana. Piekļuves kontrole. | Konfigurē bezvadu piekļuves punktu ar paroli un piekļuves ierobežojumiem. |
-| 12-045 | Servera pieejamība lokālajā tīklā un internetā. | Padara savu serveri pieejamu citiem tīkla lietotājiem un izvērtē riskus. |
-| 12-046 | Servera uzturēšana savās telpās un ārpakalpojumā. | Salīdzina sava un nomāta servera risinājumus un pamato izvēli. |
-| 12-047 | Tīkla konfigurācijas dokumentēšana. | Dokumentē tīkla un servera konfigurāciju ar pierādījumiem. |
-| 12-048 | SV2 prasību pašpārbaude. | Pārbauda savu darbu pret summatīvā darba prasībām. |
-| 12-049 | Bloka jēdzieni. Gatavošanās eksāmena 2. daļai. | Skaidro datubāzu, tīkla un drošības jēdzienus bez rīkiem. |
-| 12-050 | Summatīvā darba prasības un plānošana. | Izprot darba prasības un izplāno izpildi. |
-| 12-051 | Summatīvā darba izstrāde: datubāze. | Pabeidz datubāzes daļu atbilstoši prasībām. |
-| 12-052 | Summatīvā darba izstrāde: serveris un drošība. | Pabeidz servera daļu ar drošības pasākumiem. |
-| 12-053 | Patstāvīgs darbs: dokumentācijas pabeigšana. | Pabeidz visu trīs daļu dokumentāciju ar pierādījumiem. |
-| 12-054 | Darba pārbaude pirms iesniegšanas. | Pārbauda darba pilnīgumu pret prasībām. |
-| 12-055 | Summatīvais darbs: tīkls, serveris un datubāze. | Iesniedz pabeigtu risinājumu ar dokumentāciju. |
-| 12-056 | Summatīvā darba demonstrācija un aizstāvēšana. | Demonstrē risinājumu un pamato drošības un projektēšanas izvēles. |
+| Nr. | Tēma | Sasniedzamais rezultāts | Pārbaude |
+| --- | --- | --- | --- |
+| 12-029 | 11. klases datubāzes prasmju atkārtojums. | Atkārto tabulu, atslēgu un vaicājumu pamatus patstāvīgi. |  |
+| 12-030 | Datubāzes projektēšanas problēmas. | Atpazīst datu dublēšanos un tās sekas. |  |
+| 12-031 | Entītiju un saistību modelis. Datubāzes projektēšanas valoda. | Attēlo datubāzes struktūru ER modelī ar entītijām, atribūtiem un saistībām. |  |
+| 12-032 | Normalizācija. Datu dublēšanās novēršana. | Atpazīst dublēšanos un pārveido tabulu atbilstoši pirmajām trim normālformām. |  |
+| 12-033 | Datubāzes izveide pēc ER modeļa. Ierobežojumi un indeksi. | Izveido datubāzi ar vairākām tabulām, atslēgām, ierobežojumiem un indeksiem. |  |
+| 12-034 | Saliktie vaicājumi. Transakcijas. | Raksta saliktus vaicājumus un lieto transakciju, kur darbības jāveic kopā. |  |
+| 12-035 | Patstāvīgs darbs: datubāzes pabeigšana. | Pabeidz datubāzi ar pilnu ierobežojumu komplektu un testa datiem. |  |
+| 12-036 | Datubāzes dokumentēšana. | Dokumentē datubāzes struktūru tā, lai to saprot cits izstrādātājs. |  |
+| 12-037 | Jaucējfunkcijas. Paroļu glabāšana. | Skaidro jaucējfunkcijas īpašības un lieto to paroļu glabāšanai. |  |
+| 12-038 | Šifrēšana. Publiskā un privātā atslēga. | Atšķir jaukšanu no šifrēšanas un skaidro publiskās atslēgas principu. | **FV3** (dators) |
+| 12-039 | Datubāzes drošība. SQL injekcija un piekļuves tiesības. | Atpazīst SQL injekcijas risku un novērš to ar parametrizētiem vaicājumiem. |  |
+| 12-040 | Tīmekļa servera izveide. Servera loma izstrādē. | Izveido tīmekļa serveri, kas apkalpo datubāzi, un pārbauda tā darbību. |  |
+| 12-041 | Patstāvīgs darbs: droša servera daļa. | Papildina serveri ar validāciju, kļūdu apstrādi un drošības pasākumiem. |  |
+| 12-042 | Servera dokumentēšana. | Dokumentē servera maršrutus tā, lai citi tos var lietot. |  |
+| 12-043 | Lokālais tīkls. Maršrutētājs, komutators, IP adresācija. | Apraksta lokālā tīkla uzbūvi un ierīču lomas. |  |
+| 12-044 | Maršrutētāja konfigurēšana. Piekļuves kontrole. | Konfigurē bezvadu piekļuves punktu ar paroli un piekļuves ierobežojumiem. |  |
+| 12-045 | Servera pieejamība lokālajā tīklā un internetā. | Padara savu serveri pieejamu citiem tīkla lietotājiem un izvērtē riskus. |  |
+| 12-046 | Servera uzturēšana savās telpās un ārpakalpojumā. | Salīdzina sava un nomāta servera risinājumus un pamato izvēli. |  |
+| 12-047 | Tīkla konfigurācijas dokumentēšana. | Dokumentē tīkla un servera konfigurāciju ar pierādījumiem. |  |
+| 12-048 | SV2 prasību pašpārbaude. | Pārbauda savu darbu pret summatīvā darba prasībām. |  |
+| 12-049 | Bloka jēdzieni. Gatavošanās eksāmena 2. daļai. | Skaidro datubāzu, tīkla un drošības jēdzienus bez rīkiem. | **FV4** (papīrs) |
+| 12-050 | Summatīvā darba prasības un plānošana. | Izprot darba prasības un izplāno izpildi. |  |
+| 12-051 | Summatīvā darba izstrāde: datubāze. | Pabeidz datubāzes daļu atbilstoši prasībām. |  |
+| 12-052 | Summatīvā darba izstrāde: serveris un drošība. | Pabeidz servera daļu ar drošības pasākumiem. |  |
+| 12-053 | Patstāvīgs darbs: dokumentācijas pabeigšana. | Pabeidz visu trīs daļu dokumentāciju ar pierādījumiem. |  |
+| 12-054 | Darba pārbaude pirms iesniegšanas. | Pārbauda darba pilnīgumu pret prasībām. |  |
+| 12-055 | Summatīvais darbs: tīkls, serveris un datubāze. | Iesniedz pabeigtu risinājumu ar dokumentāciju. | **SV2** |
+| 12-056 | Summatīvā darba demonstrācija un aizstāvēšana. | Demonstrē risinājumu un pamato drošības un projektēšanas izvēles. | **SV2** |
 
 <!-- TABULA:BEIGAS -->
 

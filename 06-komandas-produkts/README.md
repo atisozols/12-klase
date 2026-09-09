@@ -14,38 +14,38 @@ individuālā atbildība paliek tie paši.
 
 <!-- TABULA:SAKUMS · pēc izmaiņām: python3 bin/tabula.py 06-komandas-produkts/README.md && python3 bin/darbafails.py 06-komandas-produkts -->
 
-| Nr. | Tēma | Sasniedzamais rezultāts |
-| --- | --- | --- |
-| 12-137 | Komandas projekta ideju meklēšana. | Atrod problēmu, kas ir pietiekami liela komandas darbam. |
-| 12-138 | Ideju izvērtēšana un izvēle. | Salīdzina idejas pēc kritērijiem un pamato izvēli. |
-| 12-139 | Komandas darba organizācija. Lomas un atbildība. | Vienojas par komandas lomām un katra atbildības jomu. |
-| 12-140 | Komandas specifikācijas izveide. | Izveido kopīgu prasību specifikāciju, par kuru visi vienojas. |
-| 12-141 | Sistēmas projektēšana. Daļu saskarnes. | Sadala sistēmu daļās un vienojas par saskarnēm starp tām. |
-| 12-142 | Kopīgs repozitorijs, koda stils un uzdevumu dēlis. | Iekārto komandas sadarbības vidi un vienojas par vienotu koda stilu. |
-| 12-143 | Patstāvīga izstrāde savā atbildības jomā. | Realizē savu daļu atbilstoši saskaņotajām saskarnēm. |
-| 12-144 | Patstāvīga izstrāde un pirmā apvienošana. | Pabeidz pirmo uzdevumu kopu un apvieno to ar galveno zaru. |
-| 12-145 | Darbs ar zariem komandā. Apvienošanas pieprasījums. | Iesniedz apvienošanas pieprasījumu un pārskata cita kodu. |
-| 12-146 | Konstruktīva koda pārskatīšana. | Sniedz un pieņem atgriezenisko saiti par kodu cieņpilnā formā. |
-| 12-147 | Komandas izstrāde. | Realizē savu daļu un sinhronizējas ar komandu. |
-| 12-148 | Komandas starpposma demonstrācija. | Demonstrē komandas paveikto un koriģē plānu. |
-| 12-149 | Patstāvīga izstrāde. | Izpilda savus uzdevumus un uztur komandas informētību. |
-| 12-150 | Testi savai atbildības jomai. | Uzraksta testus savai daļai, lai citi to var droši mainīt. |
-| 12-151 | Daļu apvienošana un integrācijas testēšana. | Apvieno komandas daļas un pārbauda to sadarbību. |
-| 12-152 | Komandas izstrāde. | Realizē atlikušās obligātās prasības. |
-| 12-153 | Komandas izstrāde un savstarpēja palīdzība. | Pabeidz obligāto funkcionalitāti. |
-| 12-154 | Komandas testēšana. Savstarpēja pārbaude. | Testē komandas biedra izstrādāto daļu un dokumentē kļūdas. |
-| 12-155 | Testēšanā atrasto kļūdu labošana. | Novērš sev piešķirtās kļūdas un pārbauda rezultātu. |
-| 12-156 | Atlikušo uzdevumu izpilde. | Pabeidz savus uzdevumus. |
-| 12-157 | Sava risinājuma algoritmu sarežģītības novērtēšana un optimizācija. | Novērtē izmantoto algoritmu sarežģītību un optimizē, kur nepieciešams. |
-| 12-158 | Otrā demonstrācija un gatavības izvērtējums. | Demonstrē gandrīz gatavu produktu un plāno atlikušo darbu. |
-| 12-159 | Akcepttestēšana pret komandas specifikāciju. | Pārbauda katru prasību un dokumentē rezultātu. |
-| 12-160 | Izvēršanas plāns, uzturēšanas plāns un licences izvēle. | Izstrādā izvēršanas un uzturēšanas plānu un izvēlas licenci. |
-| 12-161 | Projekta dokumentācijas pabeigšana. | Dokumentē savu daļu tā, lai to saprot cits izstrādātājs. |
-| 12-162 | Lietotāja ceļveža izveide. | Uzraksta lietotājam saprotamu pamācību. |
-| 12-163 | Komandas darba pašpārbaude. | Pārbauda darba atbilstību prasībām un vērtēšanas kritērijiem. |
-| 12-164 | Komandas prezentācijas sagatavošana. | Sagatavo prezentāciju, kurā katrs stāsta par savu ieguldījumu. |
-| 12-165 | Komandas produkta prezentācija un demonstrācija. | Prezentē komandas risinājumu un izstrādes gaitu. |
-| 12-166 | Individuālā aizstāvēšana. Kursa noslēgums. | Pamato savu ieguldījumu un veic izmaiņu savā kodā uz vietas. |
+| Nr. | Tēma | Sasniedzamais rezultāts | Pārbaude |
+| --- | --- | --- | --- |
+| 12-137 | Komandas projekta ideju meklēšana. | Atrod problēmu, kas ir pietiekami liela komandas darbam. |  |
+| 12-138 | Ideju izvērtēšana un izvēle. | Salīdzina idejas pēc kritērijiem un pamato izvēli. |  |
+| 12-139 | Komandas darba organizācija. Lomas un atbildība. | Vienojas par komandas lomām un katra atbildības jomu. |  |
+| 12-140 | Komandas specifikācijas izveide. | Izveido kopīgu prasību specifikāciju, par kuru visi vienojas. |  |
+| 12-141 | Sistēmas projektēšana. Daļu saskarnes. | Sadala sistēmu daļās un vienojas par saskarnēm starp tām. |  |
+| 12-142 | Kopīgs repozitorijs, koda stils un uzdevumu dēlis. | Iekārto komandas sadarbības vidi un vienojas par vienotu koda stilu. |  |
+| 12-143 | Patstāvīga izstrāde savā atbildības jomā. | Realizē savu daļu atbilstoši saskaņotajām saskarnēm. |  |
+| 12-144 | Patstāvīga izstrāde un pirmā apvienošana. | Pabeidz pirmo uzdevumu kopu un apvieno to ar galveno zaru. |  |
+| 12-145 | Darbs ar zariem komandā. Apvienošanas pieprasījums. | Iesniedz apvienošanas pieprasījumu un pārskata cita kodu. | **FV10** (dators) |
+| 12-146 | Konstruktīva koda pārskatīšana. | Sniedz un pieņem atgriezenisko saiti par kodu cieņpilnā formā. |  |
+| 12-147 | Komandas izstrāde. | Realizē savu daļu un sinhronizējas ar komandu. |  |
+| 12-148 | Komandas starpposma demonstrācija. | Demonstrē komandas paveikto un koriģē plānu. |  |
+| 12-149 | Patstāvīga izstrāde. | Izpilda savus uzdevumus un uztur komandas informētību. |  |
+| 12-150 | Testi savai atbildības jomai. | Uzraksta testus savai daļai, lai citi to var droši mainīt. |  |
+| 12-151 | Daļu apvienošana un integrācijas testēšana. | Apvieno komandas daļas un pārbauda to sadarbību. |  |
+| 12-152 | Komandas izstrāde. | Realizē atlikušās obligātās prasības. |  |
+| 12-153 | Komandas izstrāde un savstarpēja palīdzība. | Pabeidz obligāto funkcionalitāti. |  |
+| 12-154 | Komandas testēšana. Savstarpēja pārbaude. | Testē komandas biedra izstrādāto daļu un dokumentē kļūdas. |  |
+| 12-155 | Testēšanā atrasto kļūdu labošana. | Novērš sev piešķirtās kļūdas un pārbauda rezultātu. |  |
+| 12-156 | Atlikušo uzdevumu izpilde. | Pabeidz savus uzdevumus. |  |
+| 12-157 | Sava risinājuma algoritmu sarežģītības novērtēšana un optimizācija. | Novērtē izmantoto algoritmu sarežģītību un optimizē, kur nepieciešams. | **FV11** (dators) |
+| 12-158 | Otrā demonstrācija un gatavības izvērtējums. | Demonstrē gandrīz gatavu produktu un plāno atlikušo darbu. |  |
+| 12-159 | Akcepttestēšana pret komandas specifikāciju. | Pārbauda katru prasību un dokumentē rezultātu. |  |
+| 12-160 | Izvēršanas plāns, uzturēšanas plāns un licences izvēle. | Izstrādā izvēršanas un uzturēšanas plānu un izvēlas licenci. |  |
+| 12-161 | Projekta dokumentācijas pabeigšana. | Dokumentē savu daļu tā, lai to saprot cits izstrādātājs. |  |
+| 12-162 | Lietotāja ceļveža izveide. | Uzraksta lietotājam saprotamu pamācību. |  |
+| 12-163 | Komandas darba pašpārbaude. | Pārbauda darba atbilstību prasībām un vērtēšanas kritērijiem. | **FV12** (dators) |
+| 12-164 | Komandas prezentācijas sagatavošana. | Sagatavo prezentāciju, kurā katrs stāsta par savu ieguldījumu. |  |
+| 12-165 | Komandas produkta prezentācija un demonstrācija. | Prezentē komandas risinājumu un izstrādes gaitu. | **SV6** |
+| 12-166 | Individuālā aizstāvēšana. Kursa noslēgums. | Pamato savu ieguldījumu un veic izmaiņu savā kodā uz vietas. | **SV6** |
 
 <!-- TABULA:BEIGAS -->
 

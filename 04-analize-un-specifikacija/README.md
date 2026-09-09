@@ -18,26 +18,26 @@ risinājumu.
 
 <!-- TABULA:SAKUMS · pēc izmaiņām: python3 bin/tabula.py 04-analize-un-specifikacija/README.md && python3 bin/darbafails.py 04-analize-un-specifikacija -->
 
-| Nr. | Tēma | Sasniedzamais rezultāts |
-| --- | --- | --- |
-| 12-089 | Reāla procesa izvēle analīzei. | Atrod reālu procesu, kurā ir automatizācijas potenciāls. |
-| 12-090 | Procesa attēlošana shēmā. | Attēlo pašreizējo procesu shēmā ar soļiem, lēmumiem un iesaistītajiem. |
-| 12-091 | Ikdienas procesu izpēte un analīze. | Izvēlas procesa izpētes metodi un pamato izvēli. |
-| 12-092 | Automatizācijas iespēju noteikšana. | Nosaka, kuras procesa daļas ir automatizējamas un kuras nav. |
-| 12-093 | Problēmas precīza formulēšana. Darba uzdevums. | Formulē risināmo problēmu izmērāmi un pārvērš to darba uzdevumā. |
-| 12-094 | Programmatūras prasību specifikācijas saturs un uzbūve. | Nosauc specifikācijas daļas un raksta pārbaudāmas prasības. |
-| 12-095 | Patstāvīgs darbs: pilns prasību saraksts. | Uzraksta pilnu funkcionālo un nefunkcionālo prasību sarakstu. |
-| 12-096 | Datu klases specifikācijā. Datu modelis. | Nosaka, kādi dati sistēmā jāglabā, un attēlo tos modelī. |
-| 12-097 | Lietotāja saskarnes prototips. Struktūrskices. | Izveido saskarnes prototipu, kas parāda galvenos ekrānus un pārejas. |
-| 12-098 | Programmatūras izstrādes modeļi. | Salīdzina izstrādes modeļus un pamato izvēli savam projektam. |
-| 12-099 | Programmēšanas valodas un izstrādes vides izvēle. | Pamato valodas, bibliotēku un vides izvēli konkrētam uzdevumam. |
-| 12-100 | Darba plānošana. Uzdevumu sadalīšana un termiņi. | Sadala izstrādi uzdevumos un izplāno 30 stundu darbu. |
-| 12-101 | Patstāvīgs darbs: specifikācijas pabeigšana. | Pabeidz specifikāciju atbilstoši veidnei. |
-| 12-102 | Cita specifikācijas recenzēšana. | Izvērtē citu specifikāciju pēc kritērijiem un sniedz konkrētu atgriezenisko saiti. |
-| 12-103 | Specifikācijas labošana pēc recenzijām. | Ievieš uzlabojumus, pamatojoties uz saņemto atgriezenisko saiti. |
-| 12-104 | Projekta riski un pieņēmumi. | Nosaka projekta riskus un plāno rīcību to iestāšanās gadījumā. |
-| 12-105 | Analīzes un specifikācijas aizstāvēšanas sagatavošana. | Sagatavo savas izpētes un lēmumu pamatojumu. |
-| 12-106 | Analīzes un specifikācijas aizstāvēšana. | Pamato procesa analīzi, problēmas definējumu, prasības un izvēles. |
+| Nr. | Tēma | Sasniedzamais rezultāts | Pārbaude |
+| --- | --- | --- | --- |
+| 12-089 | Reāla procesa izvēle analīzei. | Atrod reālu procesu, kurā ir automatizācijas potenciāls. |  |
+| 12-090 | Procesa attēlošana shēmā. | Attēlo pašreizējo procesu shēmā ar soļiem, lēmumiem un iesaistītajiem. |  |
+| 12-091 | Ikdienas procesu izpēte un analīze. | Izvēlas procesa izpētes metodi un pamato izvēli. |  |
+| 12-092 | Automatizācijas iespēju noteikšana. | Nosaka, kuras procesa daļas ir automatizējamas un kuras nav. |  |
+| 12-093 | Problēmas precīza formulēšana. Darba uzdevums. | Formulē risināmo problēmu izmērāmi un pārvērš to darba uzdevumā. | **FV7** (papīrs) |
+| 12-094 | Programmatūras prasību specifikācijas saturs un uzbūve. | Nosauc specifikācijas daļas un raksta pārbaudāmas prasības. |  |
+| 12-095 | Patstāvīgs darbs: pilns prasību saraksts. | Uzraksta pilnu funkcionālo un nefunkcionālo prasību sarakstu. |  |
+| 12-096 | Datu klases specifikācijā. Datu modelis. | Nosaka, kādi dati sistēmā jāglabā, un attēlo tos modelī. |  |
+| 12-097 | Lietotāja saskarnes prototips. Struktūrskices. | Izveido saskarnes prototipu, kas parāda galvenos ekrānus un pārejas. |  |
+| 12-098 | Programmatūras izstrādes modeļi. | Salīdzina izstrādes modeļus un pamato izvēli savam projektam. |  |
+| 12-099 | Programmēšanas valodas un izstrādes vides izvēle. | Pamato valodas, bibliotēku un vides izvēli konkrētam uzdevumam. |  |
+| 12-100 | Darba plānošana. Uzdevumu sadalīšana un termiņi. | Sadala izstrādi uzdevumos un izplāno 30 stundu darbu. |  |
+| 12-101 | Patstāvīgs darbs: specifikācijas pabeigšana. | Pabeidz specifikāciju atbilstoši veidnei. |  |
+| 12-102 | Cita specifikācijas recenzēšana. | Izvērtē citu specifikāciju pēc kritērijiem un sniedz konkrētu atgriezenisko saiti. |  |
+| 12-103 | Specifikācijas labošana pēc recenzijām. | Ievieš uzlabojumus, pamatojoties uz saņemto atgriezenisko saiti. |  |
+| 12-104 | Projekta riski un pieņēmumi. | Nosaka projekta riskus un plāno rīcību to iestāšanās gadījumā. |  |
+| 12-105 | Analīzes un specifikācijas aizstāvēšanas sagatavošana. | Sagatavo savas izpētes un lēmumu pamatojumu. |  |
+| 12-106 | Analīzes un specifikācijas aizstāvēšana. | Pamato procesa analīzi, problēmas definējumu, prasības un izvēles. | **SV4** |
 
 <!-- TABULA:BEIGAS -->
 
