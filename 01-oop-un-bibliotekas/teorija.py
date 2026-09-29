@@ -79,7 +79,7 @@ class Lidojums:
         return cls("---", "nav noteikts")
 
 
-a = Lidojums("BT101", "Riga", 180)
+lidojums = Lidojums("BT101", "Riga", 180)
 b = Lidojums.no_rindas("BT202,Vilnius,120")
 c = Lidojums.tuksa()
 # print(a.vietu_skaits, b.galamerkis, c.numurs)
@@ -121,7 +121,7 @@ class Konts:
 
 
 k = Konts("Anna", 50)
-print(k.atlikums)         # 50   — lasa kā atribūtu, bet izsauc metodi
+# print(k.atlikums)         # 50   — lasa kā atribūtu, bet izsauc metodi
 k.atlikums = 100          # iet caur setter
 # print(k.atlikums)
 # k.atlikums = -5           # ?
@@ -252,7 +252,7 @@ class Rinkis(Figura):
 
 # pathlib — ceļi un datnes
 # from pathlib import Path
-# for datne in Path(".").glob("*.py"):
+# for datne in Path("./12-klase/01-oop-un-bibliotekas/").glob("*.py"):
 #     print(datne.name, datne.stat().st_size)
 
 # datetime — datumi
@@ -284,22 +284,22 @@ class Rinkis(Figura):
 # ============================================================
 # tkinter nāk līdzi Python — nekas nav jāuzstāda.
 #
-# import tkinter as tk
-#
-# logs = tk.Tk()
-# logs.title("Rezervacijas")
-#
-# tk.Label(logs, text="Vards:").grid(row=0, column=0)
-# vards_lauks = tk.Entry(logs)
-# vards_lauks.grid(row=0, column=1)
-#
-# tk.Label(logs, text="Vietas:").grid(row=1, column=0)
-# vietas_lauks = tk.Entry(logs)
-# vietas_lauks.grid(row=1, column=1)
-#
-# rezultats = tk.Label(logs, text="")
-# rezultats.grid(row=3, column=0, columnspan=2)
-#
+import tkinter as tk
+
+logs = tk.Tk()
+logs.title("Rezervacijas")
+
+tk.Label(logs, text="Vards:").grid(row=0, column=0)
+vards_lauks = tk.Entry(logs)
+vards_lauks.grid(row=0, column=1)
+
+tk.Label(logs, text="Vietas:").grid(row=1, column=0)
+vietas_lauks = tk.Entry(logs)
+vietas_lauks.grid(row=1, column=1)
+
+rezultats = tk.Label(logs, text="")
+rezultats.grid(row=2, column=0, columnspan=2)
+
 # logs.mainloop()          # <- programma paliek atvērta un gaida
 #
 # mainloop() ir tas pats, kas serverim listen(): programma negaidīti
@@ -312,19 +312,22 @@ class Rinkis(Figura):
 # Poga izsauc funkciju. Funkcija nolasa laukus, izsauc KLASES metodi
 # un parāda rezultātu.
 #
-# def rezerve():
-#     try:
-#         skaits = int(vietas_lauks.get())
-#     except ValueError:
-#         rezultats.config(text="Vietu skaitam jabut skaitlim")
-#         return
-#
-#     if lidojums.rezervet(skaits):
-#         rezultats.config(text=f"Rezervets. Brivas: {lidojums.brivas_vietas()}")
-#     else:
-#         rezultats.config(text="Nepietiek brivu vietu")
-#
-# tk.Button(logs, text="Rezervet", command=rezerve).grid(row=2, column=1)
+def rezerve():
+    try:
+        skaits = int(vietas_lauks.get())
+    except ValueError:
+        rezultats.config(text="Vietu skaitam jabut skaitlim")
+        return
+
+    if lidojums.rezervet(skaits):
+        rezultats.config(text=f"Rezervets. Brivas: {lidojums.brivas_vietas()}")
+    else:
+        rezultats.config(text="Nepietiek brivu vietu")
+
+tk.Button(logs, text="Rezervet", command=rezerve).grid(row=3, column=1)
+
+logs.mainloop()
+
 #
 # SVARĪGI: saskarnes funkcijā NAV aprēķinu. Tā nolasa, izsauc metodi
 # un parāda. Visa loģika paliek klasē — tad to var testēt bez loga.

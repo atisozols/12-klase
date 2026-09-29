@@ -18,6 +18,7 @@
 
 # 2. Uzraksti klasi Prece ar konstruktoru un divām metodēm — bez ieskatīšanās vecajā kodā.
 
+from ctypes import alignment
 from sqlite3 import Date
 from traceback import StackSummary
 
@@ -129,21 +130,110 @@ class Prece:
 #    rezervetas_vietas. Visai validācijai jābūt klasē: numurs nedrīkst būt tukšs, vietu
 #    skaitam jābūt pozitīvam, rezervēto vietu skaits nedrīkst pārsniegt kopējo.
 
+class Lidojums:
+    def __init__(self, numurs, galamerkis, vietu_skaits, rezervetas_vietas=0):
+        # pagaidu vērtības, lai setteri var salīdzināt vienu ar otru
+        self._vietu_skaits = 0
+        self._rezervetas_vietas = 0
 
+        self.numurs = numurs                    # iet caur setteri -> validācija
+        self.galamerkis = galamerkis
+        self.vietu_skaits = vietu_skaits
+        self.rezervetas_vietas = rezervetas_vietas
 
+    @property
+    def numurs(self):
+        return self._numurs
+
+    @numurs.setter
+    def numurs(self, vertiba):
+        if not isinstance(vertiba, str) or not vertiba.strip():
+            raise ValueError("Numurs nedrīkst būt tukšs")
+        self._numurs = vertiba.strip()
+
+    @property
+    def vietu_skaits(self):
+        return self._vietu_skaits
+
+    @vietu_skaits.setter
+    def vietu_skaits(self, vertiba):
+        if not isinstance(vertiba, int) or vertiba <= 0:
+            raise ValueError("Vietu skaitam jābūt pozitīvam veselam skaitlim")
+        if vertiba < self._rezervetas_vietas:
+            raise ValueError("Vietu skaits nedrīkst būt mazāks par jau rezervētajām vietām")
+        self._vietu_skaits = vertiba
+
+    @property
+    def rezervetas_vietas(self):
+        return self._rezervetas_vietas
+
+    @rezervetas_vietas.setter
+    def rezervetas_vietas(self, vertiba):
+        if not isinstance(vertiba, int) or vertiba < 0:
+            raise ValueError("Rezervēto vietu skaits nedrīkst būt negatīvs")
+        if vertiba > self._vietu_skaits:
+            raise ValueError("Rezervēto vietu skaits nedrīkst pārsniegt kopējo")
+        self._rezervetas_vietas = vertiba
 
 # 18. Pievieno metodes rezervet(skaits), atcelt(skaits) un brivas_vietas().
 
+    def brivas_vietas(self):
+        return self._vietu_skaits - self._rezervetas_vietas
 
+    def rezervet(self, skaits):
+        if not isinstance(skaits, int) or skaits <= 0:
+            raise ValueError("Rezervējamo vietu skaitam jābūt pozitīvam")
+        if skaits > self.brivas_vietas():
+            raise ValueError("Nav tik daudz brīvu vietu")
+        self.rezervetas_vietas = self._rezervetas_vietas + skaits   # setteris pārbauda vēlreiz
+
+    def atcelt(self, skaits):
+        if not isinstance(skaits, int) or skaits <= 0:
+            raise ValueError("Atceļamo vietu skaitam jābūt pozitīvam")
+        if skaits > self._rezervetas_vietas:
+            raise ValueError("Nevar atcelt vairāk vietu, nekā rezervēts")
+        self.rezervetas_vietas = self._rezervetas_vietas - skaits
+
+# 20. ★ Pievieno property, kas atgriež aizpildījumu procentos.
+
+    @property
+    def aizpildijums(self):
+        # vietu_skaits vienmēr ir pozitīvs, tāpēc dalīt ar nulli nevar
+        return round(self._rezervetas_vietas / self._vietu_skaits * 100, 1)
 
 
 # 19. Uzraksti vismaz sešus pārbaudes gadījumus, tostarp trīs nederīgus, un pieraksti
 #    rezultātus komentārā.
 
+# def parbaude(nosaukums, funkcija):
+#     try:
+#         print(nosaukums, "->", funkcija())
+#     except ValueError as kluda:
+#         print(nosaukums, "-> ValueError:", kluda)
 
+# l = Lidojums("BT101", "Rīga", 100)
 
+# # derīgie gadījumi
+# parbaude("1 brivas_vietas()", lambda: l.brivas_vietas())
+# parbaude("2 rezervet(30)", lambda: (l.rezervetas_vietas, l.brivas_vietas()) if l.rezervet(30) is None else None)
+# parbaude("3 atcelt(10)", lambda: (l.rezervetas_vietas, l.aizpildijums) if l.atcelt(10) is None else None)
 
-# 20. ★ Pievieno property, kas atgriež aizpildījumu procentos.
+# # nederīgie gadījumi
+# parbaude("4 tukšs numurs", lambda: Lidojums("", "Rīga", 100))
+# parbaude("5 vietu_skaits = 0", lambda: Lidojums("BT102", "Oslo", 0))
+# parbaude("6 rezervētas > kopējās", lambda: Lidojums("BT103", "Roma", 50, 60))
+# parbaude("7 rezervet(200)", lambda: l.rezervet(200))
+# parbaude("8 atcelt(99)", lambda: l.atcelt(99))
+
+# REZULTĀTI:
+# 1 brivas_vietas()      -> 100
+# 2 rezervet(30)         -> (30, 70)          rezervētas 30, brīvas 70
+# 3 atcelt(10)           -> (20, 20.0)        rezervētas 20, aizpildījums 20.0%
+# 4 tukšs numurs         -> ValueError: Numurs nedrīkst būt tukšs
+# 5 vietu_skaits = 0     -> ValueError: Vietu skaitam jābūt pozitīvam veselam skaitlim
+# 6 rezervētas > kopējās -> ValueError: Rezervēto vietu skaits nedrīkst pārsniegt kopējo
+# 7 rezervet(200)        -> ValueError: Nav tik daudz brīvu vietu
+# 8 atcelt(99)           -> ValueError: Nevar atcelt vairāk vietu, nekā rezervēts
 
 
 
@@ -323,6 +413,8 @@ class Vienums(ABC):
     def __init__(self, nosaukums):
         self.nosaukums = nosaukums
         self.sanemts = datetime.now()
+        self.izsniegts = datetime.now()
+        self._izsniegsanasReizes = 0
     
     @abstractmethod
     def apraksts(self):
@@ -330,6 +422,15 @@ class Vienums(ABC):
 
     def izsniegsanas_termins(self):
         return self.sanemts + timedelta(days=14)
+
+    def izsniegt(self):
+       self.izsniegts = datetime.now()
+       self._izsniegsanasReizes += 1
+
+    @property
+    def izsniegsanasReizes(self):
+        return self._izsniegsanasReizes 
+
 
 class Gramata(Vienums):
     def __init__(self, nosaukums, autors, lpp):
@@ -365,16 +466,22 @@ g = Gramata("Uguns un nakts", "Rainis", 132)
 m = DVD("The Odyssey", 2026, "C. Nolan")
 z = Zurnals("Pie galda!", "jūlijs-augusts", 2026)
 
+# m.izsniegt()
+# m.izsniegt()
 
 # 38. Uzraksti funkciju, kas apstaigā vienumu sarakstu un izvada visu aprakstus.
 
 
-for vienums in [g, m, z]:
-    print(vienums.apraksts())
+# for vienums in [g, m, z]:
+#     print(vienums.apraksts())
 
 
 # 39. ★ Pievieno iekapsulētu skaitītāju, cik reižu vienums izsniegts. 
 #       Izstrādāt funkcionalitāti, kas seko līdzi isniegšanai un saņemšanai.
+
+
+# FV1
+
 
 
 
@@ -429,19 +536,39 @@ for vienums in [g, m, z]:
 # ----------------------------------------------------------
 
 # 47. Ar collections.Counter saskaiti burtu biežumu un salīdzini ar savu ciklu.
+# from collections import Counter
+# text = input("ievadi tekstu: ")
 
+# # vecais variants
+# counts = {}
+# for character in text:
+#     counts[character] = counts.get(character, 0) + 1
+# print(counts)
 
-
+# # jaunais variants
+# c = Counter(text)
 
 # 48. Ar collections.defaultdict pārraksti grupēšanas uzdevumu.
 
 
 
 
-# 49. Ar pathlib uzraksti programmu, kas uzskaita visas .py datnes katalogā.
+# 49. Ar pathlib uzraksti programmu, kas saskaita visus failus visos subfolderos.
 
+from pathlib import Path
+p = Path(".")
 
+def getAllFiles(path):
+    files = []
+    for directory in path.iterdir():
+        if directory.is_dir() and ".git" not in directory.stem:
+            files += getAllFiles(directory)
+        else:
+            files.append(directory)
+    return files
 
+for file in getAllFiles(p):
+    print(file)
 
 # 50. Atrodi dokumentācijā vienu itertools funkciju un pieraksti tās lietojuma piemēru.
 
@@ -485,7 +612,33 @@ for vienums in [g, m, z]:
 
 # 56. Izveido logu ar virsrakstu, vienu ievades lauku un pogu.
 
+# import tkinter as tk
 
+# def button_click():
+#     print(value.get())
+#     output.config(text=f"Sveiks, {vards_lauks.get()}") 
+   
+
+# logs = tk.Tk()
+# logs.title("Piemērs")
+
+# tk.Label(logs, text="Kā tevi sauc?", background="#32a852").grid(row=0, column=0)
+# vards_lauks = tk.Entry(logs)
+# vards_lauks.grid(row=0, column=1)
+
+# output = tk.Label(logs, text="", justify="center")
+# output.grid(row=2, column=0, columnspan=3)
+
+# tk.Button(logs, text="Sveiciens", command=button_click, activebackground="#32a852").grid(row=0, column=2)
+
+# options = ["skolēns", "skolotājs"]
+
+# value = tk.StringVar(logs)
+# value.set("skolēns")
+
+# option_element = tk.OptionMenu(logs, value, *options).grid(row=3, column=0)
+
+# logs.mainloop()
 
 
 # 57. Pievieno otru lauku un sakārto elementus režģī.
@@ -499,6 +652,7 @@ for vienums in [g, m, z]:
 
 
 # 59. ★ Pievieno logam izvēlni ar diviem punktiem.
+
 
 
 
@@ -533,10 +687,125 @@ for vienums in [g, m, z]:
 # 12-017 · Sprints: saskarne un klase kopā
 # ----------------------------------------------------------
 
+class Lidojums:
+    def __init__(self, numurs, galamerkis, vietu_skaits, rezervetas_vietas=0):
+        # pagaidu vērtības, lai setteri var salīdzināt vienu ar otru
+        self._vietu_skaits = 0
+        self._rezervetas_vietas = 0
+
+        self.numurs = numurs                    # iet caur setteri -> validācija
+        self.galamerkis = galamerkis
+        self.vietu_skaits = vietu_skaits
+        self.rezervetas_vietas = rezervetas_vietas
+
+    @property
+    def numurs(self):
+        return self._numurs
+
+    @numurs.setter
+    def numurs(self, vertiba):
+        if not isinstance(vertiba, str) or not vertiba.strip():
+            raise ValueError("Numurs nedrīkst būt tukšs")
+        self._numurs = vertiba.strip()
+
+    @property
+    def vietu_skaits(self):
+        return self._vietu_skaits
+
+    @vietu_skaits.setter
+    def vietu_skaits(self, vertiba):
+        if not isinstance(vertiba, int) or vertiba <= 0:
+            raise ValueError("Vietu skaitam jābūt pozitīvam veselam skaitlim")
+        if vertiba < self._rezervetas_vietas:
+            raise ValueError("Vietu skaits nedrīkst būt mazāks par jau rezervētajām vietām")
+        self._vietu_skaits = vertiba
+
+    @property
+    def rezervetas_vietas(self):
+        return self._rezervetas_vietas
+
+    @rezervetas_vietas.setter
+    def rezervetas_vietas(self, vertiba):
+        if not isinstance(vertiba, int) or vertiba < 0:
+            raise ValueError("Rezervēto vietu skaits nedrīkst būt negatīvs")
+        if vertiba > self._vietu_skaits:
+            raise ValueError("Rezervēto vietu skaits nedrīkst pārsniegt kopējo")
+        self._rezervetas_vietas = vertiba
+
+    def brivas_vietas(self):
+        return self._vietu_skaits - self._rezervetas_vietas
+
+    def rezervet(self, skaits):
+        if not isinstance(skaits, int) or skaits <= 0:
+            raise ValueError("Rezervējamo vietu skaitam jābūt pozitīvam")
+        if skaits > self.brivas_vietas():
+            raise ValueError("Nav tik daudz brīvu vietu")
+        self.rezervetas_vietas = self._rezervetas_vietas + skaits   # setteris pārbauda vēlreiz
+
+    def atcelt(self, skaits):
+        if not isinstance(skaits, int) or skaits <= 0:
+            raise ValueError("Atceļamo vietu skaitam jābūt pozitīvam")
+        if skaits > self._rezervetas_vietas:
+            raise ValueError("Nevar atcelt vairāk vietu, nekā rezervēts")
+        self.rezervetas_vietas = self._rezervetas_vietas - skaits
+
+    @property
+    def aizpildijums(self):
+        # vietu_skaits vienmēr ir pozitīvs, tāpēc dalīt ar nulli nevar
+        return round(self._rezervetas_vietas / self._vietu_skaits * 100, 1)
+
 # 64. Izveido grafisku saskarni savai 12-005 klasei Lidojums: rezervēšana, atcelšana,
 #    brīvo vietu rādīšana.
 
+import tkinter as tk
+logs = tk.Tk()
+logs.title("Rezervē vietas lidojumā")
+logs.geometry("300x400")
+lidojumi = [Lidojums("BT-023", "JFK", 120), Lidojums("BT-043", "LAX", 120)]
+options = []
 
+for lidojums in lidojumi:
+    options.append(lidojums.numurs)
+
+def paradit_brivas_vietas(var, index, mode):
+    for lidojums in lidojumi:
+        if lidojums.numurs == value.get():
+            brivas_vietas_label.config(text=f"{lidojums.rezervetas_vietas}/{lidojums.vietu_skaits}")
+
+value = tk.StringVar(logs)
+value.set("Izvēlies lidojumu")
+value.trace_add("write", paradit_brivas_vietas)
+
+brivas_vietas_label = tk.Label(logs, text="")
+brivas_vietas_label.grid(row=0, column=1)
+
+option_element = tk.OptionMenu(logs, value, *options).grid(row=0, column=0)
+
+tk.Label(logs, text="Cik vietas rezervēt?", background="#32a852").grid(row=2, column=0)
+vietu_skaits = tk.Entry(logs)
+vietu_skaits.grid(row=2, column=1)
+
+output_label = tk.Label(logs, text="")
+output_label.grid(row=4, column=0)
+
+def veikt_rezervaciju():
+    if value.get() == "Izvēlies lidojumu": 
+        return
+
+    for lidojums in lidojumi:
+        if lidojums.numurs == value.get():
+            try:
+                lidojums.rezervet(int(vietu_skaits.get()))
+                output_label.config(text="Rezervācija veiksmīga")
+                vietu_skaits.delete(0, tk.END)
+                brivas_vietas_label.config(text=f"{lidojums.rezervetas_vietas}/{lidojums.vietu_skaits}")
+            except:
+                output_label.config(text="Neizdevās veikt rezervāciju")
+    
+
+tk.Button(logs, text="Veikt rezervāciju", command=veikt_rezervaciju, activebackground="#32a852").grid(row=3, column=0)
+
+logs.mainloop()
 
 
 # 65. Visai validācijai jāpaliek klasē; saskarne tikai rāda rezultātu.
