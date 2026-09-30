@@ -284,21 +284,21 @@ class Rinkis(Figura):
 # ============================================================
 # tkinter nāk līdzi Python — nekas nav jāuzstāda.
 #
-import tkinter as tk
+# import tkinter as tk
 
-logs = tk.Tk()
-logs.title("Rezervacijas")
+# logs = tk.Tk()
+# logs.title("Rezervacijas")
 
-tk.Label(logs, text="Vards:").grid(row=0, column=0)
-vards_lauks = tk.Entry(logs)
-vards_lauks.grid(row=0, column=1)
+# tk.Label(logs, text="Vards:").grid(row=0, column=0)
+# vards_lauks = tk.Entry(logs)
+# vards_lauks.grid(row=0, column=1)
 
-tk.Label(logs, text="Vietas:").grid(row=1, column=0)
-vietas_lauks = tk.Entry(logs)
-vietas_lauks.grid(row=1, column=1)
+# tk.Label(logs, text="Vietas:").grid(row=1, column=0)
+# vietas_lauks = tk.Entry(logs)
+# vietas_lauks.grid(row=1, column=1)
 
-rezultats = tk.Label(logs, text="")
-rezultats.grid(row=2, column=0, columnspan=2)
+# rezultats = tk.Label(logs, text="")
+# rezultats.grid(row=2, column=0, columnspan=2)
 
 # logs.mainloop()          # <- programma paliek atvērta un gaida
 #
@@ -312,21 +312,21 @@ rezultats.grid(row=2, column=0, columnspan=2)
 # Poga izsauc funkciju. Funkcija nolasa laukus, izsauc KLASES metodi
 # un parāda rezultātu.
 #
-def rezerve():
-    try:
-        skaits = int(vietas_lauks.get())
-    except ValueError:
-        rezultats.config(text="Vietu skaitam jabut skaitlim")
-        return
+# def rezerve():
+#     try:
+#         skaits = int(vietas_lauks.get())
+#     except ValueError:
+#         rezultats.config(text="Vietu skaitam jabut skaitlim")
+#         return
 
-    if lidojums.rezervet(skaits):
-        rezultats.config(text=f"Rezervets. Brivas: {lidojums.brivas_vietas()}")
-    else:
-        rezultats.config(text="Nepietiek brivu vietu")
+#     if lidojums.rezervet(skaits):
+#         rezultats.config(text=f"Rezervets. Brivas: {lidojums.brivas_vietas()}")
+#     else:
+#         rezultats.config(text="Nepietiek brivu vietu")
 
-tk.Button(logs, text="Rezervet", command=rezerve).grid(row=3, column=1)
+# tk.Button(logs, text="Rezervet", command=rezerve).grid(row=3, column=1)
 
-logs.mainloop()
+# logs.mainloop()
 
 #
 # SVARĪGI: saskarnes funkcijā NAV aprēķinu. Tā nolasa, izsauc metodi
@@ -344,24 +344,34 @@ class Prece:
         self.cena = cena
 
     def uz_vardnicu(self):
-        return {"nosaukums": self.nosaukums, "cena": self.cena}
+        return {
+            "nosaukums": self.nosaukums,
+            "cena": self.cena
+            }
 
     @classmethod
     def no_vardnicas(cls, dati):
         return cls(dati["nosaukums"], dati["cena"])
 
 
-# import json
-#
+import json
+
 # preces = [Prece("Piens", 1.09), Prece("Maize", 2.45)]
-#
-# with open("preces.json", "w", encoding="utf-8") as datne:
-#     json.dump([p.uz_vardnicu() for p in preces], datne, ensure_ascii=False, indent=2)
-#
-# with open("preces.json", "r", encoding="utf-8") as datne:
-#     atjaunotas = [Prece.no_vardnicas(d) for d in json.load(datne)]
-#
-# print(atjaunotas[0].nosaukums)
+
+with open("preces.json", "w", encoding="utf-8") as datne:
+    json.dump([p.uz_vardnicu() for p in preces], datne, ensure_ascii=False, indent=2)
+
+with open("preces.json", "r", encoding="utf-8") as datne:
+    atjaunotas = [Prece.no_vardnicas(d) for d in json.load(datne)]
+    # atjaunotas = []
+    # for d in json.load(datne):
+    #     atjaunotas.append(Prece.no_vardnicas(d))
+
+
+print(atjaunotas[0].nosaukums)
+print(atjaunotas[0].cena)
+print(atjaunotas[1].nosaukums)
+print(atjaunotas[1].cena)
 
 
 # ============================================================

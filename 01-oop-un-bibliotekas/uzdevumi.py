@@ -567,8 +567,8 @@ def getAllFiles(path):
             files.append(directory)
     return files
 
-for file in getAllFiles(p):
-    print(file)
+# for file in getAllFiles(p):
+#     print(file)
 
 # 50. Atrodi dokumentācijā vienu itertools funkciju un pieraksti tās lietojuma piemēru.
 
@@ -749,6 +749,18 @@ class Lidojums:
             raise ValueError("Nevar atcelt vairāk vietu, nekā rezervēts")
         self.rezervetas_vietas = self._rezervetas_vietas - skaits
 
+    @classmethod
+    def novardnicas(cls, dati):
+        return cls(dati["numurs"], dati["galamerkis"], dati["vietu_skaits"], dati["rezervetas_vietas"])
+
+    def uzvardnicu(self):
+        return {
+            "numurs": self.numurs,
+            "galamerkis": self.galamerkis,
+            "vietu_skaits": self.vietu_skaits,
+            "rezervetas_vietas": self.rezervetas_vietas,
+        }
+
     @property
     def aizpildijums(self):
         # vietu_skaits vienmēr ir pozitīvs, tāpēc dalīt ar nulli nevar
@@ -757,11 +769,22 @@ class Lidojums:
 # 64. Izveido grafisku saskarni savai 12-005 klasei Lidojums: rezervēšana, atcelšana,
 #    brīvo vietu rādīšana.
 
+import json
+
+def saglabat_lidojumus():
+    with open("lidojumi.json", "w", encoding="utf-8") as datne:
+        json.dump([l.uzvardnicu() for l in lidojumi], datne, ensure_ascii=False, indent=2)
+
+def ielasit_lidojumus():
+    with open("lidojumi.json", "r", encoding="utf-8") as datne:
+        atjaunoti_lidojumi = [Lidojums.novardnicas(d) for d in json.load(datne)]
+        return atjaunoti_lidojumi
+
 import tkinter as tk
 logs = tk.Tk()
 logs.title("Rezervē vietas lidojumā")
 logs.geometry("300x400")
-lidojumi = [Lidojums("BT-023", "JFK", 120), Lidojums("BT-043", "LAX", 120)]
+lidojumi = ielasit_lidojumus()
 options = []
 
 for lidojums in lidojumi:
@@ -845,13 +868,22 @@ logs.mainloop()
 
 # 70. Pievieno savai klasei metodi uzvardnicu() un klases metodi novardnicas().
 
-
-
+# DONE
 
 # 71. Saglabā objektu sarakstu JSON datnē un ielasi to atpakaļ.
 
+# import json
 
+# def saglabat_lidojumus():
+#     with open("lidojumi.json", "w", encoding="utf-8") as datne:
+#         json.dump([l.uzvardnicu() for l in lidojumi], datne, ensure_ascii=False, indent=2)
 
+# saglabat_lidojumus()
+
+# def ielasit_lidojumus():
+#     with open("lidojumi.json", "r", encoding="utf-8") as datne:
+#         atjaunoti_lidojumi = [Lidojums.novardnicas(d) for d in json.load(datne)]
+#         return atjaunoti_lidojumi
 
 # 72. Pievieno programmai automātisku saglabāšanu pēc katras izmaiņas.
 
