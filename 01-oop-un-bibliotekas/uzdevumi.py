@@ -822,6 +822,7 @@ def veikt_rezervaciju():
                 output_label.config(text="Rezervācija veiksmīga")
                 vietu_skaits.delete(0, tk.END)
                 brivas_vietas_label.config(text=f"{lidojums.rezervetas_vietas}/{lidojums.vietu_skaits}")
+                saglabat_lidojumus()
             except:
                 output_label.config(text="Neizdevās veikt rezervāciju")
     
@@ -889,10 +890,7 @@ logs.mainloop()
 
 
 
-
 # 73. ★ Apstrādā gadījumu, kad datne ir bojāta vai tukša.
-
-
 
 
 
