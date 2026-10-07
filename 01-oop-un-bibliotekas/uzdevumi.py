@@ -687,6 +687,9 @@ def getAllFiles(path):
 # 12-017 · Sprints: saskarne un klase kopā
 # ----------------------------------------------------------
 
+class NepietiekVietuError(Exception):
+    """Met, ja pieprasīts vairāk vietu, nekā ir brīvu."""
+
 class Lidojums:
     def __init__(self, numurs, galamerkis, vietu_skaits, rezervetas_vietas=0):
         # pagaidu vērtības, lai setteri var salīdzināt vienu ar otru
@@ -739,7 +742,7 @@ class Lidojums:
         if not isinstance(skaits, int) or skaits <= 0:
             raise ValueError("Rezervējamo vietu skaitam jābūt pozitīvam")
         if skaits > self.brivas_vietas():
-            raise ValueError("Nav tik daudz brīvu vietu")
+            raise NepietiekVietuError("Nav tik daudz brīvu vietu")
         self.rezervetas_vietas = self._rezervetas_vietas + skaits   # setteris pārbauda vēlreiz
 
     def atcelt(self, skaits):

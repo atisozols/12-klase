@@ -358,20 +358,20 @@ import json
 
 # preces = [Prece("Piens", 1.09), Prece("Maize", 2.45)]
 
-with open("preces.json", "w", encoding="utf-8") as datne:
-    json.dump([p.uz_vardnicu() for p in preces], datne, ensure_ascii=False, indent=2)
+# with open("preces.json", "w", encoding="utf-8") as datne:
+#     json.dump([p.uz_vardnicu() for p in preces], datne, ensure_ascii=False, indent=2)
 
-with open("preces.json", "r", encoding="utf-8") as datne:
-    atjaunotas = [Prece.no_vardnicas(d) for d in json.load(datne)]
+# with open("preces.json", "r", encoding="utf-8") as datne:
+#     atjaunotas = [Prece.no_vardnicas(d) for d in json.load(datne)]
     # atjaunotas = []
     # for d in json.load(datne):
     #     atjaunotas.append(Prece.no_vardnicas(d))
 
 
-print(atjaunotas[0].nosaukums)
-print(atjaunotas[0].cena)
-print(atjaunotas[1].nosaukums)
-print(atjaunotas[1].cena)
+# print(atjaunotas[0].nosaukums)
+# print(atjaunotas[0].cena)
+# print(atjaunotas[1].nosaukums)
+# print(atjaunotas[1].cena)
 
 
 # ============================================================
@@ -397,13 +397,14 @@ class LidojumsArIznemumiem:
         self.rezervetas += skaits
 
 
-# l = LidojumsArIznemumiem("BT101", 5)
-# try:
-#     l.rezervet(10)
-# except NepietiekVietuError as kluda:
-#     print("Neizdevas:", kluda)
-# finally:
-#     print("Rezervetas:", l.rezervetas)
+l = LidojumsArIznemumiem("BT101", 5)
+# l.rezervet(10)
+try:
+    l.rezervet(10)
+except NepietiekVietuError as kluda:
+    print("Neizdevas:", kluda)
+finally:
+    print("Rezervetas:", l.rezervetas)
 
 # Kad atgriezt False un kad mest izņēmumu?
 #   False        — gaidāms, normāls gadījums (vietu nepietiek)
