@@ -7,7 +7,7 @@ class IerakstsNavAtrasts(Exception):
 
 class Ieraksts(ABC):
     def __init__(self,  summa, datums=datetime.now(), piezime=""):
-        if not datums:
+        if datums:
             [y, m, d] = [int(x) for x in datums.split("-")]
             self.datums = datetime(y, m, d)
         else:
@@ -45,15 +45,19 @@ class Budzets:
         self.ieraksti = {}
         self.currentId = 0
 
-        with open("izdevumi.json", "r", encoding="utf-8") as datne:
-            for d in json.load(datne):
-                if d["tips"] == '+':
-                    a = Ienakumi.no_vardnicas(d)
-                    self.ieraksti[self.currentId] = a
-                else:
-                    a = Izdevumi.no_vardnicas(d)
-                    self.ieraksti[self.currentId] = a
-                self.currentId += 1                
+        try:
+            with open("izdevumi.json", "r", encoding="utf-8") as datne:
+                saturs = json.load(datne)
+        except (FileNotFoundError, json.JSONDecodeError):
+            saturs = []
+
+        for d in saturs:
+            if d["tips"] == '+':
+                a = Ienakumi.no_vardnicas(d)
+            else:
+                a = Izdevumi.no_vardnicas(d)
+            self.ieraksti[self.currentId] = a
+            self.currentId += 1
 
     def pievienot(self, ieraksts):
         self.ieraksti[self.currentId] = ieraksts
@@ -100,6 +104,8 @@ class Budzets:
 
 b = Budzets()
 a = Izdevumi(123.45, "2026-10-06", "test2 input")
-b.pievienot(a)
+c = Ienakumi(12.45, "2026-10-07", "test3 input")
+b.pievienot(c)
+print(c.datums)
 
     
