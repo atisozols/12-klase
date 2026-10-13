@@ -130,76 +130,76 @@ class Prece:
 #    rezervetas_vietas. Visai validācijai jābūt klasē: numurs nedrīkst būt tukšs, vietu
 #    skaitam jābūt pozitīvam, rezervēto vietu skaits nedrīkst pārsniegt kopējo.
 
-class Lidojums:
-    def __init__(self, numurs, galamerkis, vietu_skaits, rezervetas_vietas=0):
-        # pagaidu vērtības, lai setteri var salīdzināt vienu ar otru
-        self._vietu_skaits = 0
-        self._rezervetas_vietas = 0
+# class Lidojums:
+#     def __init__(self, numurs, galamerkis, vietu_skaits, rezervetas_vietas=0):
+#         # pagaidu vērtības, lai setteri var salīdzināt vienu ar otru
+#         self._vietu_skaits = 0
+#         self._rezervetas_vietas = 0
 
-        self.numurs = numurs                    # iet caur setteri -> validācija
-        self.galamerkis = galamerkis
-        self.vietu_skaits = vietu_skaits
-        self.rezervetas_vietas = rezervetas_vietas
+#         self.numurs = numurs                    # iet caur setteri -> validācija
+#         self.galamerkis = galamerkis
+#         self.vietu_skaits = vietu_skaits
+#         self.rezervetas_vietas = rezervetas_vietas
 
-    @property
-    def numurs(self):
-        return self._numurs
+#     @property
+#     def numurs(self):
+#         return self._numurs
 
-    @numurs.setter
-    def numurs(self, vertiba):
-        if not isinstance(vertiba, str) or not vertiba.strip():
-            raise ValueError("Numurs nedrīkst būt tukšs")
-        self._numurs = vertiba.strip()
+#     @numurs.setter
+#     def numurs(self, vertiba):
+#         if not isinstance(vertiba, str) or not vertiba.strip():
+#             raise ValueError("Numurs nedrīkst būt tukšs")
+#         self._numurs = vertiba.strip()
 
-    @property
-    def vietu_skaits(self):
-        return self._vietu_skaits
+#     @property
+#     def vietu_skaits(self):
+#         return self._vietu_skaits
 
-    @vietu_skaits.setter
-    def vietu_skaits(self, vertiba):
-        if not isinstance(vertiba, int) or vertiba <= 0:
-            raise ValueError("Vietu skaitam jābūt pozitīvam veselam skaitlim")
-        if vertiba < self._rezervetas_vietas:
-            raise ValueError("Vietu skaits nedrīkst būt mazāks par jau rezervētajām vietām")
-        self._vietu_skaits = vertiba
+#     @vietu_skaits.setter
+#     def vietu_skaits(self, vertiba):
+#         if not isinstance(vertiba, int) or vertiba <= 0:
+#             raise ValueError("Vietu skaitam jābūt pozitīvam veselam skaitlim")
+#         if vertiba < self._rezervetas_vietas:
+#             raise ValueError("Vietu skaits nedrīkst būt mazāks par jau rezervētajām vietām")
+#         self._vietu_skaits = vertiba
 
-    @property
-    def rezervetas_vietas(self):
-        return self._rezervetas_vietas
+#     @property
+#     def rezervetas_vietas(self):
+#         return self._rezervetas_vietas
 
-    @rezervetas_vietas.setter
-    def rezervetas_vietas(self, vertiba):
-        if not isinstance(vertiba, int) or vertiba < 0:
-            raise ValueError("Rezervēto vietu skaits nedrīkst būt negatīvs")
-        if vertiba > self._vietu_skaits:
-            raise ValueError("Rezervēto vietu skaits nedrīkst pārsniegt kopējo")
-        self._rezervetas_vietas = vertiba
+#     @rezervetas_vietas.setter
+#     def rezervetas_vietas(self, vertiba):
+#         if not isinstance(vertiba, int) or vertiba < 0:
+#             raise ValueError("Rezervēto vietu skaits nedrīkst būt negatīvs")
+#         if vertiba > self._vietu_skaits:
+#             raise ValueError("Rezervēto vietu skaits nedrīkst pārsniegt kopējo")
+#         self._rezervetas_vietas = vertiba
 
 # 18. Pievieno metodes rezervet(skaits), atcelt(skaits) un brivas_vietas().
 
-    def brivas_vietas(self):
-        return self._vietu_skaits - self._rezervetas_vietas
+    # def brivas_vietas(self):
+    #     return self._vietu_skaits - self._rezervetas_vietas
 
-    def rezervet(self, skaits):
-        if not isinstance(skaits, int) or skaits <= 0:
-            raise ValueError("Rezervējamo vietu skaitam jābūt pozitīvam")
-        if skaits > self.brivas_vietas():
-            raise ValueError("Nav tik daudz brīvu vietu")
-        self.rezervetas_vietas = self._rezervetas_vietas + skaits   # setteris pārbauda vēlreiz
+    # def rezervet(self, skaits):
+    #     if not isinstance(skaits, int) or skaits <= 0:
+    #         raise ValueError("Rezervējamo vietu skaitam jābūt pozitīvam")
+    #     if skaits > self.brivas_vietas():
+    #         raise ValueError("Nav tik daudz brīvu vietu")
+    #     self.rezervetas_vietas = self._rezervetas_vietas + skaits   # setteris pārbauda vēlreiz
 
-    def atcelt(self, skaits):
-        if not isinstance(skaits, int) or skaits <= 0:
-            raise ValueError("Atceļamo vietu skaitam jābūt pozitīvam")
-        if skaits > self._rezervetas_vietas:
-            raise ValueError("Nevar atcelt vairāk vietu, nekā rezervēts")
-        self.rezervetas_vietas = self._rezervetas_vietas - skaits
+    # def atcelt(self, skaits):
+    #     if not isinstance(skaits, int) or skaits <= 0:
+    #         raise ValueError("Atceļamo vietu skaitam jābūt pozitīvam")
+    #     if skaits > self._rezervetas_vietas:
+    #         raise ValueError("Nevar atcelt vairāk vietu, nekā rezervēts")
+    #     self.rezervetas_vietas = self._rezervetas_vietas - skaits
 
 # 20. ★ Pievieno property, kas atgriež aizpildījumu procentos.
 
-    @property
-    def aizpildijums(self):
-        # vietu_skaits vienmēr ir pozitīvs, tāpēc dalīt ar nulli nevar
-        return round(self._rezervetas_vietas / self._vietu_skaits * 100, 1)
+    # @property
+    # def aizpildijums(self):
+    #     # vietu_skaits vienmēr ir pozitīvs, tāpēc dalīt ar nulli nevar
+    #     return round(self._rezervetas_vietas / self._vietu_skaits * 100, 1)
 
 
 # 19. Uzraksti vismaz sešus pārbaudes gadījumus, tostarp trīs nederīgus, un pieraksti
@@ -266,30 +266,30 @@ class Lidojums:
 
 # 24. Izveido virsklasi Transportlidzeklis un apakšklases Automasina un Velosipeds.
 
-class Transportlidzeklis:
-    def __init__(self, marka, gads):
-        self.marka = marka
-        self.gads = gads
+# class Transportlidzeklis:
+#     def __init__(self, marka, gads):
+#         self.marka = marka
+#         self.gads = gads
 
-    def apraksts(self):
-        return f"{self.marka} ({self.gads})"
+#     def apraksts(self):
+#         return f"{self.marka} ({self.gads})"
 
-    def parvietojas(self):
-        return "parvietojas"
-
-
-class Automasina(Transportlidzeklis):
-    def __init__(self, marka, gads, degviela):
-        super().__init__(marka, gads)      # virsklases konstruktors
-        self.degviela = degviela
-
-    def parvietojas(self):                 # pārraksta virsklases metodi
-        return "brauc pa celu"
+#     def parvietojas(self):
+#         return "parvietojas"
 
 
-class Velosipeds(Transportlidzeklis):
-    def parvietojas(self):
-        return "brauc ar kajam"
+# class Automasina(Transportlidzeklis):
+#     def __init__(self, marka, gads, degviela):
+#         super().__init__(marka, gads)      # virsklases konstruktors
+#         self.degviela = degviela
+
+#     def parvietojas(self):                 # pārraksta virsklases metodi
+#         return "brauc pa celu"
+
+
+# class Velosipeds(Transportlidzeklis):
+#     def parvietojas(self):
+#         return "brauc ar kajam"
 
 # 25. Katrai apakšklasei pievieno savu metodi un pārrakstītu virsklases metodi.
 
@@ -317,44 +317,44 @@ class Velosipeds(Transportlidzeklis):
 
 # 28. Izveido klases Kvadrats, Rinkis, Trijsturis, katrai ar metodi laukums().
 
-class Kvadrats:
-    def __init__(self, mala):
-        self.a = mala
+# class Kvadrats:
+#     def __init__(self, mala):
+#         self.a = mala
 
-    def laukums(self):
-        return self.a ** 2
+#     def laukums(self):
+#         return self.a ** 2
 
-class Rinkis:
-    def __init__(self, radiuss):
-        self.r = radiuss
+# class Rinkis:
+#     def __init__(self, radiuss):
+#         self.r = radiuss
 
-    def laukums(self):
-        return round(3.14159265 * self.r ** 2, 2)
+#     def laukums(self):
+#         return round(3.14159265 * self.r ** 2, 2)
 
-class Trijsturis:
-    def __init__(self, pamats, augstums):
-        self.a = pamats
-        self.h = augstums
+# class Trijsturis:
+#     def __init__(self, pamats, augstums):
+#         self.a = pamats
+#         self.h = augstums
 
-    def laukums(self):
-        return round((self.a * self.h) / 2, 2)
+#     def laukums(self):
+#         return round((self.a * self.h) / 2, 2)
 
 # 29. Uzraksti funkciju, kas saņem figūru sarakstu un atgriež kopējo laukumu.
 
-def laukumu_summa(saraksts):
-    summa = 0
+# def laukumu_summa(saraksts):
+#     summa = 0
 
-    for figura in saraksts:
-        summa += figura.laukums()
+#     for figura in saraksts:
+#         summa += figura.laukums()
 
-    return summa
+#     return summa
 
-kv = Kvadrats(4)
-tr = Trijsturis(7, 3)
-ri = Rinkis(6)
+# kv = Kvadrats(4)
+# tr = Trijsturis(7, 3)
+# ri = Rinkis(6)
 
-sar = [kv, tr, ri]
-print(laukumu_summa(sar))
+# sar = [kv, tr, ri]
+# print(laukumu_summa(sar))
 
 # 30. Papildini programmu ar jaunu figūru, nemainot funkciju.
 
@@ -371,18 +371,18 @@ print(laukumu_summa(sar))
 # ----------------------------------------------------------
 
 # 33. Pārveido Figura par abstraktu klasi ar abstraktu metodi laukums().
-from abc import ABC, abstractmethod
+# from abc import ABC, abstractmethod
 
-class Figura(ABC): # Abstract Base Class
-    def __init__(self, nosaukums):
-        self.nosaukums = nosaukums
+# class Figura(ABC): # Abstract Base Class
+#     def __init__(self, nosaukums):
+#         self.nosaukums = nosaukums
 
-    @abstractmethod
-    def laukums(self):
-        """Katrai figūrai savs aprēķins."""
+#     @abstractmethod
+#     def laukums(self):
+#         """Katrai figūrai savs aprēķins."""
 
-    def apraksts(self):
-        return f"{self.nosaukums}: {self.laukums():.2f}"
+#     def apraksts(self):
+#         return f"{self.nosaukums}: {self.laukums():.2f}"
 
 
 # 34. Pārbaudi, kas notiek, mēģinot izveidot abstraktās klases objektu.
@@ -391,10 +391,10 @@ class Figura(ABC): # Abstract Base Class
 
 # 35. Pārbaudi, kas notiek, ja apakšklase abstrakto metodi nerealizē.
 
-class Kvadrats(Figura):
-    def __init__(self, mala):
-        super().__init__("kvadrats")
-        self.mala = mala
+# class Kvadrats(Figura):
+#     def __init__(self, mala):
+#         super().__init__("kvadrats")
+#         self.mala = mala
 
 # k = Kvadrats(9)
 
@@ -407,64 +407,64 @@ class Kvadrats(Figura):
 
 # 37. Izstrādā bibliotēkas sistēmas klases: abstrakta Vienums ar apakšklasēm Gramata,
 #    Zurnals, DVD. Katrai sava apraksts() un izsniegsanas_termins().
-from datetime import datetime, timedelta
+# from datetime import datetime, timedelta
 
-class Vienums(ABC):
-    def __init__(self, nosaukums):
-        self.nosaukums = nosaukums
-        self.sanemts = datetime.now()
-        self.izsniegts = datetime.now()
-        self._izsniegsanasReizes = 0
+# class Vienums(ABC):
+#     def __init__(self, nosaukums):
+#         self.nosaukums = nosaukums
+#         self.sanemts = datetime.now()
+#         self.izsniegts = datetime.now()
+#         self._izsniegsanasReizes = 0
     
-    @abstractmethod
-    def apraksts(self):
-        """Katrai mantojošai klasei būs atšķirīgi aprakstošie dati"""
+#     @abstractmethod
+#     def apraksts(self):
+#         """Katrai mantojošai klasei būs atšķirīgi aprakstošie dati"""
 
-    def izsniegsanas_termins(self):
-        return self.sanemts + timedelta(days=14)
+#     def izsniegsanas_termins(self):
+#         return self.sanemts + timedelta(days=14)
 
-    def izsniegt(self):
-       self.izsniegts = datetime.now()
-       self._izsniegsanasReizes += 1
+#     def izsniegt(self):
+#        self.izsniegts = datetime.now()
+#        self._izsniegsanasReizes += 1
 
-    @property
-    def izsniegsanasReizes(self):
-        return self._izsniegsanasReizes 
+#     @property
+#     def izsniegsanasReizes(self):
+#         return self._izsniegsanasReizes 
 
 
-class Gramata(Vienums):
-    def __init__(self, nosaukums, autors, lpp):
-        super().__init__(nosaukums)
-        self.autors = autors
-        self.lpp = lpp
+# class Gramata(Vienums):
+#     def __init__(self, nosaukums, autors, lpp):
+#         super().__init__(nosaukums)
+#         self.autors = autors
+#         self.lpp = lpp
 
-    def apraksts(self):
-        return f"{self.nosaukums} ({self.autors}, {self.lpp} lpp.)"
+#     def apraksts(self):
+#         return f"{self.nosaukums} ({self.autors}, {self.lpp} lpp.)"
 
-class DVD(Vienums):
-    def __init__(self, nosaukums, gads, rezisors):
-        super().__init__(nosaukums)
-        self.gads = gads
-        self.rezisors = rezisors
+# class DVD(Vienums):
+#     def __init__(self, nosaukums, gads, rezisors):
+#         super().__init__(nosaukums)
+#         self.gads = gads
+#         self.rezisors = rezisors
 
-    def apraksts(self):
-        return f"{self.rezisors} - {self.nosaukums} ({self.gads})"
+#     def apraksts(self):
+#         return f"{self.rezisors} - {self.nosaukums} ({self.gads})"
 
-    def izsniegsanas_termins(self):
-        return self.sanemts + timedelta(days=5)
+#     def izsniegsanas_termins(self):
+#         return self.sanemts + timedelta(days=5)
 
-class Zurnals(Vienums):
-    def __init__(self, nosaukums, periods, gads):
-        super().__init__(nosaukums)
-        self.periods = periods
-        self.gads = gads
+# class Zurnals(Vienums):
+#     def __init__(self, nosaukums, periods, gads):
+#         super().__init__(nosaukums)
+#         self.periods = periods
+#         self.gads = gads
 
-    def apraksts(self):
-        return f"{self.nosaukums} ({self.gads}. gada {self.periods})"
+#     def apraksts(self):
+#         return f"{self.nosaukums} ({self.gads}. gada {self.periods})"
 
-g = Gramata("Uguns un nakts", "Rainis", 132)
-m = DVD("The Odyssey", 2026, "C. Nolan")
-z = Zurnals("Pie galda!", "jūlijs-augusts", 2026)
+# g = Gramata("Uguns un nakts", "Rainis", 132)
+# m = DVD("The Odyssey", 2026, "C. Nolan")
+# z = Zurnals("Pie galda!", "jūlijs-augusts", 2026)
 
 # m.izsniegt()
 # m.izsniegt()
@@ -555,17 +555,17 @@ z = Zurnals("Pie galda!", "jūlijs-augusts", 2026)
 
 # 49. Ar pathlib uzraksti programmu, kas saskaita visus failus visos subfolderos.
 
-from pathlib import Path
-p = Path(".")
+# from pathlib import Path
+# p = Path(".")
 
-def getAllFiles(path):
-    files = []
-    for directory in path.iterdir():
-        if directory.is_dir() and ".git" not in directory.stem:
-            files += getAllFiles(directory)
-        else:
-            files.append(directory)
-    return files
+# def getAllFiles(path):
+#     files = []
+#     for directory in path.iterdir():
+#         if directory.is_dir() and ".git" not in directory.stem:
+#             files += getAllFiles(directory)
+#         else:
+#             files.append(directory)
+#     return files
 
 # for file in getAllFiles(p):
 #     print(file)
