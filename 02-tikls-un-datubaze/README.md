@@ -5,14 +5,18 @@
 **Bloka mērķis:** izveidot un konfigurēt daudzlietotāju lokālu tīklu, izveidot serveri
 izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietojumu.
 
-**Teorija un piemēri:** [`teorija.md`](teorija.md) · **Darba fails:** [`uzdevumi.md`](uzdevumi.md)
+**Teorija un piemēri:** [`teorija.md`](teorija.md) · Python un SQL — [`teorija.py`](teorija.py)
+**Situāciju krājums:** [`situacijas.md`](situacijas.md) — ER modeļi un normalizācija
+**Darba faili:** [`uzdevumi.md`](uzdevumi.md) · programmēšanas stundām (12-033 – 12-035)
+[`uzdevumi.py`](uzdevumi.py)
 **Noslēgums:** SV2 — tīkls, serveris un datubāze ar dokumentāciju (12-055, 12-056)
 
 **Eksāmenā:** 2. daļa, 17 % no punktiem.
 
 > Šī bloka nodevums ir **dokumentācija ar pierādījumiem** — ekrānuzņēmumi, konfigurācijas
 > fragmenti, SQL skripti. Standarts to prasa tieši tā: «iesniedzot paveikto apliecinošu
-> dokumentāciju». Tāpēc darba fails šeit ir `.md`, ne kods.
+> dokumentāciju». Tāpēc galvenais darba fails šeit ir `.md`; `uzdevumi.py` ir tikai stundām,
+> kurās raksta programmu.
 
 <!-- TABULA:SAKUMS · pēc izmaiņām: python3 bin/tabula.py 02-tikls-un-datubaze/README.md && python3 bin/darbafails.py 02-tikls-un-datubaze -->
 
@@ -59,6 +63,7 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 **Standarts:** T.A.2.3.2.
 
 **Uzdevumi**
+
 1. Atver savu 11. klases `skola.db` un uzraksti piecus vaicājumus: viens ar `JOIN`, viens ar
    `GROUP BY`, viens ar `LEFT JOIN`, viens ar `HAVING`, viens ar apakšvaicājumu.
 2. Pieraksti katram, ko tas atbild un cik rindas atgriež.
@@ -74,8 +79,9 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 **Standarts:** T.A.2.3.2.
 
 **Uzdevumi**
-4. Dotajā tabulā katrā rindā atkārtojas skolotāja vārds un e-pasts. Pieraksti trīs problēmas,
-   ko tas rada.
+
+4. Situāciju krājuma ([`situacijas.md`](situacijas.md)) tabulā **N0** katrā rindā atkārtojas
+   skolotāja vārds un e-pasts. Pieraksti trīs problēmas, ko tas rada.
 5. Pārprojektē šo tabulu divās un pieraksti, kas mainījās.
 6. ★ Atrodi savā 11. klases projekta datubāzē vietu, kur dati atkārtojas.
 
@@ -90,18 +96,22 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 
 **Gaita**
 - 10' — kāpēc pirms `CREATE TABLE` zīmē; ER modeļa elementi
-- 15' — kopīgi uz tāfeles: no apraksta uz ER modeli
+- 15' — kopīgi uz tāfeles: no apraksta uz ER modeli (paraugs — `teorija.md` §1)
 - 10' — kardinalitāte: 1:1, 1:N, N:M un kā to atzīmē
 - 5' — no ER modeļa uz tabulām: mehāniskie soļi
 
 **Uzdevumi**
+
 7. Uzzīmē ER modeli skolas bibliotēkai (grāmata, eksemplārs, lasītājs, izsniegums).
 8. Atzīmē katras saistības kardinalitāti un pamato.
 9. Pārvērs savu ER modeli tabulās un pieraksti, kur radās starptabula.
 10. ★ Uzzīmē ER modeli sistēmai, kurā viena entītija saistās pati ar sevi (piemēram,
     darbinieks un viņa vadītājs).
+11. Uzzīmē ER modeli kinoteātra biļešu sistēmai: filmas, zāles, seansi, vietas, biļetes,
+    pircēji. Pārvērs to tabulās.
+12. ★ Situāciju krājumā izvēlies divas situācijas no E1–E8 un uzzīmē to ER modeļus.
 
-**Mājasdarbs:** 9. uzdevums
+**Mājasdarbs:** 11. uzdevums
 
 ## 12-032 · Normalizācija
 `[K]` `jaukta` · `teorija.md` §2
@@ -111,43 +121,98 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 **Standarts:** T.A.2.3.2.
 
 **Gaita**
-- 10' — trīs normālformas cilvēku valodā
-- 15' — kopīgi: slikti projektēta tabula un tās sadalīšana
-- 10' — kad normalizāciju apzināti pārkāpj (ātrdarbība)
-- 5' — kā to pamanīt savā projektā
+- 5' — atkārtojums: tabula N0 un trīs anomālijas (`teorija.md` §2)
+- 10' — trīs normālformas cilvēku valodā; jautājums «no kā tas ir atkarīgs?»
+- 15' — pāros: N1–N7, katrs pāris pa vienai tabulai no katras normālformas; pārrunājam
+- 10' — kopīgi uz tāfeles: N8 soli pa solim; kad normalizāciju apzināti pārkāpj
 
 **Uzdevumi**
-11. Dotajai tabulai atrodi 1NF pārkāpumu (vairākas vērtības vienā laukā) un izlabo.
-12. Dotajai tabulai atrodi 2NF un 3NF pārkāpumus un sadali to.
-13. Pārbaudi savu 12-031 modeli pret trim normālformām.
-14. ★ Atrodi piemēru, kur dublēšanās ir apzināta izvēle, un pamato, kāpēc.
 
-**Mājasdarbs:** 13. uzdevums
+13. Situāciju krājumā **N1**, **N2**, **N3**: atrodi 1NF pārkāpumu un sadali tabulu.
+14. **N4** un **N5**: nosaki primāro atslēgu, atrodi laukus, kas atkarīgi tikai no tās daļas,
+    un sadali tabulu.
+15. **N6** un **N7**: atrodi 3NF pārkāpumu un sadali tabulu. Pie N7 pamato, vai reālā
+    sistēmā to sadalītu.
+16. **N8**: izpildi visus sešus soļus — no Excel lapas līdz 3NF un ER modelim.
+17. Pārbaudi savu kinoteātra modeli (11. uzdevums) pret trim normālformām un izlabo.
+18. Izvēlies savas sistēmas tēmu: šo datubāzi tu veidosi 12-035 sprintā un nodosi SV2
+    darbā. Uzraksti divu teikumu aprakstu un uzzīmē ER skici: vismaz četras entītijas,
+    tostarp viena N:M saistība.
+19. ★ **N9** un **N10**.
 
-## 12-033 · Datubāzes izveide
-`[K]` `prakse` · `teorija.md` §3
+**Mājasdarbs:** 17. un 18. uzdevums
+
+## 12-033 · Datubāze no Python
+`[K]` `prakse` · `teorija.py` §1–§7
 
 **Tēma:** Datubāzes izveide pēc ER modeļa. Ierobežojumi un indeksi.
 **SR:** Izveido datubāzi ar vairākām tabulām, atslēgām, ierobežojumiem un indeksiem.
 **Standarts:** T.A.2.3.2. · T.A.2.4.17.
 
 **Gaita**
-- 5' — no modeļa uz skriptu
-- 10' — demo §3: `CREATE TABLE`, `FOREIGN KEY`, `CHECK`, `CREATE INDEX`
-- 20' — uzdevumi
-- 5' — kāpēc skripts, ne klikšķināšana: to var atkārtot un ielikt repozitorijā
+- 5' — `skola.db` izveide; demo §1: savienojums un pirmais vaicājums no Python
+- 15' — SQL atkārtojums uz `skola.db` ar §2 atgādni (20.–24. uzdevums)
+- 10' — demo §3–§6: `CREATE TABLE` ar ierobežojumiem, `PRAGMA foreign_keys`, `IntegrityError`,
+  indekss
+- 10' — bibliotēkas shēma no 12-031 modeļa; ko nepaspēj, pabeidz mājās
 
 **Uzdevumi**
-15. Realizē savu 12-031 modeli kā `shema.sql` ar visām atslēgām un ierobežojumiem.
-16. Pievieno indeksu laukam, pēc kura meklēsi visbiežāk, un pamato izvēli.
-17. Ievieto testa datus: vismaz pieci ieraksti katrā tabulā.
-18. Pārbaudi, ka ierobežojumi tiešām neļauj ievadīt nederīgus datus.
-19. ★ Uzraksti skriptu, kas datubāzi izdzēš un izveido no jauna vienā palaišanā.
 
-**Mājasdarbs:** 17. uzdevums
+20. Izveido mācību datubāzi: no repozitorija saknes palaid
+    `python3 bin/izveido_db.py 02-tikls-un-datubaze/skola.db`. Savienojies ar to no Python
+    un izdrukā visu tabulu nosaukumus (`teorija.py` §1 un §3). Ja redzi `no such table`,
+    datubāze nav tajā mapē, kur to meklē.
+    ```python
+    import sqlite3
+    from pathlib import Path
+
+    MAPE = Path(__file__).parent
+    con = sqlite3.connect(MAPE / "skola.db", isolation_level=None)
+    con.execute("PRAGMA foreign_keys = ON")
+    ```
+21. Uzraksti funkciju `radit(sql, parametri=())`, kas izpilda vaicājumu un izdrukā kolonnu
+    nosaukumus, rindas un rindu skaitu.
+22. SQL atkārtojums — viena tabula. Uzraksti vaicājumus:
+    - a) skolēni, kas dzimuši 2008. gadā, sakārtoti pēc uzvārda;
+    - b) skolēni, kuriem nav e-pasta;
+    - c) cik reižu ir likta katra atzīme no 1 līdz 10;
+    - d) cik skolēnu ir katrā klasē (pēc `klase_id`);
+    - e) desmit augstākās decembrī saņemtās atzīmes ar datumu.
+23. SQL atkārtojums — vairākas tabulas. Uzraksti vaicājumus:
+    - a) katras klases nosaukums un audzinātāja vārds un uzvārds;
+    - b) katra priekšmeta vidējā atzīme, noapaļota līdz divām zīmēm, augstākā vispirms;
+    - c) klases, kuru vidējā atzīme ir augstāka par 6,7;
+    - d) skolēni, kuriem nav nevienas atzīmes;
+    - e) visi pulciņi ar dalībnieku skaitu, ieskaitot pulciņus bez dalībniekiem;
+    - f) ★ pieci skolēni ar augstāko vidējo atzīmi starp tiem, kam ir vismaz 10 atzīmes.
+24. Uzraksti funkciju `klases_skoleni(klase)`, kas atgriež dotās klases (piemēram, `"12.a"`)
+    skolēnu vārdus un uzvārdus. Klases nosaukumu padod ar `?`, nevis ar f-string.
+25. Realizē savu 12-031 bibliotēkas ER modeli kā failu `biblioteka.sql` ar tabulām
+    `gramatas`, `eksemplari`, `lasitaji`, `izsniegumi`. Prasības:
+    - primārās un ārējās atslēgas;
+    - `NOT NULL` visur, kur tukša vērtība nav jēgpilna;
+    - `UNIQUE` svītrkodam un e-pastam;
+    - `CHECK` izdošanas gadam un tam, ka atgriešanas datums nav agrāks par izsniegšanas;
+    - `DEFAULT` izsniegšanas datumam.
+26. Uzraksti funkciju `izveidot_biblioteku()`, kas izdzēš veco `biblioteka.db`, ieslēdz
+    ārējo atslēgu pārbaudi un izpilda `biblioteka.sql` (`teorija.py` §7). Ievieto testa
+    datus ar `executemany`: vismaz pieci ieraksti katrā tabulā.
+27. Pārbaudi ierobežojumus. Katrai darbībai jābeidzas ar `sqlite3.IntegrityError`. Izdrukā
+    kļūdas tekstu un komentārā pieraksti, kurš ierobežojums to apturēja:
+    - a) lasītājs ar jau esošu e-pastu;
+    - b) eksemplārs grāmatai, kuras nav (`gramata_id = 999`);
+    - c) grāmata bez autora;
+    - d) grāmata ar izdošanas gadu 3025;
+    - e) izsniegums, kas atgriezts agrāk, nekā izsniegts;
+    - f) lasītāja dzēšana, ja viņam ir izsniegumi.
+28. Pievieno indeksu laukam, pēc kura meklēsi visbiežāk. Ar `EXPLAIN QUERY PLAN` parādi
+    vaicājuma plānu pirms un pēc indeksa izveides un komentārā pamato izvēli.
+29. ★ Uzraksti vaicājumu: kuri eksemplāri pašlaik ir izsniegti, kam un cik dienas.
+
+**Mājasdarbs:** 26. un 27. uzdevums
 
 ## 12-034 · Vaicājumi un transakcijas
-`[K]` `prakse` · `teorija.md` §4
+`[K]` `prakse` · `teorija.py` §8–§9
 
 **Tēma:** Saliktie vaicājumi. Transakcijas.
 **SR:** Raksta saliktus vaicājumus un lieto transakciju, kur darbības jāveic kopā.
@@ -155,32 +220,75 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 
 **Gaita**
 - 5' — kas notiek, ja naudas pārskaitījuma vidū pazūd strāva?
-- 15' — demo §4: apakšvaicājumi, `BEGIN` / `COMMIT` / `ROLLBACK`
-- 15' — uzdevumi
-- 5' — kad transakcija tiešām vajadzīga
+- 10' — demo §8: apakšvaicājums kā vērtība, saraksts un tabula
+- 10' — demo §9: pasūtījums ar `BEGIN` / `COMMIT` / `ROLLBACK`, kad pietrūkst preces
+- 15' — uzdevumi; kad transakcija tiešām vajadzīga
 
 **Uzdevumi**
-20. Uzraksti vaicājumu ar apakšvaicājumu: ieraksti, kuru vērtība ir virs vidējās.
-21. Uzraksti darbību pāri, kas jāveic kopā, un ietver to transakcijā.
-22. Izmēģini `ROLLBACK` un pārbaudi, ka izmaiņas atceltas.
-23. ★ Pieraksti savā projektā vietu, kur transakcija būs vajadzīga.
 
-**Mājasdarbs:** 21. uzdevums
+30. Apakšvaicājumi uz `skola.db`:
+    - a) skolēni, kuru vidējā atzīme ir augstāka par visas skolas vidējo;
+    - b) skolēni, kuri nav nevienā pulciņā;
+    - c) priekšmets, kurā ir likts visvairāk atzīmju;
+    - d) vidējais dalībnieku skaits pulciņos, kuros ir vismaz viens dalībnieks;
+    - e) ★ katram skolēnam viņa pēdējās atzīmes datums un pati atzīme.
+31. Bankas konti. Atmiņā (`":memory:"`) izveido tabulu
+    `konti(id, ipasnieks, atlikums)` ar `CHECK (atlikums >= 0)` un divus kontus ar 100 €
+    katrā. Uzraksti funkciju `kopsumma()`, kas atgriež visu kontu atlikumu summu.
+32. Uzraksti funkciju `parskaitit_bez_transakcijas(no_id, uz_id, summa)`: divi `UPDATE`
+    pēc kārtas, bet starp tiem `if summa > 50: raise RuntimeError("Strāva pazuda!")`.
+    Izsauc to ar 80 €, noķer kļūdu un izdrukā kopsummu. Kur palika nauda?
+33. Uzraksti funkciju `parskaitit(no_id, uz_id, summa)` ar `BEGIN` / `COMMIT` / `ROLLBACK`
+    un tādu pašu «strāvas zudumu». Pārbaudi: kopsummai jāpaliek 200 €.
+34. Mēģini pārskaitīt vairāk, nekā ir kontā. Kurš ierobežojums to aptur? Samaini abus
+    `UPDATE` vietām (vispirms pieskaita, tad atņem) un pārbaudi vēlreiz: kas bez `ROLLBACK`
+    notiktu ar otra konta atlikumu?
+35. Kinoteātris. Atmiņā izveido tabulu `biletes` un uzraksti funkciju
+    `nopirkt(seanss_id, vietas, epasts)`, kur `vietas` ir saraksts ar `(rinda, vieta)`.
+    Vai nu tiek nopirktas visas biļetes, vai neviena. Funkcija atgriež `True` vai `False`.
+    ```sql
+    CREATE TABLE biletes (
+        id        INTEGER PRIMARY KEY,
+        seanss_id INTEGER NOT NULL,
+        rinda     INTEGER NOT NULL CHECK (rinda BETWEEN 1 AND 10),
+        vieta     INTEGER NOT NULL CHECK (vieta BETWEEN 1 AND 12),
+        epasts    TEXT NOT NULL,
+        UNIQUE (seanss_id, rinda, vieta)
+    );
+    ```
+36. Pārbaudi: Anna pērk seansam 1 vietas (5, 7) un (5, 8). Pēc tam Kārlis pērk (5, 8) un
+    (5, 9). Cik biļešu ir Kārlim? Vai vieta (5, 9) palika brīva? Pēc tam pamēģini nopirkt
+    vietu (11, 1).
+37. ★ Pieraksti savā sistēmā (18. uzdevums) vienu vietu, kur būs vajadzīga transakcija, un
+    kāpēc.
+
+**Mājasdarbs:** 35. un 36. uzdevums
 
 ## 12-035 · Sprints: sava datubāze
-`[A]` `prakse`
+`[A]` `prakse` · `uzdevumi.py`
 
 **Tēma:** Patstāvīgs darbs: datubāzes pabeigšana.
 **SR:** Pabeidz datubāzi ar pilnu ierobežojumu komplektu un testa datiem.
 **Standarts:** T.A.2.3.2.
 
 **Uzdevumi**
-24. Pabeidz savu datubāzi: visas tabulas, atslēgas, ierobežojumi, indeksi.
-25. Uzraksti desmit vaicājumus, kas atbild uz reāliem jautājumiem par taviem datiem.
-26. ★ Uzraksti vaicājumu, kas atrod datus, kuri pārkāpj kādu loģisku noteikumu, ko datubāze
+
+38. Pārvērs savas sistēmas ER modeli (18. uzdevums, izlabots pēc 12-032) failā `shema.sql`:
+    visas tabulas, primārās un ārējās atslēgas, `NOT NULL`, `UNIQUE`, vismaz viens `CHECK`
+    un vismaz viens indekss ar komentāru, kāpēc tieši tur.
+39. Uzraksti `dati.sql` ar testa datiem (vismaz pieci ieraksti katrā tabulā) un Python
+    funkciju, kas datubāzi izveido no nulles no abiem failiem.
+40. Uzraksti `vaicajumi.sql` ar desmit vaicājumiem, kas atbild uz reāliem jautājumiem par
+    taviem datiem. Pirms katra vaicājuma komentārā uzraksti jautājumu. Starp tiem jābūt
+    `JOIN`, `LEFT JOIN`, `GROUP BY` ar `HAVING` un apakšvaicājumam.
+41. Uzraksti vienu Python funkciju ar transakciju — darbību, kurā divas vai vairākas
+    izmaiņas jāveic kopā. Notestē gan veiksmīgu, gan neveiksmīgu gadījumu.
+42. Katram ierobežojumam uzraksti vienu mēģinājumu ievadīt nederīgus datus, kas beidzas ar
+    `IntegrityError`.
+43. ★ Uzraksti vaicājumu, kas atrod datus, kuri pārkāpj kādu loģisku noteikumu, ko datubāze
     pati nepārbauda.
 
-**Sprints:** `shema.sql`, `dati.sql`, `vaicajumi.sql`
+**Sprints:** `shema.sql`, `dati.sql`, `vaicajumi.sql` un izveides skripts repozitorijā
 
 ## 12-036 · Sprints: dokumentācija
 `[A]` `prakse`
@@ -190,9 +298,12 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 **Standarts:** T.A.2.4.7.
 
 **Uzdevumi**
-27. Uzraksti `DATUBAZE.md`: ER modeļa attēls, tabulu apraksts, lauku nozīme.
-28. Katrai tabulai pieraksti, kāpēc tā ir atsevišķa.
-29. ★ Pieraksti, kas jāmaina, ja sistēmai pievienotu vēl vienu funkciju.
+
+44. Uzraksti `DATUBAZE.md` pēc veidnes [`datubaze-veidne.md`](datubaze-veidne.md): ER
+    modeļa attēls, tabulu apraksts, lauku nozīme.
+45. Katrai tabulai pieraksti, kāpēc tā ir atsevišķa: kuru dublēšanos tā novērš.
+46. Pieraksti katru `CHECK`, `UNIQUE` un indeksu un kāpēc tas vajadzīgs.
+47. ★ Pieraksti, kas jāmaina, ja sistēmai pievienotu vēl vienu funkciju.
 
 **Sprints:** `DATUBAZE.md`
 
@@ -210,13 +321,14 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 - 5' — kur šo redzam ikdienā: «paroli atjaunot nevar, tikai nomainīt»
 
 **Uzdevumi**
-30. Aprēķini teksta jaucējvērtību un pārbaudi, ka vienādam tekstam tā vienmēr ir vienāda.
-31. Nomaini vienu burtu un salīdzini rezultātu.
-32. Pievieno savai datubāzei tabulu `lietotaji` ar jaucējvērtību, nevis paroli.
-33. Uzraksti reģistrācijas un pieteikšanās funkcijas.
-34. ★ Pievieno sāli un paskaidro komentārā, pret ko tā pasargā.
 
-**Mājasdarbs:** 33. uzdevums
+48. Aprēķini teksta jaucējvērtību un pārbaudi, ka vienādam tekstam tā vienmēr ir vienāda.
+49. Nomaini vienu burtu un salīdzini rezultātu.
+50. Pievieno savai datubāzei tabulu `lietotaji` ar jaucējvērtību, nevis paroli.
+51. Uzraksti reģistrācijas un pieteikšanās funkcijas.
+52. ★ Pievieno sāli un paskaidro komentārā, pret ko tā pasargā.
+
+**Mājasdarbs:** 51. uzdevums
 
 ## 12-038 · Simetriskā un asimetriskā šifrēšana
 `[K]` `jaukta` · FV3 (dators) · `teorija.md` §6
@@ -232,12 +344,13 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 - 5' — kur to lieto: HTTPS, paraksti, SSH
 
 **Uzdevumi**
-35. Uzraksti programmu, kas šifrē un atšifrē tekstu ar simetrisku atslēgu.
-36. Pieraksti, kāpēc jaucējvērtību atšifrēt nevar, bet šifrētu tekstu — var.
-37. Paskaidro, kā divi cilvēki var apmainīties ar noslēpumu, nekad nesatiekoties.
-38. ★ Noskaidro, kā HTTPS izmanto abus šifrēšanas veidus, un pieraksti soļus.
 
-**Mājasdarbs:** 37. uzdevums
+53. Uzraksti programmu, kas šifrē un atšifrē tekstu ar simetrisku atslēgu.
+54. Pieraksti, kāpēc jaucējvērtību atšifrēt nevar, bet šifrētu tekstu — var.
+55. Paskaidro, kā divi cilvēki var apmainīties ar noslēpumu, nekad nesatiekoties.
+56. ★ Noskaidro, kā HTTPS izmanto abus šifrēšanas veidus, un pieraksti soļus.
+
+**Mājasdarbs:** 55. uzdevums
 
 ## 12-039 · Datu drošība datubāzē
 `[K]` `prakse` · `teorija.md` §7
@@ -253,12 +366,13 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 - 5' — personas datu glabāšanas principi
 
 **Uzdevumi**
-39. Uzraksti apzināti ievainojamu vaicājumu un parādi, kā to izmantot.
-40. Pārraksti to ar parametriem un pārbaudi, ka uzbrukums vairs nestrādā.
-41. Pārbaudi savu projekta kodu: vai kaut kur vaicājums tiek salikts no virknēm?
-42. ★ Pieraksti, kādus personas datus tava sistēma glabā un kāpēc katrs ir vajadzīgs.
 
-**Mājasdarbs:** 40. uzdevums
+57. Uzraksti apzināti ievainojamu vaicājumu un parādi, kā to izmantot.
+58. Pārraksti to ar parametriem un pārbaudi, ka uzbrukums vairs nestrādā.
+59. Pārbaudi savu projekta kodu: vai kaut kur vaicājums tiek salikts no virknēm?
+60. ★ Pieraksti, kādus personas datus tava sistēma glabā un kāpēc katrs ir vajadzīgs.
+
+**Mājasdarbs:** 58. uzdevums
 
 ## 12-040 · Serveris izstrādātāja vajadzībām
 `[K]` `prakse` · `teorija.md` §8
@@ -274,12 +388,13 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 - 5' — kas atšķiras starp izstrādes un ražošanas serveri
 
 **Uzdevumi**
-43. Izveido serveri, kas atgriež datus no tavas datubāzes.
-44. Pievieno žurnalēšanu: katrs pieprasījums tiek pierakstīts ar laiku un statusa kodu.
-45. Pievieno maršrutu, kas atgriež datubāzes kopsavilkumu.
-46. ★ Pievieno vienkāršu pieteikšanos, kas izmanto 12-037 jaucējvērtības.
 
-**Mājasdarbs:** 44. uzdevums
+61. Izveido serveri, kas atgriež datus no tavas datubāzes.
+62. Pievieno žurnalēšanu: katrs pieprasījums tiek pierakstīts ar laiku un statusa kodu.
+63. Pievieno maršrutu, kas atgriež datubāzes kopsavilkumu.
+64. ★ Pievieno vienkāršu pieteikšanos, kas izmanto 12-037 jaucējvērtības.
+
+**Mājasdarbs:** 62. uzdevums
 
 ## 12-041 · Sprints: serveris un drošība
 `[A]` `prakse`
@@ -289,10 +404,11 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 **Standarts:** T.A.2.3.1. · T.A.3.1.2.
 
 **Uzdevumi**
-47. Pievieno visiem maršrutiem validāciju un pareizus statusa kodus.
-48. Pārbaudi, ka kļūdas paziņojumos nav SQL vaicājumu vai failu ceļu.
-49. Pārbaudi, ka visi vaicājumi ir parametrizēti.
-50. ★ Pievieno ierobežojumu, cik pieprasījumu minūtē pieņem no viena klienta.
+
+65. Pievieno visiem maršrutiem validāciju un pareizus statusa kodus.
+66. Pārbaudi, ka kļūdas paziņojumos nav SQL vaicājumu vai failu ceļu.
+67. Pārbaudi, ka visi vaicājumi ir parametrizēti.
+68. ★ Pievieno ierobežojumu, cik pieprasījumu minūtē pieņem no viena klienta.
 
 **Sprints:** serveris repozitorijā ar drošības pārbaudēm
 
@@ -304,9 +420,10 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 **Standarts:** T.A.2.4.7.
 
 **Uzdevumi**
-51. Uzraksti `SERVERIS.md`: katram maršrutam metode, adrese, parametri, atbildes piemērs.
-52. Pievieno palaišanas instrukciju no nulles.
-53. ★ Pievieno kļūdu tabulu: kurā gadījumā kurš statusa kods.
+
+69. Uzraksti `SERVERIS.md`: katram maršrutam metode, adrese, parametri, atbildes piemērs.
+70. Pievieno palaišanas instrukciju no nulles.
+71. ★ Pievieno kļūdu tabulu: kurā gadījumā kurš statusa kods.
 
 **Sprints:** `SERVERIS.md`
 
@@ -324,12 +441,13 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 - 5' — kā to visu redzēt savā datorā
 
 **Uzdevumi**
-54. Noskaidro sava datora IP adresi, apakštīkla masku, vārteju un DNS serveri.
-55. Uzzīmē skolas kabineta tīkla shēmu ar ierīcēm un adresēm.
-56. Pieraksti, ar ko atšķiras statiskā un dinamiskā IP adrese un kad kuru lieto.
-57. ★ Noskaidro, cik ierīču var būt tīklā ar masku 255.255.255.0, un paskaidro, kāpēc.
 
-**Mājasdarbs:** 56. uzdevums
+72. Noskaidro sava datora IP adresi, apakštīkla masku, vārteju un DNS serveri.
+73. Uzzīmē skolas kabineta tīkla shēmu ar ierīcēm un adresēm.
+74. Pieraksti, ar ko atšķiras statiskā un dinamiskā IP adrese un kad kuru lieto.
+75. ★ Noskaidro, cik ierīču var būt tīklā ar masku 255.255.255.0, un paskaidro, kāpēc.
+
+**Mājasdarbs:** 74. uzdevums
 
 ## 12-044 · Maršrutētāja konfigurācija
 `[K]` `prakse` · `teorija.md` §10
@@ -345,12 +463,13 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 - 5' — kāpēc portu atvēršana ir risks
 
 **Uzdevumi**
-58. Konfigurē bezvadu piekļuves punktu ar paroli un pieraksti soļus ar ekrānuzņēmumiem.
-59. Pieraksti, ko dara MAC adrešu filtrs un kāpēc tas nav droša aizsardzība.
-60. Pieraksti, kas ir portu pāradresācija un kādos gadījumos tā vajadzīga.
-61. ★ Pieraksti piecas darbības, ko izdarītu ar jaunu maršrutētāju pirms tā lietošanas.
 
-**Mājasdarbs:** 58. uzdevums
+76. Konfigurē bezvadu piekļuves punktu ar paroli un pieraksti soļus ar ekrānuzņēmumiem.
+77. Pieraksti, ko dara MAC adrešu filtrs un kāpēc tas nav droša aizsardzība.
+78. Pieraksti, kas ir portu pāradresācija un kādos gadījumos tā vajadzīga.
+79. ★ Pieraksti piecas darbības, ko izdarītu ar jaunu maršrutētāju pirms tā lietošanas.
+
+**Mājasdarbs:** 76. uzdevums
 
 ## 12-045 · Servera pieejamība tīklā
 `[K]` `prakse` · `teorija.md` §11
@@ -366,13 +485,14 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 - 5' — kas mainās, ja to atver internetam
 
 **Uzdevumi**
-62. Palaid savu serveri tā, lai tas ir pieejams no cita datora lokālajā tīklā.
-63. Pārbaudi to no klasesbiedra datora un pieraksti adresi.
-64. Pieraksti, kādi riski rodas, atverot serveri, un ko izdarītu vispirms.
-65. ★ Salīdzini sava servera uzturēšanu skolā un nomātu serveri: izmaksas, drošība,
+
+80. Palaid savu serveri tā, lai tas ir pieejams no cita datora lokālajā tīklā.
+81. Pārbaudi to no klasesbiedra datora un pieraksti adresi.
+82. Pieraksti, kādi riski rodas, atverot serveri, un ko izdarītu vispirms.
+83. ★ Salīdzini sava servera uzturēšanu skolā un nomātu serveri: izmaksas, drošība,
     pieejamība, atbildība.
 
-**Mājasdarbs:** 64. uzdevums
+**Mājasdarbs:** 82. uzdevums
 
 ## 12-046 · Servera uzturēšana
 `[K]` `teorija` · `teorija.md` §12
@@ -388,12 +508,13 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 - 5' — rezerves kopijas: cik bieži un kur
 
 **Uzdevumi**
-66. Aizpildi salīdzinājuma tabulu: savs serveris pret nomātu, pēc pieciem kritērijiem.
-67. Izvēlies risinājumu savam projektam un pamato.
-68. Pieraksti rezerves kopiju plānu: ko, cik bieži, kur, kā pārbaudi, ka tas strādā.
-69. ★ Pieraksti, kas notiktu ar tavu sistēmu, ja serveris pazustu šodien.
 
-**Mājasdarbs:** 68. uzdevums
+84. Aizpildi salīdzinājuma tabulu: savs serveris pret nomātu, pēc pieciem kritērijiem.
+85. Izvēlies risinājumu savam projektam un pamato.
+86. Pieraksti rezerves kopiju plānu: ko, cik bieži, kur, kā pārbaudi, ka tas strādā.
+87. ★ Pieraksti, kas notiktu ar tavu sistēmu, ja serveris pazustu šodien.
+
+**Mājasdarbs:** 86. uzdevums
 
 ## 12-047 · Sprints: tīkla dokumentācija
 `[A]` `prakse`
@@ -403,9 +524,10 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 **Standarts:** T.A.2.3.1. · T.A.2.4.7.
 
 **Uzdevumi**
-70. Uzraksti `TIKLS.md`: tīkla shēma, adresācija, maršrutētāja iestatījumi ar ekrānuzņēmumiem.
-71. Pievieno sadaļu par drošību: kas darīts un kas apzināti nav darīts.
-72. ★ Pievieno soļus, kā visu atjaunot no nulles.
+
+88. Uzraksti `TIKLS.md`: tīkla shēma, adresācija, maršrutētāja iestatījumi ar ekrānuzņēmumiem.
+89. Pievieno sadaļu par drošību: kas darīts un kas apzināti nav darīts.
+90. ★ Pievieno soļus, kā visu atjaunot no nulles.
 
 **Sprints:** `TIKLS.md`
 
@@ -417,9 +539,10 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 **Standarts:** T.A.2.4.6.
 
 **Uzdevumi**
-73. Aizpildi pašpārbaudes tabulu pret SV2 prasībām.
-74. Pieraksti, kas vēl jāizdara, un saplāno atlikušās stundas.
-75. ★ Iedod savu dokumentāciju klasesbiedram un palūdz izpildīt vienu soli pēc tās.
+
+91. Aizpildi pašpārbaudes tabulu pret SV2 prasībām.
+92. Pieraksti, kas vēl jāizdara, un saplāno atlikušās stundas.
+93. ★ Iedod savu dokumentāciju klasesbiedram un palūdz izpildīt vienu soli pēc tās.
 
 **Sprints:** `PASPARBAUDE.md`
 
@@ -436,10 +559,11 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 - 10' — biežākās kļūdas ER modeļos
 
 **Uzdevumi**
-76. Burtnīcā: uzzīmē ER modeli dotam aprakstam un pārvērs to tabulās.
-77. Burtnīcā: uzraksti `CREATE TABLE` ar roku, ieskaitot atslēgas un ierobežojumus.
-78. Burtnīcā: paskaidro, kāpēc parole datubāzē netiek glabāta atklātā tekstā.
-79. ★ Burtnīcā: uzraksti vaicājumu ar `JOIN` un `GROUP BY` bez datora.
+
+94. Burtnīcā: uzzīmē ER modeli dotam aprakstam un pārvērs to tabulās.
+95. Burtnīcā: uzraksti `CREATE TABLE` ar roku, ieskaitot atslēgas un ierobežojumus.
+96. Burtnīcā: paskaidro, kāpēc parole datubāzē netiek glabāta atklātā tekstā.
+97. ★ Burtnīcā: uzraksti vaicājumu ar `JOIN` un `GROUP BY` bez datora.
 
 **Mājasdarbs:** atkārtot jēdzienus
 
@@ -456,9 +580,10 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 - 10' — katrs pieraksta plānu atlikušajām stundām
 
 **Uzdevumi**
-80. Izlasi SV2 prasības un uzraksti savu izpildes plānu.
-81. Pieraksti, kura daļa būs grūtākā un ko darīsi, ja tā neizdodas.
-82. ★ Pārbaudi, kuras prasības jau ir izpildītas sprintos.
+
+98. Izlasi SV2 prasības un uzraksti savu izpildes plānu.
+99. Pieraksti, kura daļa būs grūtākā un ko darīsi, ja tā neizdodas.
+100. ★ Pārbaudi, kuras prasības jau ir izpildītas sprintos.
 
 **Mājasdarbs:** plāns repozitorijā
 
@@ -500,9 +625,10 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 **Standarts:** T.A.2.4.7.
 
 **Uzdevumi**
-83. Pabeidz `DATUBAZE.md`, `SERVERIS.md` un `TIKLS.md`.
-84. Pievieno visus ekrānuzņēmumus un konfigurācijas fragmentus.
-85. ★ Pārbaudi, vai svešs cilvēks pēc tavas dokumentācijas var visu atkārtot.
+
+101. Pabeidz `DATUBAZE.md`, `SERVERIS.md` un `TIKLS.md`.
+102. Pievieno visus ekrānuzņēmumus un konfigurācijas fragmentus.
+103. ★ Pārbaudi, vai svešs cilvēks pēc tavas dokumentācijas var visu atkārtot.
 
 **Sprints:** pilna dokumentācija repozitorijā
 
@@ -514,9 +640,10 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 **Standarts:** T.A.2.4.6.
 
 **Uzdevumi**
-86. Izpildi savu pašpārbaudes tabulu vēlreiz un atzīmē izmaiņas.
-87. Pārbaudi, ka datubāzi var izveidot no nulles ar tavu skriptu.
-88. ★ Notestē serveri ar nederīgiem datiem un pieraksti rezultātus.
+
+104. Izpildi savu pašpārbaudes tabulu vēlreiz un atzīmē izmaiņas.
+105. Pārbaudi, ka datubāzi var izveidot no nulles ar tavu skriptu.
+106. ★ Notestē serveri ar nederīgiem datiem un pieraksti rezultātus.
 
 **Sprints:** gatavs darbs repozitorijā
 
@@ -553,7 +680,20 @@ izstrādātāja vajadzībām, izplānot un realizēt drošu datubāzes pielietoj
 
 - **Šī bloka nodevums ir dokumentācija.** Standarta prasība nr. 2 to nosaka tieši:
   «iesniedzot paveiktā apliecinošu dokumentāciju». Tāpēc trīs sprinti (12-036, 12-042,
-  12-047) ir veltīti tieši dokumentēšanai, un darba fails ir markdown, ne kods.
+  12-047) ir veltīti tieši dokumentēšanai, un galvenais darba fails ir markdown.
+- **Situāciju krājumā ir vairāk, nekā var paspēt.** 12-031 un 12-032 klātienē pietiek ar
+  vienu situāciju no katra veida (E, N1–N3, N4–N5, N6–N7) un kopīgi N8. Pārējās ir mājām,
+  attālinātajām stundām un gatavojoties FV4 (12-049).
+- **No ER modeļa uz kodu ved viens pavediens.** 12-031 bibliotēka uz papīra → 12-033 tā pati
+  bibliotēka kā `biblioteka.sql` no Python. 12-031 kinoteātris → 12-032 normalizācija →
+  12-034 biļešu pirkšana ar transakciju. 12-032 izvēlētā sava tēma → 12-035 sava datubāze →
+  12-036 `DATUBAZE.md` → SV2.
+- **SQL atkārtojums 12-033.** Pēc gada ar knex skolēni SQL sintaksi ir aizmirsuši. 20.–24.
+  uzdevums ir uz jau zināmās `skola.db`, lai jāatceras tikai SQL, ne dati.
+- **Divas SQLite īpatnības**, kas citādi aizņem pusi stundas: ārējās atslēgas pārbauda tikai
+  pēc `PRAGMA foreign_keys = ON` (katram savienojumam), un bez `isolation_level=None`
+  izmaiņas nesaglabājas, ja aizmirst `con.commit()`. `teorija.py` lieto `isolation_level=None`,
+  lai transakcijas 12-034 būtu redzamas tieši kā SQL: `BEGIN` / `COMMIT` / `ROLLBACK`.
 - **Maršrutētājs.** Ja kabinetā ir viens maršrutētājs, dari to kā demonstrāciju un ļauj
   skolēniem konfigurēt telefona karstvietu — standarts to tieši pieļauj. Svarīgākais, ko
   skolēnam saprast, ir noklusētās konfigurācijas maiņa un tas, ka atvērts ports ir risks.

@@ -6,15 +6,15 @@
 
 ER modelis (entītiju un saistību modelis) ir veids, kā datubāzi uzzīmēt, pirms to izveido.
 
-| Elements | Ko nozīmē | Kā zīmē |
-| --- | --- | --- |
-| Entītija | lieta, par kuru glabā datus | taisnstūris |
-| Atribūts | entītijas īpašība | ovāls vai saraksts taisnstūrī |
-| Saistība | kā entītijas saistās | līnija ar apzīmējumu |
+| Elements | Ko nozīmē                   | Kā zīmē                       |
+| -------- | --------------------------- | ----------------------------- |
+| Entītija | lieta, par kuru glabā datus | taisnstūris                   |
+| Atribūts | entītijas īpašība           | ovāls vai saraksts taisnstūrī |
+| Saistība | kā entītijas saistās        | līnija ar apzīmējumu          |
 
 **Kardinalitāte** pasaka, cik daudz ar cik:
 
-- **1:1** — vienam pasei atbilst viens cilvēks (reti sastopams; parasti to var apvienot vienā tabulā);
+- **1:1** — vienai pasei atbilst viens cilvēks (reti sastopams; parasti to var apvienot vienā tabulā);
 - **1:N** — vienā klasē daudz skolēnu, bet skolēns ir vienā klasē;
 - **N:M** — skolēns var būt daudzos pulciņos, pulciņā daudz skolēnu.
 
@@ -27,6 +27,44 @@ ER modelis (entītiju un saistību modelis) ir veids, kā datubāzi uzzīmēt, p
 
 Ja entītija saistās pati ar sevi (darbinieks un viņa vadītājs), ārējā atslēga norāda uz
 to pašu tabulu: `vaditajs_id INTEGER REFERENCES darbinieki(id)`.
+
+### Paraugs: skolas bibliotēka
+
+> Bibliotēkā ir grāmatas. No vienas grāmatas var būt vairāki eksemplāri, katram savs
+> svītrkods. Lasītājs var aizņemties eksemplāru; izsniegumam pieraksta datumu, kad izsniegts
+> un kad atgriezts.
+
+**1. Entītijas** ir lietvārdi, par kuriem jāglabā vairāki fakti: grāmata, eksemplārs,
+lasītājs, izsniegums. «Svītrkods» un «datums» ir tikai fakti, tāpēc tie ir atribūti.
+
+**2. Saistības** — par katru pāri jautā abos virzienos:
+
+- vienai grāmatai daudz eksemplāru; eksemplārs ir vienas grāmatas → **1:N**;
+- lasītājs var aizņemties daudz eksemplāru, eksemplāru laika gaitā aizņemas daudzi
+  lasītāji → **N:M**. Starptabula ir *izsniegums*, un tai ir savi atribūti (datumi).
+
+```
+┌──────────┐ 1     N ┌────────────┐ 1     N ┌─────────────┐ N     1 ┌──────────┐
+│ GRĀMATA  │─────────│ EKSEMPLĀRS │─────────│ IZSNIEGUMS  │─────────│ LASĪTĀJS │
+│ nosaukums│         │ svitrkods  │         │ izsniegts   │         │ vards    │
+│ autors   │         │ stavoklis  │         │ atgriezts   │         │ epasts   │
+│ gads     │         └────────────┘         └─────────────┘         └──────────┘
+└──────────┘
+```
+
+**3. Tabulas** — mehāniski pēc soļiem augstāk:
+
+```
+gramatas(id, nosaukums, autors, gads)
+eksemplari(id, gramata_id → gramatas, svitrkods, stavoklis)
+lasitaji(id, vards, epasts)
+izsniegumi(id, eksemplars_id → eksemplari, lasitajs_id → lasitaji, izsniegts, atgriezts)
+```
+
+Biežākās kļūdas: grāmatai lauks `lasitajs_id` (tad nav vēstures — skat. situāciju
+krājumu K2); nav atšķirta grāmata no eksemplāra; N:M saistība bez starptabulas.
+
+Vairāk situāciju vingrināšanai — [`situacijas.md`](situacijas.md) A–C daļa.
 
 ## §2 Normalizācija
 
@@ -47,10 +85,38 @@ klases, ne no skolēna. Tam jābūt tabulā `klases`.
 **Pazīme, ka kaut kas nav kārtībā:** to pašu informāciju labo divās vietās. Ja skolotājs
 maina uzvārdu un tas jālabo 200 rindās, shēma nav normalizēta.
 
+**Trīs anomālijas** — tas, kas notiek ar nenormalizētu tabulu:
+
+| Anomālija | Kas notiek | Piemērs tabulā `skoleni(id, vards, klase, audzinatajs)` |
+| --- | --- | --- |
+| atjaunināšanas | to pašu faktu jālabo daudzās rindās; aizmirst vienu — dati pretrunīgi | maina audzinātāju — jālabo visiem klases skolēniem |
+| ievietošanas | faktu nevar ierakstīt, kamēr nav kaut kā cita | jaunai klasei nevar ierakstīt audzinātāju, kamēr tajā nav neviena skolēna |
+| dzēšanas | dzēšot vienu faktu, pazūd cits | izdzēšot klases pēdējo skolēnu, pazūd ziņas par audzinātāju |
+
+### Soli pa solim
+
+1. **Atrodi primāro atslēgu.** Kas viennozīmīgi identificē rindu? Ja tas ir lauku pāris,
+   pieraksti abus.
+2. **1NF.** Vai kādā laukā ir saraksts («a, b, c») vai atkārtotas kolonnas (`telefons1`,
+   `telefons2`)? → saraksts kļūst par atsevišķu tabulu ar ārējo atslēgu.
+3. **Katram laukam jautā: «No kā tas ir atkarīgs?»** Pieraksti `A → B` («ja zinu A, zinu
+   arī B»).
+   - atkarīgs no visas atslēgas → paliek;
+   - atkarīgs tikai no atslēgas daļas → **2NF** pārkāpums;
+   - atkarīgs no cita ne-atslēgas lauka → **3NF** pārkāpums.
+4. **Grupē pēc tā, no kā atkarīgs.** Katrs `A` kļūst par savu tabulu ar `A` kā primāro
+   atslēgu, un sākotnējā tabulā paliek tikai `A` kā ārējā atslēga.
+5. **Pārbaudi:** vai katrs fakts tagad glabājas tieši vienā vietā?
+
+Vingrināšanai — [`situacijas.md`](situacijas.md) D daļa (N0–N10).
+
 **Kad normalizāciju apzināti pārkāpj:** ja vaicājums ar pieciem `JOIN` ir par lēnu un dati
 gandrīz nemainās, daļu var apzināti dublēt. Tas ir lēmums ar pamatojumu, ne slinkums.
 
 ## §3 Datubāzes izveide
+
+> Kā to visu dara no Python ar `sqlite3` — savienojums, ierobežojumi darbībā, indeksi,
+> shēma no faila — skat. [`teorija.py`](teorija.py) §1–§7.
 
 ```sql
 CREATE TABLE lasitaji (
@@ -86,6 +152,9 @@ Datubāzi vienmēr veido ar **skriptu**, ne klikšķinot. Skriptu var ielikt rep
 palaist no jauna un iedot citam.
 
 ## §4 Apakšvaicājumi un transakcijas
+
+> Piemēri no Python, tostarp transakcija ar `ROLLBACK`, kad pietrūkst preces —
+> [`teorija.py`](teorija.py) §8–§9.
 
 Apakšvaicājums ir vaicājums vaicājumā:
 
@@ -147,10 +216,10 @@ varētu izmantot iepriekš sagatavotas tabulas. Ražošanas sistēmās lieto `bc
 
 Trīs dažādas lietas, kuras bieži sajauc:
 
-| | Var atgriezt atpakaļ? | Kam lieto |
-| --- | --- | --- |
-| Jaukšana | nē | paroles, datu integritāte |
-| Simetriskā šifrēšana | jā, ar to pašu atslēgu | datņu, datubāzes šifrēšana |
+|                       | Var atgriezt atpakaļ?       | Kam lieto                        |
+| --------------------- | --------------------------- | -------------------------------- |
+| Jaukšana              | nē                          | paroles, datu integritāte        |
+| Simetriskā šifrēšana  | jā, ar to pašu atslēgu      | datņu, datubāzes šifrēšana       |
 | Asimetriskā šifrēšana | jā, ar otru atslēgu no pāra | HTTPS, paraksti, atslēgu apmaiņa |
 
 **Asimetriskā** šifrēšana lieto atslēgu pāri: publisko un privāto. Ko šifrē ar vienu,
@@ -190,23 +259,23 @@ ir; neglabā to, ko nevari pasargāt.
 
 Izstrādes serveris atšķiras no ražošanas servera:
 
-| | Izstrādē | Ražošanā |
-| --- | --- | --- |
-| Kļūdas | pilns apraksts ekrānā | žurnālā, lietotājam vispārīgs paziņojums |
-| Datubāze | testa dati | īsti dati, rezerves kopijas |
-| Restartēšana | pēc katras izmaiņas | reti, plānoti |
-| Pieejamība | tikai savs dators | internets, HTTPS |
+|              | Izstrādē              | Ražošanā                                 |
+| ------------ | --------------------- | ---------------------------------------- |
+| Kļūdas       | pilns apraksts ekrānā | žurnālā, lietotājam vispārīgs paziņojums |
+| Datubāze     | testa dati            | īsti dati, rezerves kopijas              |
+| Restartēšana | pēc katras izmaiņas   | reti, plānoti                            |
+| Pieejamība   | tikai savs dators     | internets, HTTPS                         |
 
 **Žurnalēšana** ir tas, kas ļauj saprast, kas notika vakar naktī: laiks, maršruts, statusa
 kods, ilgums. Bez tā kļūdu var atkārtot tikai nejauši.
 
 ## §9 Datortīkls
 
-| Ierīce | Loma |
-| --- | --- |
-| Komutators (switch) | savieno ierīces vienā tīklā |
+| Ierīce                | Loma                                      |
+| --------------------- | ----------------------------------------- |
+| Komutators (switch)   | savieno ierīces vienā tīklā               |
 | Maršrutētājs (router) | savieno tīklus, izlaiž datus uz internetu |
-| Piekļuves punkts | bezvadu pieslēgums |
+| Piekļuves punkts      | bezvadu pieslēgums                        |
 
 **IP adrese** identificē ierīci tīklā. **Apakštīkla maska** pasaka, kura adreses daļa ir
 tīkls un kura — ierīce. Ar masku `255.255.255.0` tīklā ietilpst 254 ierīces (256 mīnus tīkla
@@ -249,13 +318,13 @@ ir īsti dati?
 
 ## §12 Servera uzturēšana
 
-| Kritērijs | Savs serveris | Nomāts |
-| --- | --- | --- |
-| Izmaksas | vienreizējas + strāva | regulāras |
-| Kontrole | pilna | ierobežota |
-| Atbildība par darbību | tava | daļēji pakalpojuma sniedzēja |
-| Fiziskā drošība | jānodrošina pašam | nodrošināta |
-| Pieejamība | atkarīga no tava interneta | augsta |
+| Kritērijs             | Savs serveris              | Nomāts                       |
+| --------------------- | -------------------------- | ---------------------------- |
+| Izmaksas              | vienreizējas + strāva      | regulāras                    |
+| Kontrole              | pilna                      | ierobežota                   |
+| Atbildība par darbību | tava                       | daļēji pakalpojuma sniedzēja |
+| Fiziskā drošība       | jānodrošina pašam          | nodrošināta                  |
+| Pieejamība            | atkarīga no tava interneta | augsta                       |
 
 Savā serverī jādomā par strāvas padevi, mikroklimatu, fizisko piekļuvi un rezerves kopijām.
 

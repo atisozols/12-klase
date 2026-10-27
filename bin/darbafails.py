@@ -4,6 +4,10 @@
 Uzdevumu teksts tiek rakstīts tikai vienā vietā — bloka README stundu
 kartītēs. Šis skripts no tā izveido failu, kurā skolēns raksta risinājumus.
 
+Bloks var būt jaukts: ja kartītes tagu rindā ir atsauce uz .py failu
+(piemēram  `[K]` `prakse` · `teorija.py` §3), šīs stundas uzdevumi nonāk
+uzdevumi.py, bet pārējās — bloka noklusētajā darba failā.
+
 Lietošana:
     python3 bin/darbafails.py 05-virknes-un-datnes
     python3 bin/darbafails.py 0*
@@ -18,6 +22,7 @@ TUKSAS_RINDAS = 4          # cik tukšu rindu atstāt risinājumam
 # Darba faila valodu nosaka bloka teorijas fails. Ja tāda nav, uzdevumi
 # ir dokumenti, nevis kods, un darba fails ir markdown.
 KOMENTARS = {".py": "#", ".js": "//", ".sql": "--"}
+FAILS_TAGOS = re.compile(r"`\w+(\.(?:py|js|sql))`")
 
 
 def stundas(teksts):
@@ -42,6 +47,8 @@ def uzdevumi(kartite):
             if not kods:
                 atkape = len(rinda) - len(rinda.lstrip())
             kods = not kods
+            if iekša and pasreizejais is not None:
+                pasreizejais[1].append(rinda[atkape:])
             continue
         if not kods:
             if rinda.strip() == "**Uzdevumi**":
@@ -67,30 +74,46 @@ def uzdevumi(kartite):
 
 
 def bez_markdown(rinda):
-    """Noņem markdown noformējumu — .py komentārā tas ir tikai troksnis."""
-    rinda = re.sub(r"\*\*(.+?)\*\*", r"\1", rinda)
-    rinda = re.sub(r"`([^`]+)`", r"\1", rinda)
-    rinda = re.sub(r"_([^_]+)_", r"\1", rinda)
-    return rinda
+    """Noņem markdown noformējumu — .py komentārā tas ir tikai troksnis.
+
+    Teksts `pēdiņās` ir kods, tāpēc tajā apakšsvītras un zvaigznītes paliek:
+    `parskaitit_bez_transakcijas` nedrīkst kļūt par parskaititbeztransakcijas.
+    """
+    gabali = re.split(r"(`[^`]+`)", rinda)
+    for i, gabals in enumerate(gabali):
+        if i % 2:
+            gabali[i] = gabals[1:-1]
+        else:
+            gabals = re.sub(r"\*\*(.+?)\*\*", r"\1", gabals)
+            gabali[i] = re.sub(r"(?<!\w)_([^_]+)_(?!\w)", r"\1", gabals)
+    return "".join(gabali)
 
 
 def valoda(katalogs):
-    """Atgriež (paplašinājums, komentāra prefikss) pēc teorijas faila."""
+    """Bloka noklusētais darba fails: (paplašinājums, komentāra prefikss).
+
+    Ja blokā ir teorija.md, noklusētais ir markdown — arī tad, ja blakus ir
+    teorija.py stundām, kurās raksta kodu.
+    """
+    if (katalogs / "teorija.md").exists():
+        return ".md", None
     for fails in sorted(katalogs.glob("teorija.*")):
         if fails.suffix in KOMENTARS:
             return fails.suffix, KOMENTARS[fails.suffix]
     return ".md", None
 
 
-def generet(kataloga_vards):
-    katalogs = Path(kataloga_vards)
-    readme = katalogs / "README.md"
-    if not readme.exists():
-        return
-    paplasinajums, k = valoda(katalogs)
-    teksts = readme.read_text(encoding="utf-8")
-    virsraksts = teksts.split("\n", 1)[0].lstrip("# ").strip()
+def stundas_valoda(kartite, noklusetais):
+    """Ja kartītes tagu rindā ir atsauce uz koda failu, stunda iet tā darba failā."""
+    tagi = kartite.strip().split("\n", 1)[0] if kartite.strip() else ""
+    m = FAILS_TAGOS.search(tagi)
+    if m:
+        return m.group(1), KOMENTARS[m.group(1)]
+    return noklusetais
 
+
+def galvene(virsraksts, paplasinajums, k, citi):
+    """Darba faila sākums. citi — pārējie šī bloka darba faili."""
     if k:
         izvade = [
             f"{k} " + "=" * 58,
@@ -99,48 +122,81 @@ def generet(kataloga_vards):
             f"{k} Šeit raksti savus risinājumus.",
             f"{k} Teorija, piemēri un atgādne: teorija{paplasinajums}",
             f"{k} Uzdevumu numuri iet cauri visam blokam.",
-            f"{k} " + "=" * 58,
-            "",
-            "",
         ]
-    else:
-        izvade = [
-            f"# {virsraksts} — darba fails",
-            "",
-            "Šeit raksti savas atbildes. Uzdevumu numuri iet cauri visam blokam.",
-            "",
-        ]
+        for cits in citi:
+            izvade.append(f"{k} Pārējo stundu uzdevumi: {cits}")
+        return izvade + [f"{k} " + "=" * 58, "", ""]
+    izvade = [
+        f"# {virsraksts} — darba fails",
+        "",
+        "Šeit raksti savas atbildes. Uzdevumu numuri iet cauri visam blokam.",
+        "",
+    ]
+    for cits in citi:
+        izvade += [f"Programmēšanas stundu uzdevumi ir [`{cits}`]({cits}).", ""]
+    return izvade
 
-    skaits = 0
+
+def stundas_uzdevumi(nr, nosaukums, saraksts, k):
+    izvade = []
+    if k:
+        izvade += [f"{k} " + "-" * 58, f"{k} {nr} · {nosaukums}", f"{k} " + "-" * 58, ""]
+    else:
+        izvade += [f"## {nr} · {nosaukums}", ""]
+    for numurs, rindas in saraksts:
+        pirma = rindas[0]
+        zvaigzne = pirma.startswith("★")
+        teksts_r = pirma[1:].strip() if zvaigzne else pirma
+        if k:
+            prefikss = f"{k} {numurs}. " + ("★ " if zvaigzne else "")
+            izvade.append(prefikss + bez_markdown(teksts_r))
+            kods = False
+            for papildus in rindas[1:]:
+                if papildus.lstrip().startswith("```"):
+                    kods = not kods
+                    continue
+                if not papildus.strip():
+                    izvade.append(k)
+                elif kods:
+                    izvade.append(f"{k}    " + papildus)
+                else:
+                    izvade.append(f"{k}    " + bez_markdown(papildus))
+            izvade += [""] * TUKSAS_RINDAS
+        else:
+            izvade.append(f"**{numurs}.** " + ("★ " if zvaigzne else "") + teksts_r)
+            for papildus in rindas[1:]:
+                izvade.append(papildus)
+            izvade += ["", "", "---", ""]
+    izvade.append("")
+    return izvade
+
+
+def generet(kataloga_vards):
+    katalogs = Path(kataloga_vards)
+    readme = katalogs / "README.md"
+    if not readme.exists():
+        return
+    noklusetais = valoda(katalogs)
+    teksts = readme.read_text(encoding="utf-8")
+    virsraksts = teksts.split("\n", 1)[0].lstrip("# ").strip()
+
+    # {paplašinājums: (komentāra prefikss, [rindas], uzdevumu skaits)}
+    faili = {}
     for nr, nosaukums, kartite in stundas(teksts):
         saraksts = list(uzdevumi(kartite))
         if not saraksts:
             continue
-        if k:
-            izvade += [f"{k} " + "-" * 58, f"{k} {nr} · {nosaukums}", f"{k} " + "-" * 58, ""]
-        else:
-            izvade += [f"## {nr} · {nosaukums}", ""]
-        for numurs, rindas in saraksts:
-            skaits += 1
-            pirma = rindas[0]
-            zvaigzne = pirma.startswith("★")
-            teksts_r = pirma[1:].strip() if zvaigzne else pirma
-            if k:
-                prefikss = f"{k} {numurs}. " + ("★ " if zvaigzne else "")
-                izvade.append(prefikss + bez_markdown(teksts_r))
-                for papildus in rindas[1:]:
-                    izvade.append(f"{k}    " + bez_markdown(papildus) if papildus.strip() else k)
-                izvade += [""] * TUKSAS_RINDAS
-            else:
-                izvade.append(f"**{numurs}.** " + ("★ " if zvaigzne else "") + teksts_r)
-                for papildus in rindas[1:]:
-                    izvade.append(papildus)
-                izvade += ["", "", "---", ""]
-        izvade.append("")
+        paplasinajums, k = stundas_valoda(kartite, noklusetais)
+        _, rindas, skaits = faili.get(paplasinajums, (k, [], 0))
+        rindas += stundas_uzdevumi(nr, nosaukums, saraksts, k)
+        faili[paplasinajums] = (k, rindas, skaits + len(saraksts))
 
-    fails = katalogs / f"uzdevumi{paplasinajums}"
-    fails.write_text("\n".join(izvade).rstrip() + "\n", encoding="utf-8")
-    print(f"  {fails}: {skaits} uzdevumi")
+    for paplasinajums, (k, rindas, skaits) in faili.items():
+        citi = [f"uzdevumi{p}" for p in faili if p != paplasinajums]
+        izvade = galvene(virsraksts, paplasinajums, k, citi) + rindas
+        fails = katalogs / f"uzdevumi{paplasinajums}"
+        fails.write_text("\n".join(izvade).rstrip() + "\n", encoding="utf-8")
+        print(f"  {fails}: {skaits} uzdevumi")
 
 
 if __name__ == "__main__":
