@@ -16,20 +16,39 @@
 #    python3 bin/izveido_db.py 02-tikls-un-datubaze/skola.db. Savienojies ar to no Python
 #    un izdrukā visu tabulu nosaukumus (teorija.py §1 un §3). Ja redzi no such table,
 #    datubāze nav tajā mapē, kur to meklē.
-#    import sqlite3
-#    from pathlib import Path
-#
-#    MAPE = Path(__file__).parent
-#    con = sqlite3.connect(MAPE / "skola.db", isolation_level=None)
-#    con.execute("PRAGMA foreign_keys = ON")
 
+import sqlite3
+from pathlib import Path
 
+MAPE = Path(__file__).parent
+con = sqlite3.connect(MAPE / "skola.db", isolation_level=None)
+con.execute("PRAGMA foreign_keys = ON")
 
 
 # 21. Uzraksti funkciju radit(sql, parametri=()), kas izpilda vaicājumu un izdrukā kolonnu
 #    nosaukumus, rindas un rindu skaitu.
 
+def radit(sql, parametri=()):
+    cur = con.execute(sql, parametri)
+    rindas = cur.fetchall()
+    kolonnas = [k[0] for k in cur.description]
 
+    platumi = [len(k) for k in kolonnas]
+    for rinda in rindas:
+        for i, elem in enumerate(rinda):
+            platumi[i] = max(platumi[i], len(str(elem)))
+
+    for i, k in enumerate(kolonnas):
+        print(f"{k:<{platumi[i]}}", end="  ")
+    print()
+    for rinda in rindas:
+        for i, elem in enumerate(rinda):
+            print(f"{str(elem):<{platumi[i]}}", end="  ")
+        print()
+    print(f"Rindu skaits: {len(rindas)}")
+
+
+radit("SELECT * FROM skoleni")
 
 
 # 22. SQL atkārtojums — viena tabula. Uzraksti vaicājumus:
