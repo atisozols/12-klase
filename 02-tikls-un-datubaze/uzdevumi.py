@@ -47,22 +47,33 @@ def radit(sql, parametri=()):
         print()
     print(f"Rindu skaits: {len(rindas)}")
 
-
-radit("SELECT * FROM skoleni")
-
-
 # 22. SQL atkārtojums — viena tabula. Uzraksti vaicājumus:
 #    - a) skolēni, kas dzimuši 2008. gadā, sakārtoti pēc uzvārda;
+
+# radit("SELECT vards, uzvards, epasts FROM skoleni WHERE dzimsanas_gads = 2008 ORDER BY uzvards")
+
 #    - b) skolēni, kuriem nav e-pasta;
+
+# radit("select vards, uzvards from skoleni where epasts is null")
+
 #    - c) cik reižu ir likta katra atzīme no 1 līdz 10;
+
+# radit("SELECT atzime, COUNT(*) AS skaits FROM atzimes GROUP BY atzime")
+
 #    - d) cik skolēnu ir katrā klasē (pēc klase_id);
+
+# radit("SELECT klase_id, COUNT(*) as skaits FROM skoleni GROUP BY klase_id ORDER BY skaits DESC LIMIT 3")
+
 #    - e) desmit augstākās decembrī saņemtās atzīmes ar datumu.
 
-
+# radit("SELECT * FROM atzimes WHERE datums LIKE '%-12-%' ORDER BY atzime DESC LIMIT 10")
 
 
 # 23. SQL atkārtojums — vairākas tabulas. Uzraksti vaicājumus:
 #    - a) katras klases nosaukums un audzinātāja vārds un uzvārds;
+
+radit("SELECT nosaukums, vards, uzvards FROM klases JOIN skolotaji ON klases.audzinatajs_id = skolotaji.id")
+
 #    - b) katra priekšmeta vidējā atzīme, noapaļota līdz divām zīmēm, augstākā vispirms;
 #    - c) klases, kuru vidējā atzīme ir augstāka par 6,7;
 #    - d) skolēni, kuriem nav nevienas atzīmes;
