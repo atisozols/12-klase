@@ -28,8 +28,8 @@ con.execute("PRAGMA foreign_keys = ON")
 # 21. Uzraksti funkciju radit(sql, parametri=()), kas izpilda vaicājumu un izdrukā kolonnu
 #    nosaukumus, rindas un rindu skaitu.
 
-def radit(sql, parametri=()):
-    cur = con.execute(sql, parametri)
+def radit(sql, parametri=(), db=None):
+    cur = (db or con).execute(sql, parametri)
     rindas = cur.fetchall()
     kolonnas = [k[0] for k in cur.description]
 
@@ -72,39 +72,147 @@ def radit(sql, parametri=()):
 # 23. SQL atkārtojums — vairākas tabulas. Uzraksti vaicājumus:
 #    - a) katras klases nosaukums un audzinātāja vārds un uzvārds;
 
-radit("SELECT nosaukums, vards, uzvards FROM klases JOIN skolotaji ON klases.audzinatajs_id = skolotaji.id")
+# radit("SELECT nosaukums, vards, uzvards FROM klases JOIN skolotaji ON klases.audzinatajs_id = skolotaji.id")
 
 #    - b) katra priekšmeta vidējā atzīme, noapaļota līdz divām zīmēm, augstākā vispirms;
+
+# radit("""
+#         SELECT prieksmeti.nosaukums, ROUND(AVG(atzimes.atzime), 2) as videja 
+#         FROM prieksmeti 
+#         JOIN atzimes ON prieksmeti.id = atzimes.prieksmets_id
+#         GROUP BY prieksmeti.id
+#         ORDER BY videja DESC
+#         """)
+
 #    - c) klases, kuru vidējā atzīme ir augstāka par 6,7;
+
+# radit("""
+#         SELECT klases.nosaukums, ROUND(AVG(atzimes.atzime), 2) as videja_atzime
+#         FROM klases
+#         JOIN skoleni ON klases.id = skoleni.klase_id
+#         JOIN atzimes ON skoleni.id = atzimes.skolens_id
+#         GROUP BY klases.nosaukums
+#         HAVING videja_atzime > 6.7
+#         """)
+
 #    - d) skolēni, kuriem nav nevienas atzīmes;
+
+# # SELECT iekš SELECT jeb apakšvaicājums
+# radit("""
+#         SELECT vards, uzvards FROM skoleni WHERE id NOT IN (SELECT DISTINCT skolens_id FROM atzimes);
+#         """)
+
+# # LEFT JOIN 
+# radit("""
+#     SELECT vards, uzvards FROM skoleni LEFT JOIN atzimes ON skoleni.id = atzimes.skolens_id WHERE atzimes.skolens_id IS NULL;
+# """)
+
 #    - e) visi pulciņi ar dalībnieku skaitu, ieskaitot pulciņus bez dalībniekiem;
+
+# radit("""
+#     SELECT nosaukums, COUNT(dalibnieki.id) AS dalibnieku_skaits 
+#     FROM pulcini 
+#     LEFT JOIN dalibnieki ON pulcini.id = dalibnieki.pulcins_id
+#     GROUP BY pulcini.id
+#     ORDER BY dalibnieku_skaits DESC;
+# """)
+
 #    - f) ★ pieci skolēni ar augstāko vidējo atzīmi starp tiem, kam ir vismaz 10 atzīmes.
 
-
-
+# radit("""
+#     SELECT vards, uzvards, ROUND(AVG(atzime), 2) as vid_atzime, COUNT(atzimes.id) as atzimju_skaits FROM skoleni
+#     JOIN atzimes ON skoleni.id = atzimes.skolens_id
+#     GROUP BY skoleni.id
+#     HAVING atzimju_skaits >= 10
+#     ORDER BY vid_atzime DESC
+#     LIMIT 5
+# """)
 
 # 24. Uzraksti funkciju klases_skoleni(klase), kas atgriež dotās klases (piemēram, "12.a")
 #    skolēnu vārdus un uzvārdus. Klases nosaukumu padod ar ?, nevis ar f-string.
 
+# def klases_skoleni(klase):
+#     cur = con.execute("""
+#         SELECT vards, uzvards, epasts, dzimsanas_gads 
+#         FROM klases 
+#         JOIN skoleni ON klases.id = skoleni.klase_id 
+#         WHERE klases.nosaukums = ?
+#     """, (klase, ))
 
+#     rindas = cur.fetchall()
+#     return rindas
+
+# for skolens in klases_skoleni("10.b"):
+#     print(skolens)
 
 
 # 25. Realizē savu 12-031 bibliotēkas ER modeli kā failu biblioteka.sql ar tabulām
-#    gramatas, eksemplari, lasitaji, izsniegumi. Prasības:
+#    gramatas, autori, eksemplari, lasitaji, izsniegumi. Prasības:
 #    - primārās un ārējās atslēgas;
 #    - NOT NULL visur, kur tukša vērtība nav jēgpilna;
 #    - UNIQUE svītrkodam un e-pastam;
 #    - CHECK izdošanas gadam un tam, ka atgriešanas datums nav agrāks par izsniegšanas;
 #    - DEFAULT izsniegšanas datumam.
 
-
+# Risinājums: biblioteka.sql (blakus šim failam).
 
 
 # 26. Uzraksti funkciju izveidot_biblioteku(), kas izdzēš veco biblioteka.db, ieslēdz
 #    ārējo atslēgu pārbaudi un izpilda biblioteka.sql (teorija.py §7). Ievieto testa
 #    datus ar executemany: vismaz pieci ieraksti katrā tabulā.
 
+def izveidot_biblioteku():
+    cels = MAPE / "biblioteka.db"
+    cels.unlink(missing_ok=True)
+    bib = sqlite3.connect(cels, isolation_level=None)
+    bib.execute("PRAGMA foreign_keys = ON")
+    bib.executescript((MAPE / "biblioteka.sql").read_text(encoding="utf-8"))
 
+    bib.executemany("INSERT INTO autori (id, vards, uzvards) VALUES (?, ?, ?)", [
+        (1, "Rūdolfs", "Blaumanis"),
+        (2, "Regīna", "Ezera"),
+        (3, "Nora", "Ikstena"),
+        (4, "Anšlavs", "Eglītis"),
+        (5, "Jānis", "Poruks"),
+    ])
+    bib.executemany("INSERT INTO gramatas (id, nosaukums, autors_id, izdosanas_gads) VALUES (?, ?, ?, ?)", [
+        (1, "Skroderdienas Silmačos", 1, 1902),
+        (2, "Nāves ēnā", 1, 1899),
+        (3, "Mātes piens", 3, 2015),
+        (4, "Līgavu mednieki", 4, 1940),
+        (5, "Pērļu zvejnieks", 5, 1895),
+        (6, "Aka", 2, 1972),
+    ])
+    bib.executemany("INSERT INTO eksemplari (id, gramata_id, svitrkods) VALUES (?, ?, ?)", [
+        (1, 1, "LV-0001"),
+        (2, 1, "LV-0002"),
+        (3, 2, "LV-0003"),
+        (4, 3, "LV-0004"),
+        (5, 4, "LV-0005"),
+        (6, 5, "LV-0006"),
+        (7, 6, "LV-0007"),
+    ])
+    bib.executemany("INSERT INTO lasitaji (id, vards, uzvards, epasts, telefons) VALUES (?, ?, ?, ?, ?)", [
+        (1, "Anna", "Bērziņa", "anna@skola.lv", "20000001"),
+        (2, "Kārlis", "Ozols", "karlis@skola.lv", None),
+        (3, "Elza", "Kalniņa", "elza@skola.lv", "20000003"),
+        (4, "Mārtiņš", "Liepa", "martins@skola.lv", None),
+        (5, "Laura", "Zariņa", "laura@skola.lv", "20000005"),
+    ])
+    # atgriezts = None -> grāmata vēl nav atnesta atpakaļ
+    bib.executemany("INSERT INTO izsniegumi (eksemplars_id, lasitajs_id, izsniegts, atgriezts) VALUES (?, ?, ?, ?)", [
+        (1, 1, "2026-09-01", "2026-09-20"),
+        (3, 1, "2026-10-15", None),
+        (4, 2, "2026-10-01", "2026-10-10"),
+        (5, 3, "2026-10-20", None),
+        (6, 4, "2026-11-01", None),
+    ])
+    # Bez izsniegts -> stājas spēkā DEFAULT CURRENT_DATE
+    bib.execute("INSERT INTO izsniegumi (eksemplars_id, lasitajs_id) VALUES (7, 5)")
+    return bib
+
+bib = izveidot_biblioteku()
+radit("SELECT * FROM izsniegumi", db=bib)
 
 
 # 27. Pārbaudi ierobežojumus. Katrai darbībai jābeidzas ar sqlite3.IntegrityError. Izdrukā
@@ -116,13 +224,49 @@ radit("SELECT nosaukums, vards, uzvards FROM klases JOIN skolotaji ON klases.aud
 #    - e) izsniegums, kas atgriezts agrāk, nekā izsniegts;
 #    - f) lasītāja dzēšana, ja viņam ir izsniegumi.
 
+parbaudes = [
+    # a) UNIQUE uz lasitaji.epasts
+    ("a", "INSERT INTO lasitaji (vards, uzvards, epasts) VALUES ('Cita', 'Anna', 'anna@skola.lv')"),
+    # b) FOREIGN KEY eksemplari.gramata_id -> gramatas(id)
+    ("b", "INSERT INTO eksemplari (gramata_id, svitrkods) VALUES (999, 'LV-9999')"),
+    # c) NOT NULL uz gramatas.autors_id
+    ("c", "INSERT INTO gramatas (nosaukums, izdosanas_gads) VALUES ('Bez autora', 2020)"),
+    # d) CHECK (izdosanas_gads BETWEEN 1450 AND 2100)
+    ("d", "INSERT INTO gramatas (nosaukums, autors_id, izdosanas_gads) VALUES ('Nākotne', 1, 3025)"),
+    # e) CHECK (atgriezts IS NULL OR atgriezts >= izsniegts)
+    ("e", "INSERT INTO izsniegumi (eksemplars_id, lasitajs_id, izsniegts, atgriezts) VALUES (2, 2, '2026-11-05', '2026-11-01')"),
+    # f) FOREIGN KEY izsniegumi.lasitajs_id -> lasitaji(id): uz Annu vēl atsaucas izsniegumi
+    ("f", "DELETE FROM lasitaji WHERE id = 1"),
+]
 
+for burts, sql in parbaudes:
+    try:
+        bib.execute(sql)
+        print(f"{burts}) IZDEVĀS — ierobežojums nestrādā!")
+    except sqlite3.IntegrityError as e:
+        print(f"{burts}) IntegrityError: {e}")
 
 
 # 28. Pievieno indeksu laukam, pēc kura meklēsi visbiežāk. Ar EXPLAIN QUERY PLAN parādi
 #    vaicājuma plānu pirms un pēc indeksa izveides un komentārā pamato izvēli.
 
+# Izvēle: izsniegumi.lasitajs_id.
+# Visbiežāk bibliotekārs skatās "kas ir paņemts uz šī lasītāja vārda" — tas ir
+# WHERE lasitajs_id = ?. Ārējās atslēgas laukam SQLite indeksu pati NEizveido
+# (atšķirībā no PRIMARY KEY un UNIQUE, piem., svitrkods un epasts, kam tas jau ir),
+# tāpēc bez indeksa jāpārlasa VISA izsniegumu tabula (SCAN). Izsniegumu tabula aug
+# visātrāk — katra izsniegšana ir jauna rinda. Indekss palīdz arī 27.f: dzēšot
+# lasītāju, SQLite meklē izsniegumus ar viņa id.
 
+VAICAJUMS = "SELECT * FROM izsniegumi WHERE lasitajs_id = 1"
+
+print("Pirms indeksa:")
+radit("EXPLAIN QUERY PLAN " + VAICAJUMS, db=bib)    # SCAN izsniegumi
+
+bib.execute("CREATE INDEX idx_izsniegumi_lasitajs ON izsniegumi(lasitajs_id)")
+
+print("Pēc indeksa:")
+radit("EXPLAIN QUERY PLAN " + VAICAJUMS, db=bib)    # SEARCH izsniegumi USING INDEX idx_izsniegumi_lasitajs (lasitajs_id=?)
 
 
 # 29. ★ Uzraksti vaicājumu: kuri eksemplāri pašlaik ir izsniegti, kam un cik dienas.

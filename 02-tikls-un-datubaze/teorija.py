@@ -138,8 +138,7 @@ con.executescript(SHEMA)   # executescript izpilda vairākus vaicājumus pēc k�
 # Vērtības vaicājumā NEKAD neieliek ar f-string. Vietā raksta ?, un
 # vērtības padod atsevišķi. Kāpēc tieši tā — 12-039 (SQL injekcija).
 
-con.execute("INSERT INTO klienti (vards, epasts) VALUES (?, ?)",
-            ("Anna", "anna@epasts.lv"))
+con.execute("INSERT INTO klienti (vards, epasts) VALUES (?, ?)",("Anna", "anna@epasts.lv"))
 
 # lastrowid — jaunās rindas id (vajadzīgs, lai uz to atsauktos)
 kursors = con.execute("INSERT INTO klienti (vards, epasts) VALUES (?, ?)",
