@@ -120,7 +120,8 @@ def radit(sql, parametri=(), db=None):
 #    - f) ★ pieci skolēni ar augstāko vidējo atzīmi starp tiem, kam ir vismaz 10 atzīmes.
 
 # radit("""
-#     SELECT vards, uzvards, ROUND(AVG(atzime), 2) as vid_atzime, COUNT(atzimes.id) as atzimju_skaits FROM skoleni
+#     SELECT vards, uzvards, ROUND(AVG(atzime), 2) as vid_atzime, COUNT(atzimes.id) as atzimju_skaits 
+#     FROM skoleni
 #     JOIN atzimes ON skoleni.id = atzimes.skolens_id
 #     GROUP BY skoleni.id
 #     HAVING atzimju_skaits >= 10
@@ -212,7 +213,7 @@ def izveidot_biblioteku():
     return bib
 
 bib = izveidot_biblioteku()
-radit("SELECT * FROM izsniegumi", db=bib)
+# radit("SELECT * FROM izsniegumi", db=bib)
 
 
 # 27. Pārbaudi ierobežojumus. Katrai darbībai jābeidzas ar sqlite3.IntegrityError. Izdrukā
@@ -224,27 +225,27 @@ radit("SELECT * FROM izsniegumi", db=bib)
 #    - e) izsniegums, kas atgriezts agrāk, nekā izsniegts;
 #    - f) lasītāja dzēšana, ja viņam ir izsniegumi.
 
-parbaudes = [
-    # a) UNIQUE uz lasitaji.epasts
-    ("a", "INSERT INTO lasitaji (vards, uzvards, epasts) VALUES ('Cita', 'Anna', 'anna@skola.lv')"),
-    # b) FOREIGN KEY eksemplari.gramata_id -> gramatas(id)
-    ("b", "INSERT INTO eksemplari (gramata_id, svitrkods) VALUES (999, 'LV-9999')"),
-    # c) NOT NULL uz gramatas.autors_id
-    ("c", "INSERT INTO gramatas (nosaukums, izdosanas_gads) VALUES ('Bez autora', 2020)"),
-    # d) CHECK (izdosanas_gads BETWEEN 1450 AND 2100)
-    ("d", "INSERT INTO gramatas (nosaukums, autors_id, izdosanas_gads) VALUES ('Nākotne', 1, 3025)"),
-    # e) CHECK (atgriezts IS NULL OR atgriezts >= izsniegts)
-    ("e", "INSERT INTO izsniegumi (eksemplars_id, lasitajs_id, izsniegts, atgriezts) VALUES (2, 2, '2026-11-05', '2026-11-01')"),
-    # f) FOREIGN KEY izsniegumi.lasitajs_id -> lasitaji(id): uz Annu vēl atsaucas izsniegumi
-    ("f", "DELETE FROM lasitaji WHERE id = 1"),
-]
+# parbaudes = [
+#     # a) UNIQUE uz lasitaji.epasts
+#     ("a", "INSERT INTO lasitaji (vards, uzvards, epasts) VALUES ('Cita', 'Anna', 'anna@skola.lv')"),
+#     # b) FOREIGN KEY eksemplari.gramata_id -> gramatas(id)
+#     ("b", "INSERT INTO eksemplari (gramata_id, svitrkods) VALUES (999, 'LV-9999')"),
+#     # c) NOT NULL uz gramatas.autors_id
+#     ("c", "INSERT INTO gramatas (nosaukums, izdosanas_gads) VALUES ('Bez autora', 2020)"),
+#     # d) CHECK (izdosanas_gads BETWEEN 1450 AND 2100)
+#     ("d", "INSERT INTO gramatas (nosaukums, autors_id, izdosanas_gads) VALUES ('Nākotne', 1, 3025)"),
+#     # e) CHECK (atgriezts IS NULL OR atgriezts >= izsniegts)
+#     ("e", "INSERT INTO izsniegumi (eksemplars_id, lasitajs_id, izsniegts, atgriezts) VALUES (2, 2, '2026-11-05', '2026-11-01')"),
+#     # f) FOREIGN KEY izsniegumi.lasitajs_id -> lasitaji(id): uz Annu vēl atsaucas izsniegumi
+#     ("f", "DELETE FROM lasitaji WHERE id = 1"),
+# ]
 
-for burts, sql in parbaudes:
-    try:
-        bib.execute(sql)
-        print(f"{burts}) IZDEVĀS — ierobežojums nestrādā!")
-    except sqlite3.IntegrityError as e:
-        print(f"{burts}) IntegrityError: {e}")
+# for burts, sql in parbaudes:
+#     try:
+#         bib.execute(sql)
+#         print(f"{burts}) IZDEVĀS — ierobežojums nestrādā!")
+#     except sqlite3.IntegrityError as e:
+#         print(f"{burts}) IntegrityError: {e}")
 
 
 # 28. Pievieno indeksu laukam, pēc kura meklēsi visbiežāk. Ar EXPLAIN QUERY PLAN parādi
@@ -258,21 +259,27 @@ for burts, sql in parbaudes:
 # visātrāk — katra izsniegšana ir jauna rinda. Indekss palīdz arī 27.f: dzēšot
 # lasītāju, SQLite meklē izsniegumus ar viņa id.
 
-VAICAJUMS = "SELECT * FROM izsniegumi WHERE lasitajs_id = 1"
+# VAICAJUMS = "SELECT * FROM izsniegumi WHERE lasitajs_id = 1"
 
-print("Pirms indeksa:")
-radit("EXPLAIN QUERY PLAN " + VAICAJUMS, db=bib)    # SCAN izsniegumi
+# print("Pirms indeksa:")
+# radit("EXPLAIN QUERY PLAN " + VAICAJUMS, db=bib)    # SCAN izsniegumi
 
-bib.execute("CREATE INDEX idx_izsniegumi_lasitajs ON izsniegumi(lasitajs_id)")
+# bib.execute("CREATE INDEX idx_izsniegumi_lasitajs ON izsniegumi(lasitajs_id)")
 
-print("Pēc indeksa:")
-radit("EXPLAIN QUERY PLAN " + VAICAJUMS, db=bib)    # SEARCH izsniegumi USING INDEX idx_izsniegumi_lasitajs (lasitajs_id=?)
+# print("Pēc indeksa:")
+# radit("EXPLAIN QUERY PLAN " + VAICAJUMS, db=bib)    # SEARCH izsniegumi USING INDEX idx_izsniegumi_lasitajs (lasitajs_id=?)
 
 
 # 29. ★ Uzraksti vaicājumu: kuri eksemplāri pašlaik ir izsniegti, kam un cik dienas.
 
 
-
+# radit("""
+#     SELECT epasts, autori.vards, autori.uzvards, nosaukums, izsniegts, atgriezts FROM izsniegumi
+#     JOIN lasitaji ON izsniegumi.lasitajs_id=lasitaji.id
+#     JOIN eksemplari ON izsniegumi.eksemplars_id=eksemplari.id
+#     JOIN gramatas ON eksemplari.gramata_id=gramatas.id
+#     JOIN autori ON gramatas.autors_id=autori.id;
+# """, db=bib)
 
 
 # ----------------------------------------------------------
@@ -281,10 +288,126 @@ radit("EXPLAIN QUERY PLAN " + VAICAJUMS, db=bib)    # SEARCH izsniegumi USING IN
 
 # 30. Apakšvaicājumi uz skola.db:
 #    - a) skolēni, kuru vidējā atzīme ir augstāka par visas skolas vidējo;
+
+# radit("""
+#     SELECT AVG(atzime) AS vid_atzime FROM atzimes;
+# """)
+
+# radit("""
+#     SELECT skoleni.vards, skoleni.uzvards, AVG(atzime) as avg
+#     FROM skoleni 
+#     JOIN atzimes ON skoleni.id=atzimes.skolens_id
+#     GROUP BY skoleni.id
+#     HAVING avg > (
+#         SELECT ROUND(AVG(atzime), 1) AS vid_atzime FROM atzimes
+#     );
+# """)
+
 #    - b) skolēni, kuri nav nevienā pulciņā;
+
+# radit("""
+#     SELECT DISTINCT pulcins_id FROM dalibnieki;
+# """)
+
+# radit("SELECT * ")
+
+# radit("""
+#     SELECT DISTINCT skolens_id FROM dalibnieki;
+# """)
+
+# radit("""
+#     SELECT vards, uzvards FROM skoleni
+#     WHERE id NOT IN (
+#         SELECT DISTINCT skolens_id FROM dalibnieki
+#     );
+# """)
+
 #    - c) priekšmets, kurā ir likts visvairāk atzīmju;
+
+# radit("""
+#     SELECT prieksmeti.nosaukums, COUNT(*) AS skaits FROM prieksmeti
+#     JOIN atzimes ON prieksmeti.id=atzimes.prieksmets_id
+#     GROUP BY prieksmeti.id;
+# """)
+
+# radit("""
+#     SELECT nosaukums, MAX(skaits) as skaits FROM (
+#        SELECT prieksmeti.nosaukums, COUNT(*) AS skaits FROM prieksmeti
+#         JOIN atzimes ON prieksmeti.id=atzimes.prieksmets_id
+#         GROUP BY prieksmeti.id 
+#     )
+# """)
+
 #    - d) vidējais dalībnieku skaits pulciņos, kuros ir vismaz viens dalībnieks;
+
+# radit("""
+#     SELECT nosaukums, COUNT(*) AS skaits FROM pulcini 
+#     JOIN dalibnieki ON pulcini.id=dalibnieki.pulcins_id
+#     GROUP BY pulcini.id;
+# """)
+
+# radit("""
+#     SELECT ROUND(AVG(skaits), 2) AS videjais FROM (
+#         SELECT nosaukums, COUNT(*) AS skaits FROM pulcini 
+#         JOIN dalibnieki ON pulcini.id=dalibnieki.pulcins_id
+#         GROUP BY pulcini.id    
+#     )
+# """)
+
 #    - e) ★ katram skolēnam viņa pēdējās atzīmes datums un pati atzīme.
+
+radit("""
+    SELECT vards, uzvards, atzime, MAX(datums) 
+    FROM skoleni JOIN atzimes ON skoleni.id=atzimes.skolens_id 
+    GROUP BY skoleni.id;
+""")
+
+radit("""
+    SELECT s.vards, s.uzvards, a.datums, a.atzime
+    FROM skoleni s
+    JOIN atzimes a ON a.skolens_id = s.id
+    WHERE a.datums = (
+        SELECT MAX(a2.datums)
+        FROM atzimes a2
+        WHERE a2.skolens_id = s.id 
+    )
+    ORDER BY s.uzvards;
+""")
+
+radit("""
+    SELECT s.vards, s.uzvards, a.datums, a.atzime
+    FROM skoleni s
+    JOIN atzimes a ON a.skolens_id = s.id
+    WHERE a.id = (
+        SELECT a2.id
+        FROM atzimes a2
+        WHERE a2.skolens_id = s.id
+        ORDER BY a2.datums DESC, a2.id DESC
+        LIMIT 1
+    );
+""")
+
+
+#    - f) katram pulciņam brīvo vietu skaits (vietu_skaits mīnus dalībnieku skaits),
+#         ieskaitot pulciņus bez dalībniekiem — skaitu iegūsti ar apakšvaicājumu SELECT daļā;
+
+
+
+#    - g) skolotāji, kuri nav nevienas klases audzinātāji un nevada nevienu pulciņu;
+
+
+
+#    - h) klases, kurās ir vairāk skolēnu nekā vidēji vienā klasē;
+
+
+
+#    - i) skolēni, kuri ir saņēmuši vismaz vienu 10, bet nevienu atzīmi zem 4;
+
+
+
+#    - j) ★ katrā priekšmetā skolēns (vai skolēni) ar augstāko vidējo atzīmi šajā priekšmetā.
+
+
 
 
 
