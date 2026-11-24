@@ -356,45 +356,73 @@ bib = izveidot_biblioteku()
 
 #    - e) ★ katram skolēnam viņa pēdējās atzīmes datums un pati atzīme.
 
-radit("""
-    SELECT vards, uzvards, atzime, MAX(datums) 
-    FROM skoleni JOIN atzimes ON skoleni.id=atzimes.skolens_id 
-    GROUP BY skoleni.id;
-""")
+# radit("""
+#     SELECT vards, uzvards, atzime, MAX(datums) 
+#     FROM skoleni JOIN atzimes ON skoleni.id=atzimes.skolens_id 
+#     GROUP BY skoleni.id;
+# """)
 
-radit("""
-    SELECT s.vards, s.uzvards, a.datums, a.atzime
-    FROM skoleni s
-    JOIN atzimes a ON a.skolens_id = s.id
-    WHERE a.datums = (
-        SELECT MAX(a2.datums)
-        FROM atzimes a2
-        WHERE a2.skolens_id = s.id 
-    )
-    ORDER BY s.uzvards;
-""")
+# OPTIMĀlS
+# radit("""
+#     SELECT s.vards, s.uzvards, a.datums, a.atzime
+#     FROM skoleni s
+#     JOIN atzimes a ON a.skolens_id = s.id
+#     WHERE a.datums = (
+#         SELECT MAX(a2.datums)
+#         FROM atzimes a2
+#         WHERE a2.skolens_id = s.id 
+#     )
+#     ORDER BY s.uzvards;
+# """)
 
-radit("""
-    SELECT s.vards, s.uzvards, a.datums, a.atzime
-    FROM skoleni s
-    JOIN atzimes a ON a.skolens_id = s.id
-    WHERE a.id = (
-        SELECT a2.id
-        FROM atzimes a2
-        WHERE a2.skolens_id = s.id
-        ORDER BY a2.datums DESC, a2.id DESC
-        LIMIT 1
-    );
-""")
+# radit("""
+#     SELECT s.vards, s.uzvards, a.datums, a.atzime
+#     FROM skoleni s
+#     JOIN atzimes a ON a.skolens_id = s.id
+#     WHERE a.id = (
+#         SELECT a2.id
+#         FROM atzimes a2
+#         WHERE a2.skolens_id = s.id
+#         ORDER BY a2.datums DESC, a2.id DESC
+#         LIMIT 1
+#     );
+# """)
 
 
 #    - f) katram pulciņam brīvo vietu skaits (vietu_skaits mīnus dalībnieku skaits),
 #         ieskaitot pulciņus bez dalībniekiem — skaitu iegūsti ar apakšvaicājumu SELECT daļā;
 
-
+# radit("""
+#     SELECT 
+#         nosaukums,
+#         vietu_skaits, 
+#         COUNT(skolens_id) AS dalibnieku_skaits,
+#         vietu_skaits - COUNT(skolens_id) AS brivo_vietu_skaits
+#     FROM pulcini p 
+#     LEFT JOIN dalibnieki d ON p.id=d.pulcins_id
+#     GROUP BY p.id;
+# """)
 
 #    - g) skolotāji, kuri nav nevienas klases audzinātāji un nevada nevienu pulciņu;
 
+radit("""
+    SELECT DISTINCT skolotajs_id FROM pulcini;
+""")
+
+radit("""
+    SELECT DISTINCT audzinatajs_id FROM klases;
+""")
+
+radit("""
+    SELECT * FROM skolotaji 
+    WHERE skolotaji.id NOT IN (
+        SELECT DISTINCT audzinatajs_id FROM klases
+        )
+    AND 
+    skolotaji.id NOT IN (
+        SELECT DISTINCT skolotajs_id FROM pulcini
+        );
+""")
 
 
 #    - h) klases, kurās ir vairāk skolēnu nekā vidēji vienā klasē;
