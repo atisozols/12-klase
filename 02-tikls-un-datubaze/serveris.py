@@ -54,11 +54,56 @@ def kluda(teksts, kods):
 def sakums():
     return jsonify({"zina": "Bibliotēkas serveris strādā"})
 
-
 # 1. stunda — 2.–6. uzdevums
 # GET /api/gramatas
+@app.get("/api/gramatas")
+def gramatas():
+    meklet = request.args.get("meklet")
+
+    if meklet:
+        result = vaicajums("""
+            SELECT gramatas.id, nosaukums, izdosanas_gads, CONCAT(vards, ' ', uzvards) as autors, COUNT(eksemplari.id) as eksemplari 
+            FROM gramatas 
+            JOIN eksemplari ON eksemplari.gramata_id=gramatas.id
+            JOIN autori ON autori.id=gramatas.autors_id
+            WHERE gramatas.nosaukums LIKE '%' || ? || '%'
+            GROUP BY gramatas.id;
+        """, (meklet, ))
+    else:
+        result = vaicajums("""
+            SELECT gramatas.id, nosaukums, izdosanas_gads, CONCAT(vards, ' ', uzvards) as autors, COUNT(eksemplari.id) as eksemplari 
+            FROM gramatas 
+            JOIN eksemplari ON eksemplari.gramata_id=gramatas.id
+            JOIN autori ON autori.id=gramatas.autors_id
+            GROUP BY gramatas.id;
+        """)
+    
+    return jsonify({"skaits": len(result), "dati": result})
+
 # GET /api/gramatas/<int:id>
+@app.get("/api/gramatas/<int:id>")
+def gramata_ar_eksemplariem(id):
+    result = vaicajums("""
+        SELECT * FROM gramatas
+        JOIN eksemplari ON gramatas.id=eksemplari.gramata_id 
+        WHERE gramatas.id = ?;
+    """, (id, ))
+
+    if len(result) == 0:
+        return jsonify({"kluda": "Grāmata nav atrasta"}), 400
+
+    return jsonify({"skaits": len(result), "dati": result})
+
 # GET /api/lasitaji
+
+@app.get("/api/lasitaji")
+def lasitaji():
+    result = vaicajums("""
+        SELECT id, vards, uzvards FROM lasitaji;
+    """)
+
+    return jsonify({"skaits": len(result), "dati": result})
+
 # ★ GET /api/autori/<int:id>/gramatas
 
 

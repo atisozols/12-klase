@@ -9,12 +9,12 @@
 nederīgiem datiem, raksta žurnālu, ir pieejams citiem lokālajā tīklā un ir dokumentēts tā, lai
 to var lietot cits.
 
-| Stunda | Tēma | Stundas beigās strādā |
-| --- | --- | --- |
-| 1 | Pirmais serveris: GET, JSON, 404 | 4 maršruti, kas lasa datus no datubāzes |
-| 2 | Parametri un validācija | meklēšana, lappušošana, 400 kļūdas, statistika |
-| 3 | Datu pieņemšana un kļūdu apstrāde | POST maršruti, 201 / 400 / 404 / 409, droša 500 |
-| 4 | Žurnāls, tīkls, dokumentācija | serveris tīklā, `serveris.log`, `SERVERIS.md` |
+| Stunda | Tēma                              | Stundas beigās strādā                           |
+| ------ | --------------------------------- | ----------------------------------------------- |
+| 1      | Pirmais serveris: GET, JSON, 404  | 4 maršruti, kas lasa datus no datubāzes         |
+| 2      | Parametri un validācija           | meklēšana, lappušošana, 400 kļūdas, statistika  |
+| 3      | Datu pieņemšana un kļūdu apstrāde | POST maršruti, 201 / 400 / 404 / 409, droša 500 |
+| 4      | Žurnāls, tīkls, dokumentācija     | serveris tīklā, `serveris.log`, `SERVERIS.md`   |
 
 **Nodevums pēc 4. stundas:** `serveris.py`, `parbaude.py`, `SERVERIS.md` repozitorijā.
 
@@ -61,6 +61,7 @@ Serverim jāstrādā **vienā** terminālī, `parbaude.py` palaid **otrā**.
 ## 1. stunda · Pirmais serveris
 
 **Gaita**
+
 - 5' — atkārtojums no 11. klases: klients, serveris, maršruts, JSON. Ko nozīmē
   `127.0.0.1:5001` — kura daļa ir adrese, kura ports?
 - 10' — demo: `serveris.py` palaišana, `row_factory`, `jsonify`, maršruts ar `<int:id>`
@@ -69,42 +70,40 @@ Serverim jāstrādā **vienā** terminālī, `parbaude.py` palaid **otrā**.
 
 **Statusa kodi, kas būs vajadzīgi visās četrās stundās**
 
-| Kods | Nozīme | Kad mūsu serverī |
-| --- | --- | --- |
-| 200 | OK | dati atgriezti |
-| 201 | Created | izveidots jauns ieraksts |
-| 400 | Bad Request | klients atsūtīja nederīgus datus |
-| 404 | Not Found | tāda ieraksta vai adreses nav |
-| 405 | Method Not Allowed | adrese ir, bet ne ar šo metodi |
-| 409 | Conflict | dati ir derīgi, bet konfliktē ar esošajiem (dubults e-pasts, jau izsniegts) |
-| 500 | Internal Server Error | kļūda servera kodā — vaina nav klientam |
+| Kods | Nozīme                | Kad mūsu serverī                                                            |
+| ---- | --------------------- | --------------------------------------------------------------------------- |
+| 200  | OK                    | dati atgriezti                                                              |
+| 201  | Created               | izveidots jauns ieraksts                                                    |
+| 400  | Bad Request           | klients atsūtīja nederīgus datus                                            |
+| 404  | Not Found             | tāda ieraksta vai adreses nav                                               |
+| 405  | Method Not Allowed    | adrese ir, bet ne ar šo metodi                                              |
+| 409  | Conflict              | dati ir derīgi, bet konfliktē ar esošajiem (dubults e-pasts, jau izsniegts) |
+| 500  | Internal Server Error | kļūda servera kodā — vaina nav klientam                                     |
 
 **Uzdevumi**
 
 1. Palaid serveri un atver `/`. Nomaini ziņas tekstu, saglabā failu un atjauno lapu. Serveri
    nepārstartēji — kāpēc izmaiņa tomēr ir redzama? Atbildi komentārā.
-
 2. **`GET /api/gramatas`** — visas grāmatas, sakārtotas pēc nosaukuma. Katrai grāmatai:
    `id`, `nosaukums`, `autors` (vārds un uzvārds vienā laukā), `gads` un `eksemplari`
    (eksemplāru skaits). Atbildes forma:
+
    ```json
    {"skaits": 6, "dati": [{"id": 6, "nosaukums": "Aka", "autors": "Regīna Ezera", "gads": 1972, "eksemplari": 1}, …]}
    ```
-   *Padoms:* `JOIN autori`, `LEFT JOIN eksemplari`, `COUNT(e.id)`, `GROUP BY g.id`.
+
+   _Padoms:_ `JOIN autori`, `LEFT JOIN eksemplari`, `COUNT(e.id)`, `GROUP BY g.id`.
    Kāpēc `LEFT JOIN`, nevis `JOIN`?
 
 3. **`GET /api/gramatas/<int:id>`** — viena grāmata ar sarakstu `eksemplari`. Katram
    eksemplāram ir `id`, `svitrkods` un `pieejams` (`true` / `false`). Ja grāmatas nav, atbilde ir
    `{"kluda": "Grāmata nav atrasta"}` ar statusa kodu **404**.
-   *Padoms:* eksemplārs nav pieejams, ja tam ir izsniegums ar `atgriezts IS NULL`.
+   _Padoms:_ eksemplārs nav pieejams, ja tam ir izsniegums ar `atgriezts IS NULL`.
    Neaizmirsti: `?`, nevis f-string.
-
 4. Atver `/api/gramatas/abc` un `/api/gramatas/-1`. Ko atgriež serveris un kāpēc? Pieraksti
    komentārā, ko šeit izdara `<int:id>` tavā vietā.
-
 5. **`GET /api/lasitaji`** — tikai `id`, `vards`, `uzvards`, sakārtoti pēc uzvārda. Komentārā
    pamato, kāpēc šajā sarakstā **neatgriežam** e-pastu un telefonu, lai gan tie datubāzē ir.
-
 6. ★ **`GET /api/autori/<int:id>/gramatas`** — visas autora grāmatas. Ja autora nav — 404.
    Ja autors ir, bet viņam nav grāmatu — tukšs saraksts un 200. Kāpēc šie gadījumi atšķiras?
 
@@ -116,6 +115,7 @@ JSON kļūdu, nevis HTML lapu. **Commit.**
 ## 2. stunda · Parametri un validācija
 
 **Gaita**
+
 - 5' — kas notiek, ja kods dara `int(request.args["limit"])` un kāds atsūta `?limit=abc`?
 - 10' — demo: `request.args.get`, palīgfunkcija validācijai, 400 ar paskaidrojumu
 - 22' — uzdevumi
@@ -131,44 +131,53 @@ JSON kļūdu, nevis HTML lapu. **Commit.**
 
 8. Pievieno lappušošanu: `?limit=` (noklusējums 20, atļauts 1–100) un `?offset=` (noklusējums 0,
    ne mazāks par 0). Uzraksti palīgfunkciju:
+
    ```python
    def vesels_skaitlis(nosaukums, noklusejums, min_v=None, max_v=None):
        """Nolasa request.args[nosaukums]; ja nav — noklusējums.
        Ja nav vesels skaitlis vai ir ārpus robežām — raise ValueError("…saprotams teksts…")."""
    ```
+
    Maršrutā noķer `ValueError` un atgriez **400** ar tās tekstu. Atsevišķi pārbaudi, ka `no`
    nav lielāks par `lidz`.
 
 9. Aizpildi tabulu `serveris.py` beigās komentārā. Katrai adresei vispirms uzraksti, ko
    **gaidi**, un tikai tad pārbaudi.
 
-   | Adrese | Gaidītais kods | Faktiskais kods |
-   | --- | --- | --- |
-   | `/api/gramatas?limit=abc` | | |
-   | `/api/gramatas?limit=0` | | |
-   | `/api/gramatas?limit=1000` | | |
-   | `/api/gramatas?offset=-1` | | |
-   | `/api/gramatas?no=2000&lidz=1900` | | |
-   | `/api/gramatas?meklet=zzz` | | |
+   | Adrese                            | Gaidītais kods | Faktiskais kods |
+   | --------------------------------- | -------------- | --------------- |
+   | `/api/gramatas?limit=abc`         |                |                 |
+   | `/api/gramatas?limit=0`           |                |                 |
+   | `/api/gramatas?limit=1000`        |                |                 |
+   | `/api/gramatas?offset=-1`         |                |                 |
+   | `/api/gramatas?no=2000&lidz=1900` |                |                 |
+   | `/api/gramatas?meklet=zzz`        |                |                 |
 
 10. **`GET /api/izsniegti`** — eksemplāri, kas pašlaik ir pie lasītājiem: `svitrkods`,
     `nosaukums`, `lasitajs`, `izsniegts` un `dienas` (cik dienas pie lasītāja). Sakārto tā, lai
     ilgāk turētie ir augšā.
-    *Padoms:* `julianday('now') - julianday(izsniegts)`. Līdzīgs vaicājums bija 29. uzdevumā.
-
+    _Padoms:_ `julianday('now') - julianday(izsniegts)`. Līdzīgs vaicājums bija 29. uzdevumā.
 11. **`GET /api/statistika`** — viens JSON objekts ar datubāzes kopsavilkumu:
+
     ```json
-    {"gramatas": 6, "eksemplari": 7, "lasitaji": 5, "pasreiz_izsniegti": 4,
-     "populararaka": {"nosaukums": "…", "reizes": 2}}
+    {
+      "gramatas": 6,
+      "eksemplari": 7,
+      "lasitaji": 5,
+      "pasreiz_izsniegti": 4,
+      "populararaka": { "nosaukums": "…", "reizes": 2 }
+    }
     ```
 
 12. ★ **SQL injekcija darbībā.** Pagaidām pievieno apzināti ievainojamu maršrutu:
+
     ```python
     @app.get("/api/nedrosi")
     def nedrosi():
         nos = request.args.get("nosaukums", "")
         return jsonify(vaicajums(f"SELECT id, nosaukums FROM gramatas WHERE nosaukums = '{nos}'"))
     ```
+
     Pārlūkā izmēģini `?nosaukums=Aka`, tad `?nosaukums=' OR '1'='1`, tad
     `?nosaukums=' UNION SELECT id, epasts FROM lasitaji --`. Komentārā pieraksti, ko ieguvi un
     kāpēc tas izdevās. Pārraksti vaicājumu ar `?`, pārbaudi abus uzbrukumus vēlreiz, un tad
@@ -182,6 +191,7 @@ pasaka, kurš parametrs ir nepareizs un kāpēc. **Commit.**
 ## 3. stunda · Datu pieņemšana un kļūdu apstrāde
 
 **Gaita**
+
 - 5' — `GET` pret `POST`; kāpēc jauns ieraksts dod 201, nevis 200
 - 10' — demo: `request.get_json(silent=True)`, `IntegrityError` → 409, `parbaude.py`
 - 22' — uzdevumi
@@ -204,17 +214,17 @@ pasaka, kurš parametrs ir nepareizs un kāpēc. **Commit.**
     Ja izdodas — **201** un jaunā lasītāja `id`.
 
 14. **`POST /api/izsniegumi`** — izsniedz eksemplāru: `{"eksemplars_id": 2, "lasitajs_id": 3}`.
-    | Gadījums | Kods |
-    | --- | --- |
-    | ID nav veseli skaitļi vai trūkst | 400 |
-    | eksemplārs vai lasītājs neeksistē | 404 |
-    | eksemplārs jau ir pie kāda (ir izsniegums ar `atgriezts IS NULL`) | 409 |
-    | izdevās | 201 |
+
+    | Gadījums                                                          | Kods |
+    | ----------------------------------------------------------------- | ---- |
+    | ID nav veseli skaitļi vai trūkst                                  | 400  |
+    | eksemplārs vai lasītājs neeksistē                                 | 404  |
+    | eksemplārs jau ir pie kāda (ir izsniegums ar `atgriezts IS NULL`) | 409  |
+    | izdevās                                                           | 201  |
 
 15. **`POST /api/izsniegumi/<int:id>/atgriezt`** — iestata `atgriezts = CURRENT_DATE`.
     Neesošs izsniegums — 404, jau atgriezts — 409, izdevās — 200. Ar `GET /api/gramatas/<id>`
     pārbaudi, ka eksemplārs atkal ir `pieejams: true`.
-
 16. **Kļūdu apstrādātāji.** Pievieno `@app.errorhandler(404)`, `(405)` un `(500)`, kas visi
     atgriež JSON formā `{"kluda": "…"}`. Pārbaudi tā:
     - atver `/nekas` un nosūti `requests.delete(f"{URL}/api/gramatas")`;
@@ -233,7 +243,7 @@ pasaka, kurš parametrs ir nepareizs un kāpēc. **Commit.**
 **`parbaude.py`** — šīs stundas beigās tajā jābūt vismaz vienam veiksmīgam un vienam
 neveiksmīgam pieprasījumam katram `POST` maršrutam.
 
-**Stundas beigās:** nevienā kļūdas atbildē nav SQL, *traceback* vai faila ceļa; katrs
+**Stundas beigās:** nevienā kļūdas atbildē nav SQL, _traceback_ vai faila ceļa; katrs
 kļūdas gadījums atgriež pareizo kodu. **Commit.**
 
 ---
@@ -241,6 +251,7 @@ kļūdas gadījums atgriež pareizo kodu. **Commit.**
 ## 4. stunda · Žurnāls, tīkls, dokumentācija
 
 **Gaita**
+
 - 5' — eksperiments: pāris mēģina atvērt tavu serveri pēc tava IP. Kāpēc neizdodas?
 - 10' — demo: `logging`, `@app.before_request`, `@app.after_request`, `g`
 - 22' — uzdevumi
@@ -249,15 +260,17 @@ kļūdas gadījums atgriež pareizo kodu. **Commit.**
 **Uzdevumi**
 
 18. **Žurnalēšana.** Katrs pieprasījums tiek pierakstīts failā `serveris.log` vienā rindā:
+
     ```
     2026-11-26 10:14:03 192.168.1.37 GET /api/gramatas?limit=5 200 3ms
     ```
-    *Padomi:* `logging.basicConfig(filename=…, level=logging.INFO, format="%(asctime)s %(message)s")`;
+
+    _Padomi:_ `logging.basicConfig(filename=…, level=logging.INFO, format="%(asctime)s %(message)s")`;
     `@app.before_request` saglabā sākuma laiku `g.sakums = time.perf_counter()`;
     `@app.after_request` saņem `atbilde`, pieraksta rindu un atgriež `atbilde`. Klienta IP ir
     `request.remote_addr`.
     Žurnālā **nedrīkst** nonākt pieprasījuma saturs (e-pasti, telefoni). Atver `serveris.log` un
-    pārbaudi, kur nonāca 16. uzdevuma 500 kļūdas *traceback*.
+    pārbaudi, kur nonāca 16. uzdevuma 500 kļūdas _traceback_.
 
 19. **Serveris tīklā.** Noskaidro sava datora IP adresi lokālajā tīklā (`ipconfig` / `ifconfig`).
     - a) Serveris vēl darbojas ar `app.run(port=5001, …)`. Pāris atver
@@ -266,7 +279,7 @@ kļūdas gadījums atgriež pareizo kodu. **Commit.**
     - c) Komentārā vienā teikumā: kas mainījās?
 
     Atrodi `serveris.log` rindu ar pāra IP adresi — tas ir pierādījums, ko ieliksi `SERVERIS.md`.
-    *Ja neizdodas:* pārbaudi ugunsmūri un to, vai abi esat vienā tīklā. Skolas Wi-Fi var
+    _Ja neizdodas:_ pārbaudi ugunsmūri un to, vai abi esat vienā tīklā. Skolas Wi-Fi var
     bloķēt ierīču savstarpējo saziņu (klientu izolācija) — tad lietojiet telefona karstvietu.
 
 20. **Pāra «uzbrukums», 10 minūtes.** Pāris ar savu `parbaude.py` mēģina panākt, ka tavs serveris
@@ -274,8 +287,8 @@ kļūdas gadījums atgriež pareizo kodu. **Commit.**
     mēģinājumu:
 
     | Pieprasījums | Gaidīju | Saņēmu | Izlabots? |
-    | --- | --- | --- | --- |
-    | | | | |
+    | ------------ | ------- | ------ | --------- |
+    |              |         |        |           |
 
     Izlabo vismaz vienu atrasto problēmu. Ja pārim neizdevās atrast nevienu, pieraksti trīs
     viņa mēģinājumus un to, kura tava koda rinda viņu apturēja.
@@ -291,7 +304,7 @@ kļūdas gadījums atgriež pareizo kodu. **Commit.**
 
 22. ★ **Pieprasījumu ierobežošana.** Ne vairāk kā 30 pieprasījumi minūtē no vienas IP adreses.
     Ja vairāk — **429** `{"kluda": "Pārāk daudz pieprasījumu"}`. Pārbaudi ar ciklu `parbaude.py`.
-    *Padoms:* vārdnīca `{ip: [laiks, laiks, …]}` un `@app.before_request`.
+    _Padoms:_ vārdnīca `{ip: [laiks, laiks, …]}` un `@app.before_request`.
 
 **Stundas beigās:** serveris darbojas tīklā ar `debug=False`, raksta žurnālu, un `SERVERIS.md`
 ir repozitorijā. **Commit un nodošana.**
@@ -305,7 +318,7 @@ ir repozitorijā. **Commit un nodošana.**
 - [ ] `POST` maršruti: `/api/lasitaji`, `/api/izsniegumi`, `/api/izsniegumi/<id>/atgriezt`.
 - [ ] Visi vaicājumi lieto `?`, nevienā vaicājumā nav f-string vai `+`.
 - [ ] Katrs kļūdas gadījums atgriež JSON un pareizo kodu: 400, 404, 405, 409, 500.
-- [ ] Neviena atbilde neatklāj SQL, *traceback*, faila ceļu, e-pastus vai telefonus.
+- [ ] Neviena atbilde neatklāj SQL, _traceback_, faila ceļu, e-pastus vai telefonus.
 - [ ] `serveris.log` pieraksta katru pieprasījumu; tajā ir pieprasījums no cita datora.
 - [ ] `debug=False`, kad serveris ir pieejams tīklā.
 - [ ] `parbaude.py` testē katru `POST` maršrutu ar derīgiem un nederīgiem datiem.
