@@ -45,6 +45,25 @@ def kluda(teksts, kods):
     """Vienmēr viena un tā pati kļūdas atbildes forma: {"kluda": "..."}."""
     return jsonify({"kluda": teksts}), kods
 
+def vesels_skaitlis(nosaukums, noklusejums, min_v=None, max_v=None):
+    """Nolasa request.args[nosaukums]; ja nav — noklusējums.
+    Ja nav vesels skaitlis vai ir ārpus robežām — raise ValueError("…saprotams teksts…")."""
+    teksts = request.args.get(nosaukums, "")
+    if teksts == "":
+        return noklusejums
+    
+    try:
+        vertiba = int(teksts)
+    except ValueError:
+        raise ValueError(f"{nosaukums} jābūt veselam skaitlim")
+    if min_v is not None and vertiba < min_v:
+        raise ValueError(f"{nosaukums} nedrīkst būt mazāks par {min_v}")
+    if max_v is not None and vertiba > max_v:
+        raise ValueError(f"{nosaukums} nedrīkst būt lielāks par {max_v}")
+
+    return vertiba
+
+
 
 # ----------------------------------------------------------
 # Maršruti
@@ -58,25 +77,34 @@ def sakums():
 # GET /api/gramatas
 @app.get("/api/gramatas")
 def gramatas():
-    meklet = request.args.get("meklet")
+    meklet = request.args.get("meklet") or None
+    try:
+        no = vesels_skaitlis("no", None)
+        lidz = vesels_skaitlis("lidz", None)
+        limit = vesels_skaitlis("limit", 20, 1, 100)
+        offset = vesels_skaitlis("offset", 0, 0)
+    except ValueError as error:
+        return kluda(str(error), 400)
 
-    if meklet:
-        result = vaicajums("""
+    if no > lidz:
+        return kluda("no nedrīkst būt lielāks par lidz", 400)
+
+
+    result = vaicajums("""
             SELECT gramatas.id, nosaukums, izdosanas_gads, CONCAT(vards, ' ', uzvards) as autors, COUNT(eksemplari.id) as eksemplari 
             FROM gramatas 
             JOIN eksemplari ON eksemplari.gramata_id=gramatas.id
             JOIN autori ON autori.id=gramatas.autors_id
-            WHERE gramatas.nosaukums LIKE '%' || ? || '%'
-            GROUP BY gramatas.id;
-        """, (meklet, ))
-    else:
-        result = vaicajums("""
-            SELECT gramatas.id, nosaukums, izdosanas_gads, CONCAT(vards, ' ', uzvards) as autors, COUNT(eksemplari.id) as eksemplari 
-            FROM gramatas 
-            JOIN eksemplari ON eksemplari.gramata_id=gramatas.id
-            JOIN autori ON autori.id=gramatas.autors_id
-            GROUP BY gramatas.id;
-        """)
+            WHERE 
+                (:no IS NULL OR gramatas.izdosanas_gads >= :no) 
+                AND 
+                (:lidz IS NULL OR gramatas.izdosanas_gads <= :lidz)
+                AND
+                (:meklet IS NULL OR gramatas.nosaukums LIKE '%' || :meklet || '%') 
+            GROUP BY gramatas.id
+            LIMIT :limit OFFSET :offset;
+        """, {"no": no, "lidz": lidz, "meklet": meklet, "limit": limit, "offset": offset})
+        
     
     return jsonify({"skaits": len(result), "dati": result})
 
@@ -108,8 +136,21 @@ def lasitaji():
 
 
 # 2. stunda — 7.–12. uzdevums
-# GET /api/gramatas?meklet=&no=&lidz=&limit=&offset=
 # GET /api/izsniegti
+
+@app.get("/api/izsniegti")
+def izsniegti():
+    result = vaicajums("""
+        SELECT svitrkods, nosaukums, CONCAT(vards, ' ', uzvards) as lasitajs, CAST(JULIANDAY('now') - JULIANDAY(i.izsniegts) AS INTEGER) as dienas, i.izsniegts FROM izsniegumi i
+        JOIN eksemplari e ON i.eksemplars_id=e.id
+        JOIN lasitaji l ON i.lasitajs_id=l.id
+        JOIN gramatas g ON g.id=e.gramata_id
+        WHERE atgriezts IS NULL
+        ORDER BY dienas DESC
+    """)
+
+    return jsonify({"skaits": len(result), "dati": result})
+
 # GET /api/statistika
 
 
